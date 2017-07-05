@@ -1,0 +1,57 @@
+
+    #foc{
+        position: relative;
+        left: 20%;
+        top: 200px;
+        width: 200px;
+        height: auto;
+        background: white;
+    }
+    input{
+    	height: 25px;
+    	width: 200px;
+    	font-size: 17px;
+    	font-family: Helvetica;
+    	box-shadow: none;
+    	border-width: 2px;
+    	border-style: solid;
+    	border-color: #959494;
+        border-radius: 3px; 
+    }
+	
+	  input:focus {
+	  box-shadow: none;
+   	  border: 2px solid #FEFEFE;
+
+
+   }
+
+    a{
+    	color: black;
+    	font-size: 17px;
+    	font-family: Helvetica;
+    	text-decoration: none;
+
+    }
+
+     li {
+        border-bottom:  0.3px solid #D7D7D7;
+         list-style-type: none; 
+        color: black;
+        height: auto;
+        font-size: 17px;
+        font-family: Helvetica;
+        text-decoration: none;
+}
+    li :hover{
+        
+        color: #3EBDFF;
+        }
+   
+   ul {
+    margin-left: 0;
+    padding-left: 0;
+   }
+
+
+

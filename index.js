@@ -27,16 +27,19 @@ class Autocomplete {
       init() {
         console.dir(this.inputs);
         this.inputs.addEventListener('focus', () => {
+
+               this.blur()
                this.getArr2();
                this.allCities();
                this.yourChoise();
+            
 
         });
 
-        document.addEventListener("click", // удаляет список при клике куда либо кроме инпута и списка (чтобы он не копировался дважды)
-   () => {
-        // this.removeList();
-    });
+   //      document.addEventListener("click", // удаляет список при клике куда либо кроме инпута и списка (чтобы он не копировался дважды)
+   // () => {
+       this.removeList();
+    // });
 
         this.inputs.addEventListener("keyup",
     () => {          // функция, которая показывает города по совпадениям, выводит алерт, и наоборот, 'нет совпадений' - если они не найдены.
@@ -85,8 +88,8 @@ class Autocomplete {
 
     removeList() {
         let doc = document.getElementById('ull'); 
-        let a = document.getElementById('a'); 
-        let b = document.getElementById('b'); 
+        let a = document.getElementById('aa'); 
+        let b = document.getElementById('bb'); 
         document.addEventListener("click", (e) => {
          if((e.target !== (a || b || doc ))) {    // этот метод при клике куда угодно кроме инпута и списка очищает масссив и список
              this.arr2 = [];
@@ -147,14 +150,24 @@ class Autocomplete {
 
     }
 
-    onSelect(){
-        this.inputs.call(this, value);
+        onSelect() {
+        this.submitItem(this.getCurrent());
+    }
+
+      getCurrent() {
+        if (this.isEmptyResult()) {
+            return null;
+        }
+
+        return this.list.querySelector('li.current');
     }
 
 
 
+
+
     yourChoise(){
-        // this.blur(); // очищаем массив
+        this.blur(); // очищаем массив
         let result;
         let a = document.getElementsByTagName('a'); //
         for (let j = 0; j <= a.length; j++){
@@ -185,7 +198,7 @@ autocomp = Array.prototype.slice.call(autocomp);
 
 autocomp.forEach(inputs => {
     let parent = inputs.parentNode;
-    new Autocomplete(cities, inputs, parent, onSelect()).init();
+    new Autocomplete(cities, inputs, parent).init();
 
 });
 

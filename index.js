@@ -24,6 +24,30 @@ class Autocomplete {
         this.par = parents;
     }
 
+      init() {
+        console.dir(this.inputs);
+        this.inputs.addEventListener('focus', () => {
+               this.getArr2();
+               this.allCities();
+               this.yourChoise();
+
+        });
+
+        document.addEventListener("click", // удаляет список при клике куда либо кроме инпута и списка (чтобы он не копировался дважды)
+   () => {
+        // this.removeList();
+    });
+
+        this.inputs.addEventListener("keyup",
+    () => {          // функция, которая показывает города по совпадениям, выводит алерт, и наоборот, 'нет совпадений' - если они не найдены.
+        this.keyUpFat();
+
+    });
+
+    }
+
+
+
     getArr2() {
         for (let key in this.arr){
             this.arr2.push(this.arr[key]); // делаю из одного массива отсортированный второй
@@ -37,7 +61,6 @@ class Autocomplete {
 
 
     allCities(){
-        this.inputs.addEventListener("click", () => { 
         this.clean(); // очищает поле при клике на инпут
         let ul = document.createElement('ul');             // подготовка к генерации списка
         ul.id = "ull";                              
@@ -55,19 +78,22 @@ class Autocomplete {
         }
             let ar = document.getElementsByTagName('li');
             ar[0].style.display = 'none';   //вот тут первая строка становится невидимой
-    });
-}
+    };
+
+
 
 
     removeList() {
-        let doc = document.getElementById('ull');  
+        let doc = document.getElementById('ull'); 
+        let a = document.getElementById('a'); 
+        let b = document.getElementById('b'); 
         document.addEventListener("click", (e) => {
-         if((e.target !== (this.inputs || doc ))) {    // этот метод при клике куда угодно кроме инпута и списка очищает масссив и список
+         if((e.target !== (a || b || doc ))) {    // этот метод при клике куда угодно кроме инпута и списка очищает масссив и список
              this.arr2 = [];
              document.getElementById('ull').remove();
          }
 
-        })
+        });
     }
 
 
@@ -121,14 +147,18 @@ class Autocomplete {
 
     }
 
+    onSelect(){
+        this.inputs.call(this, value);
+    }
+
 
 
     yourChoise(){
-        this.blur(); // очищаем массив
+        // this.blur(); // очищаем массив
         let result;
         let a = document.getElementsByTagName('a'); //
         for (let j = 0; j <= a.length; j++){
-            a[j].addEventListener('click', function(){                  //cлушаем каждый элемент списка
+            a[j].addEventListener('click', () => {                  //cлушаем каждый элемент списка
                      this.inputs.onfocus = true;   // и реагируем
                     this.inputs.value = a[j].innerText; // вставляем его имя в инпут
                     result =  this.inputs.value;   // берем из инпута это же значение (надо исправить, а то повторение)
@@ -145,17 +175,19 @@ class Autocomplete {
         document.getElementById('ull').remove(); // очищение самого списка
     }
 
+   
+
 };
 
 
 let autocomp = document.querySelectorAll('.autocomp');
 autocomp = Array.prototype.slice.call(autocomp);
 
-
 autocomp.forEach(inputs => {
     let parent = inputs.parentNode;
-    new Autocomplete(cities, inputs, parent);
-})
+    new Autocomplete(cities, inputs, parent, onSelect()).init();
+
+});
 
 
 

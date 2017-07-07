@@ -29,7 +29,6 @@ class Autocomplete {
                this.blur()
                this.getArr2();
                this.allCities();
-               console.dir(this.inputs);
                this.yourChoise();
                
 
@@ -62,7 +61,7 @@ class Autocomplete {
 
 
     allCities(){
-        // this.rem();
+
         this.clean(); // очищает поле при клике на инпут
         let ul = document.createElement('ul');             // подготовка к генерации списка
         ul.id = "ull";                              
@@ -87,17 +86,16 @@ class Autocomplete {
 
     removeList() {
 
-        let doc = document.querySelector('ull'); 
+        let doc = document.getElementById('ull'); 
         let a = document.getElementById('aa');
         let b = document.getElementById('bb');
+        let inp = document.getElementsByClassName('autocomp');
+
        document.addEventListener("click", (e) => {
          if((e.target !== b && e.target !== a && e.target !== doc )) {    // этот метод при клике куда угодно кроме инпута и списка очищает масссив и список
-             this.arr2 = [];
-           document.getElementById('ull').remove();
-           console.log('aaa');
+            this.blur();
+           this.rem();
          }
-
-
         });
 
     }
@@ -166,7 +164,7 @@ class Autocomplete {
                     this.inputs.value = a[j].innerText; // вставляем его имя в инпут
                     result =  this.inputs.value;   // берем из инпута это же значение (надо исправить, а то повторение)
                     // document.getElementById('ull').remove();  // очищая при этом весь список
-                    setTimeout(function(){alert(result)}, 150); // и выводим в алерт (задержка нужна чтобы список очищался быстрее алерта)
+                    alert(result);// и выводим в алерт (задержка нужна чтобы список очищался быстрее алерта)
                 }
 
 

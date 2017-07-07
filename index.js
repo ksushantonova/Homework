@@ -25,27 +25,25 @@ class Autocomplete {
     }
 
       init() {
-        console.dir(this.inputs);
         this.inputs.addEventListener('focus', () => {
-
                this.blur()
                this.getArr2();
                this.allCities();
+               console.dir(this.inputs);
                this.yourChoise();
-            
+               
 
         });
 
-   //      document.addEventListener("click", // удаляет список при клике куда либо кроме инпута и списка (чтобы он не копировался дважды)
-   // () => {
-       this.removeList();
-    // });
+
+        this.removeList();
 
         this.inputs.addEventListener("keyup",
     () => {          // функция, которая показывает города по совпадениям, выводит алерт, и наоборот, 'нет совпадений' - если они не найдены.
         this.keyUpFat();
 
     });
+
 
     }
 
@@ -64,6 +62,7 @@ class Autocomplete {
 
 
     allCities(){
+        // this.rem();
         this.clean(); // очищает поле при клике на инпут
         let ul = document.createElement('ul');             // подготовка к генерации списка
         ul.id = "ull";                              
@@ -87,16 +86,20 @@ class Autocomplete {
 
 
     removeList() {
-        let doc = document.getElementById('ull'); 
-        let a = document.getElementById('aa'); 
-        let b = document.getElementById('bb'); 
-        document.addEventListener("click", (e) => {
-         if((e.target !== (a || b || doc ))) {    // этот метод при клике куда угодно кроме инпута и списка очищает масссив и список
+
+        let doc = document.querySelector('ull'); 
+        let a = document.getElementById('aa');
+        let b = document.getElementById('bb');
+       document.addEventListener("click", (e) => {
+         if((e.target !== b && e.target !== a && e.target !== doc )) {    // этот метод при клике куда угодно кроме инпута и списка очищает масссив и список
              this.arr2 = [];
-             document.getElementById('ull').remove();
+           document.getElementById('ull').remove();
+           console.log('aaa');
          }
 
+
         });
+
     }
 
 
@@ -150,19 +153,6 @@ class Autocomplete {
 
     }
 
-        onSelect() {
-        this.submitItem(this.getCurrent());
-    }
-
-      getCurrent() {
-        if (this.isEmptyResult()) {
-            return null;
-        }
-
-        return this.list.querySelector('li.current');
-    }
-
-
 
 
 
@@ -175,7 +165,7 @@ class Autocomplete {
                      this.inputs.onfocus = true;   // и реагируем
                     this.inputs.value = a[j].innerText; // вставляем его имя в инпут
                     result =  this.inputs.value;   // берем из инпута это же значение (надо исправить, а то повторение)
-                    document.getElementById('ull').remove();  // очищая при этом весь список
+                    // document.getElementById('ull').remove();  // очищая при этом весь список
                     setTimeout(function(){alert(result)}, 150); // и выводим в алерт (задержка нужна чтобы список очищался быстрее алерта)
                 }
 

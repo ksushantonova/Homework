@@ -11,7 +11,7 @@ xhr.onload = function() {
     }
 };
 
-xhr.send();
+xhr.send ();
 
 
 
@@ -24,7 +24,8 @@ class Autocomplete {
         this.par = parents;
     }
 
-      init() {
+    //этот метод срабатывает при инициации
+      init() {                                      
         this.inputs.addEventListener('focus', () => {
                this.blur()
                this.getArr2();
@@ -33,12 +34,11 @@ class Autocomplete {
                
 
         });
-
-
+  //метод работает с удалением списков при клике на пустое место    
         this.removeList();
-
-        this.inputs.addEventListener("keyup",
-    () => {          // функция, которая показывает города по совпадениям, выводит алерт, и наоборот, 'нет совпадений' - если они не найдены.
+  //метод показывает города по совпадениям, выводит алерт, и наоборот, 'нет совпадений' - если они не найдены.
+        this.inputs.addEventListener('keyup',
+    () => {        
         this.keyUpFat();
 
     });
@@ -47,23 +47,24 @@ class Autocomplete {
     }
 
 
-
+// делаю из одного массива отсортированный второй
     getArr2() {
         for (let key in this.arr){
-            this.arr2.push(this.arr[key]); // делаю из одного массива отсортированный второй
+            this.arr2.push(this.arr[key]); 
         };
 
         this.arr2.sort();
-        this.arr2.unshift("No matches"); //это невидимая (пока еще видимая)строка без ссылки
+//это невидимая (пока еще видимая)строка без ссылки
+        this.arr2.unshift("No matches"); 
         return this.arr2;
 
     }
 
-
+//генерация списка
     allCities(){
-
-        this.clean(); // очищает поле при клике на инпут
-        let ul = document.createElement('ul');             // подготовка к генерации списка
+// очищает поле при клике на инпут
+        this.clean(); 
+        let ul = document.createElement('ul');      
         ul.id = "ull";                              
         this.par.appendChild(ul); 
         for (let key in this.arr2){
@@ -73,12 +74,12 @@ class Autocomplete {
             ul.appendChild(newBox); //генерирует 
             continue;
             } 
-            newBox.innerHTML = "<a href='#'>" + this.arr2[key] + "</a>"; //генерация спика
+            newBox.innerHTML = "<a href='#'>" + this.arr2[key] + "</a>"; //генерация спика 
             ul.appendChild(newBox);
    
         }
             let ar = document.getElementsByTagName('li');
-            ar[0].style.display = 'none';   //вот тут первая строка становится невидимой
+            ar[0].style.display = 'none";  
     };
 
 
@@ -89,19 +90,19 @@ class Autocomplete {
         let doc = document.getElementById('ull'); 
         let a = document.getElementById('aa');
         let b = document.getElementById('bb');
-        let inp = document.getElementsByClassName('autocomp');
-
-       document.addEventListener("click", (e) => {
-         if((e.target !== b && e.target !== a && e.target !== doc )) {    // этот метод при клике куда угодно кроме инпута и списка очищает масссив и список
-            this.blur();
+// при клике куда угодно кроме инпута и списка очищает масссив и список
+       document.addEventListener('click', (e) => {
+         if((e.target !== b && e.target !== a && e.target !== doc )) { 
+           this.blur();
            this.rem();
+           this.inputs.style.border = "2px solid  #959494";
          }
         });
 
     }
 
 
-
+//ищет совпадения и убирает все города кроме 5, выводит алерт при клике
     keyUpFat(){
         let filter, ul, li,a,i;
         filter = this.inputs.value.toUpperCase();
@@ -146,8 +147,8 @@ class Autocomplete {
     }
 
     clean(){
-       this.inputs.style.border = "2px solid  #959494" //очищение инпута
-         this.inputs.value = "";
+       this.inputs.style.border = "2px solid  #959494"; //инпут цвета по дефолту
+       this.inputs.value = "";  //очищение инпута
 
     }
 
@@ -157,14 +158,13 @@ class Autocomplete {
     yourChoise(){
         this.blur(); // очищаем массив
         let result;
-        let a = document.getElementsByTagName('a'); //
+        let a = document.getElementsByTagName('a'); 
         for (let j = 0; j <= a.length; j++){
-            a[j].addEventListener('click', () => {                  //cлушаем каждый элемент списка
+            a[j].addEventListener('click', () => {  //cлушаем каждый элемент списка
                      this.inputs.onfocus = true;   // и реагируем
                     this.inputs.value = a[j].innerText; // вставляем его имя в инпут
                     result =  this.inputs.value;   // берем из инпута это же значение (надо исправить, а то повторение)
-                    // document.getElementById('ull').remove();  // очищая при этом весь список
-                    alert(result);// и выводим в алерт (задержка нужна чтобы список очищался быстрее алерта)
+                    alert(result); // и выводим в алерт 
                 }
 
 
@@ -173,7 +173,7 @@ class Autocomplete {
     }
 
     rem(){
-        document.getElementById('ull').remove(); // очищение самого списка
+        document.getElementById('ull').remove(); // удаление списка
     }
 
    
@@ -194,28 +194,6 @@ autocomp.forEach(inputs => {
 
 
 
-// document.getElementById('input').addEventListener("focus",  // выдает полный список по алфавиту при фокусе на инпуте.
-//     function(){
-//         city.getArr2();    
-//         city.allCities();
-//         city.yourChoise();
-//     });
-
-
-
-
-
- // document.addEventListener("click", // удаляет список при клике куда либо кроме инпута и списка (чтобы он не копировался дважды)
- //    function(){
- //        city.removeList()
- //    });
-
-
-// document.getElementById('input').addEventListener("keyup",
-//     function (){          // функция, которая показывает города по совпадениям, выводит алерт, и наоборот, 'нет совпадений' - если они не найдены.
-//         city.keyUpFat();
-
-//     });
 
 
 

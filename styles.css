@@ -1,13 +1,13 @@
 
-    #foc{
-        position: relative;
+    .foc{
+        position: absolute;
         left: 20%;
         top: 200px;
         width: 200px;
         height: auto;
         background: white;
     }
-    input{
+    .autocomp{
     	height: 25px;
     	width: 200px;
     	font-size: 17px;
@@ -18,7 +18,14 @@
     	border-color: #959494;
         border-radius: 3px; 
     }
-	
+	#a{
+        position: absolute;
+        left: 24%;
+    }
+    #b{
+        position: absolute;
+        left: 60%;
+    }
 	  input:focus {
 	  box-shadow: none;
    	  border: 2px solid #FEFEFE;

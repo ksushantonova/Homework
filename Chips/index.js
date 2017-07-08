@@ -20,7 +20,6 @@ class Autocomplete {
     constructor(arr, input, parents) {
         this.arr = arr;
         this.arr2 = [];
-         this.arr3 = [];
         this.inputs = input;
         this.par = parents;
     }
@@ -100,7 +99,7 @@ class Autocomplete {
          if((e.target !== b && e.target !== a && e.target !== doc && e.target !== del )) { 
            this.blur();
            this.rem();
-           this.inputs.style.border = "2px solid  #959494";
+           this.inputs.style.border = "2px solid  #E3E3E3";
          }
         });
 
@@ -138,7 +137,7 @@ class Autocomplete {
                 this.inputs.style.border = "2px solid #FF4C4C"; 
                 li[0].style.display = "block"; //показывает скрытый первый элемент(нет совпадений), и подсвечивает красным
             } else {
-                     this.inputs.style.border = "2px solid  #959494";
+                     this.inputs.style.border = "2px solid  #E3E3E3";
                   li[0].style.display = "none"; // если появляется хоть один элемент списка, то он обратно прячет скрытый элемент, и убирает подсветку
             }
 
@@ -152,7 +151,7 @@ class Autocomplete {
     }
 
     clean(){
-       this.inputs.style.border = "2px solid  #959494"; //инпут цвета по дефолту
+       this.inputs.style.border = "2px solid  #E3E3E3"; //инпут цвета по дефолту
        this.inputs.value = "";  //очищение инпута
 
     }
@@ -186,20 +185,31 @@ class Autocomplete {
 
 
 class Chips extends Autocomplete {
+
+
+        constructor(arr, input, parents){
+            super(arr, input, parents);
+            this.arr3 = [];
+            this.init2();
+        }
+
+           
+
 // инициализация класса
-        init2(){    
+        init2(){   
+            
 //смотрит есть ли чипсы при загрузке и убирает         
             this.inputs.addEventListener('focus', () => {
                 if(document.getElementById('chips') !== null){ 
                      this.removeChips();
                 }
  //список по городам                
-                super.blur();
-                super.getArr2();
-                super.allCities();
+                this.blur();
+                this.getArr2();
+                this.allCities();
                 this.createDiv();  // генерация чипсов
             })
-                super.removeList();
+                this.removeList();
 
          this.inputs.addEventListener('keyup',
     () => {        
@@ -285,7 +295,7 @@ autocomp = Array.prototype.slice.call(autocomp);
 autocomp.forEach(inputs => {
     let parent = inputs.parentNode;
     // new Autocomplete(cities, inputs, parent);
-    new Chips(cities, inputs, parent).init2();
+    new Chips(cities, inputs, parent);
 
 });
 

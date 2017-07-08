@@ -186,26 +186,28 @@ class Autocomplete {
 
 
 class Chips extends Autocomplete {
-
-        init2(){
+// инициализация класса
+        init2(){    
+//смотрит есть ли чипсы при загрузке и убирает         
             this.inputs.addEventListener('focus', () => {
-                if(document.getElementById('chips') !== null){
+                if(document.getElementById('chips') !== null){ 
                      this.removeChips();
                 }
+ //список по городам                
                 super.blur();
                 super.getArr2();
                 super.allCities();
-                this.createDiv();  
+                this.createDiv();  // генерация чипсов
             })
                 super.removeList();
 
          this.inputs.addEventListener('keyup',
     () => {        
-        this.keyUpFat();
+        this.keyUpFat(); //толстая функция для клавиатуры(добавить по пробелу);
 
     });
 }
-
+//делает так что все города слушают клик на них, и если поймают, то создают чипсу
         createDiv(){
         let a = document.getElementsByTagName('a'); 
         for (let j = 0; j <= a.length; j++){
@@ -219,12 +221,14 @@ class Chips extends Autocomplete {
 
         createChips(){
             console.log(this.arr3);
+            //поготовка к генерации
                   let container = document.createElement('div');
-                        container.id = 'chips';
+                        container.id = 'chips'; 
                         this.par.appendChild(container);
                         this.arr3.unshift(this.inputs.value);
                         // super.rem();
-                        for(let i = 0; i < this.arr3.length; i++){
+                        for(let i = 0; i < this.arr3.length; i++){ 
+                            //создание чипсов 
                             let newDiv = document.createElement('div');
                             newDiv.className = "newDiv";
                             let del = document.createElement('div');
@@ -238,19 +242,23 @@ class Chips extends Autocomplete {
                             container.appendChild(container2);
 
                         }
-                        this.cleanChips();
+                        this.cleanChips(); 
         }
 
-        cleanChips(){
+        cleanChips(){ 
+// ставим слушатели на все крестики            
              let con = document.querySelectorAll('.del'); 
              con.forEach( (key) => {
                 key.addEventListener('click', () => {
-                    key.parentNode.remove();
+                    key.parentNode.remove(); //удаляет чипс при нажатии на крестик
+// очищаем массив (потому что при удалении чипсы индексы остаются яте же самые )
                     this.arr3 = [];
+//и создаем вместо него другой массив из того, что осталось                    
                     let val = document.querySelectorAll(".newDiv");
                     for (let i = 0; i < val.length; i++){
                         this.arr3.unshift(val[i].innerText);
                     }
+//на всякий пожарный                     
                     console.log(this.arr3);
                     if (this.arr3.length === 0){
                         this.arr3 = [];
@@ -258,11 +266,7 @@ class Chips extends Autocomplete {
                 })
             })
     }
-
-                
-        
     
-     
         removeChips(){
             document.getElementById('chips').remove();
 

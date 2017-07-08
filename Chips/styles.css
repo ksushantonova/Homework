@@ -1,0 +1,180 @@
+
+    .foc{
+        position: absolute;
+        left: 20%;
+        top: 200px;
+        width: 200px;
+        height: auto;
+        background: white;
+        max-width: 300px;
+    }
+
+    #chips{
+        position: relative;
+        width: 200px;
+        height: 300px;
+        background: white;
+    }
+    .autocomp{
+    	height: 25px;
+    	width: 200px;
+    	font-size: 17px;
+    	font-family: Helvetica;
+    	box-shadow: none;
+    	border-width: 2px;
+    	border-style: solid;
+    	border-color: #959494;
+        border-radius: 3px; 
+    }
+	#a{
+        position: absolute;
+        left: 24%;
+    }
+    #b{
+        position: absolute;
+        left: 60%;
+    }
+	  input:focus {
+	  box-shadow: none;
+   	  border: 2px solid #FEFEFE;
+
+
+   }
+
+    a{
+    	color: black;
+    	font-size: 17px;
+    	font-family: Helvetica;
+    	text-decoration: none;
+
+    }
+
+     li {
+        border-bottom:  0.3px solid #D7D7D7;
+         list-style-type: none; 
+        color: black;
+        height: auto;
+        font-size: 17px;
+        font-family: Helvetica;
+        text-decoration: none;
+}
+    li :hover{
+        
+        color: #3EBDFF;
+        }
+
+
+   
+   ul {
+    position: absolute;
+    margin: 0;
+    padding: 5px;
+    max-height: 300px;
+    overflow: auto;
+   }
+
+   .c2 {
+ 
+        height: auto;
+   }
+
+   .newDiv {
+        background: grey;
+        display: inline-block;
+
+   }
+
+   .del{
+     display: inline-block;
+     background: black;
+     height: 20px;
+     width: 20px;
+
+      
+   }
+
+
+
+
+@media only screen and (max-width : 1000px){
+
+    #a{
+        position: absolute;
+        left: 20%;
+    }
+    #b{
+        position: absolute;
+        left: 55%;
+    }
+}
+
+@media only screen and (max-width : 900px){
+
+    #a{
+        position: absolute;
+        left: 20%;
+    }
+    #b{
+        position: absolute;
+        left: 55%;
+    }
+}
+
+
+@media only screen and (max-width : 700px){
+
+    #a{
+        position: absolute;
+        left: 15%;
+    }
+    #b{
+        position: absolute;
+        left: 55%;
+    }
+}
+
+
+@media only screen and (max-width : 550px){
+
+    #a{
+        position: absolute;
+        left: 28%;
+    }
+    #b{
+        position: absolute;
+        left: 28%;
+        top: 40%;
+    }
+}
+
+@media only screen and (max-width : 400px){
+
+    #a{
+        position: absolute;
+        left: 22%;
+    }
+    #b{
+        position: absolute;
+        left: 22%;
+        top: 40%;
+    }
+}
+
+@media only screen and (max-width : 350px){
+
+    #a{
+        position: absolute;
+        left: 14%;
+    }
+    #b{
+        position: absolute;
+        left: 14%;
+        top: 40%;
+    }
+}
+
+
+
+
+
+

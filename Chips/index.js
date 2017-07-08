@@ -246,24 +246,23 @@ class Chips extends Autocomplete {
              con.forEach( (key) => {
                 key.addEventListener('click', () => {
                     key.parentNode.remove();
-                    for (let j = 0; j < con.length; j++){
-            con[j].addEventListener('click', () => { 
-                    con[j].parentNode.remove(); 
-                       this.arr3.splice(j, 1);
-                       console.log(this.arr3);
+                    this.arr3 = [];
+                    let val = document.querySelectorAll(".newDiv");
+                    for (let i = 0; i < val.length; i++){
+                        this.arr3.unshift(val[i].innerText);
+                    }
+                    console.log(this.arr3);
+                    if (this.arr3.length === 0){
+                        this.arr3 = [];
+                    };
+                })
+            })
+    }
 
-                })
-        }
-    
-                    // this.arr3 = document.querySelectorAll(".newDiv");
-                    // this.arr3 = Array.prototype.slice.call(this.arr3);
-                    // if (this.arr3.length === 0){
-                    //     this.arr3 = [];
-                    })
-                })
-             }
+                
         
-
+    
+     
         removeChips(){
             document.getElementById('chips').remove();
 

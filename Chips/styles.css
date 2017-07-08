@@ -7,6 +7,7 @@
         height: auto;
         background: white;
         max-width: 300px;
+
     }
 
     #chips{
@@ -76,17 +77,24 @@
    .c2 {
  
         height: auto;
+
    }
 
    .newDiv {
-        background: grey;
+        background: #EDEBEB;
         display: inline-block;
+        margin: 5px 5px 0 5px;
+         border-radius: 5px;
 
+   }
+   .text{
+    color: #4C4C4C;
+    font-family: Helvetica;
+    display: inline-block;
    }
 
    .del{
      display: inline-block;
-     background: black;
      height: 20px;
      width: 20px;
 

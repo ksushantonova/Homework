@@ -232,13 +232,17 @@ class Chips extends Autocomplete {
                             let newDiv = document.createElement('div');
                             newDiv.className = "newDiv";
                             let del = document.createElement('div');
+                            del.innerHTML = "<img src='cross.png' style='heigth: 20px; width: 20px'></img>";
                             del.className = "del";
+                            let text = document.createElement('div');
+                            text.className = "text";
                             let container2 = document.createElement('div');
                             container2.className = "con";
                             container2.id = i;
-                            newDiv.innerHTML = this.arr3[i];
+                            text.innerHTML = this.arr3[i];
                             container2.appendChild(newDiv);
-                            container2.appendChild(del);
+                            newDiv.appendChild(text);
+                            newDiv.appendChild(del);
                             container.appendChild(container2);
 
                         }

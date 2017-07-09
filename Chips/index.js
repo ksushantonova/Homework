@@ -18,18 +18,18 @@ xhr.send ();
 class Autocomplete {
 
     constructor(arr, input, parents) {
-        this.arr = arr;
-        this.arr2 = [];
+        this.data = arr;
+        this.data2 = [];
         this.inputs = input;
         this.par = parents;
     }
 
     //этот метод срабатывает при инициации
-    init() {  
+    initAutocomplete() {  
     console.log(this);                                    
         this.inputs.addEventListener('focus', () => {
                this.blur()
-               this.getArr2();
+               this.getData2();
                this.allCities();
                console.log(this);
                this.yourChoise();
@@ -51,15 +51,15 @@ class Autocomplete {
 
 
 // делаю из одного массива отсортированный второй
-    getArr2() {
-        for (let key in this.arr){
-            this.arr2.push(this.arr[key]); 
+    getData2() {
+        for (let key in this.data){
+            this.data2.push(this.data[key]); 
         };
 
-        this.arr2.sort();
+        this.data2.sort();
 //это невидимая (пока еще видимая)строка без ссылки
-        this.arr2.unshift("No matches"); 
-        return this.arr2;
+        this.data2.unshift("No matches"); 
+        return this.data2;
 
     }
 
@@ -70,14 +70,14 @@ class Autocomplete {
         let ul = document.createElement('ul');      
         ul.id = "ull";                              
         this.par.appendChild(ul); 
-        for (let key in this.arr2){
+        for (let key in this.data2){
              let newBox = document.createElement('li');
             if (key === "0"){   // если это первый элемент, то вставляется некликабельным
-            newBox.innerHTML = "" + this.arr2[key] + "";
+            newBox.innerHTML = "" + this.data2[key] + "";
             ul.appendChild(newBox); //генерирует 
             continue;
             } 
-            newBox.innerHTML = "<a href='#'>" + this.arr2[key] + "</a>"; //генерация спика 
+            newBox.innerHTML = "<a href='#'>" + this.data2[key] + "</a>"; //генерация спика 
             ul.appendChild(newBox);
    
         }
@@ -146,7 +146,7 @@ class Autocomplete {
     }
 
     blur(){
-        this.arr2 = []; //очищение массива
+        this.data2 = []; //очищение массива
 
     }
 
@@ -167,7 +167,8 @@ class Autocomplete {
             a[j].addEventListener('click', () => {  //cлушаем каждый элемент списка
                      this.inputs.onfocus = true;   // и реагируем
                     this.inputs.value = a[j].innerText; // вставляем его имя в инпут
-                    result =  this.inputs.value;   // берем из инпута это же значение (надо исправить, а то повторение)
+                    result =  this.inputs.value; 
+                    alert(result);  // берем из инпута это же значение (надо исправить, а то повторение)
                 }
 
 
@@ -189,14 +190,14 @@ class Chips extends Autocomplete {
 
         constructor(arr, input, parents){
             super(arr, input, parents);
-            this.arr3 = [];
-            this.init2();
+            this.chips = [];
+            this.initChips();
         }
 
            
 
 // инициализация класса
-        init2(){   
+        initChips(){   
             
 //смотрит есть ли чипсы при загрузке и убирает         
             this.inputs.addEventListener('focus', () => {
@@ -205,7 +206,7 @@ class Chips extends Autocomplete {
                 }
  //список по городам                
                 this.blur();
-                this.getArr2();
+                this.getData2();
                 this.allCities();
                 this.createDiv();  // генерация чипсов
             })
@@ -230,14 +231,14 @@ class Chips extends Autocomplete {
         }
 
         createChips(){
-            console.log(this.arr3);
+            console.log(this.chips);
             //поготовка к генерации
                   let container = document.createElement('div');
                         container.id = 'chips'; 
                         this.par.appendChild(container);
-                        this.arr3.unshift(this.inputs.value);
+                        this.chips.unshift(this.inputs.value);
                         // super.rem();
-                        for(let i = 0; i < this.arr3.length; i++){ 
+                        for(let i = 0; i < this.chips.length; i++){ 
                             //создание чипсов 
                             let newDiv = document.createElement('div');
                             newDiv.className = "newDiv";
@@ -249,7 +250,7 @@ class Chips extends Autocomplete {
                             let container2 = document.createElement('div');
                             container2.className = "con";
                             container2.id = i;
-                            text.innerHTML = this.arr3[i];
+                            text.innerHTML = this.chips[i];
                             container2.appendChild(newDiv);
                             newDiv.appendChild(text);
                             newDiv.appendChild(del);
@@ -266,16 +267,16 @@ class Chips extends Autocomplete {
                 key.addEventListener('click', () => {
                     key.parentNode.remove(); //удаляет чипс при нажатии на крестик
 // очищаем массив (потому что при удалении чипсы индексы остаются яте же самые )
-                    this.arr3 = [];
+                    this.chips = [];
 //и создаем вместо него другой массив из того, что осталось                    
                     let val = document.querySelectorAll(".newDiv");
                     for (let i = 0; i < val.length; i++){
-                        this.arr3.unshift(val[i].innerText);
+                        this.chips.unshift(val[i].innerText);
                     }
 //на всякий пожарный                     
-                    console.log(this.arr3);
-                    if (this.arr3.length === 0){
-                        this.arr3 = [];
+                    console.log(this.chips);
+                    if (this.chips.length === 0){
+                        this.chips = [];
                     };
                 })
             })

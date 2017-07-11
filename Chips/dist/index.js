@@ -1,5 +1,15 @@
 'use strict';
 
+var _autocomp = require('autocomp.js');
+
+var _autocomp2 = _interopRequireDefault(_autocomp);
+
+var _chips = require('chips.js');
+
+var _chips2 = _interopRequireDefault(_chips);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var data = {};
 var cities = [];
 var xhr = new XMLHttpRequest(); //вытягиваю джсон файл
@@ -21,5 +31,5 @@ autocomp = Array.prototype.slice.call(autocomp);
 autocomp.forEach(function (inputs) {
     var parent = inputs.parentNode;
     // new Autocomplete(cities, inputs, parent);
-    new Chips(cities, inputs, parent);
+    new _chips2.default(cities, inputs, parent);
 });

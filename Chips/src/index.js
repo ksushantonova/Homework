@@ -1,3 +1,6 @@
+
+
+
 let data = {};
 let cities = [];
 let xhr = new XMLHttpRequest(); //вытягиваю джсон файл
@@ -13,6 +16,8 @@ xhr.onload = function() {
 
 xhr.send ();
  
+import {Autocomplete} from 'autocomp.js';
+import {Chips} from 'chips.js'; 
 
 let autocomp = document.querySelectorAll('.autocomp');
 autocomp = Array.prototype.slice.call(autocomp);

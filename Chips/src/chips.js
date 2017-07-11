@@ -1,4 +1,4 @@
-class Chips extends Autocomplete {
+export default class Chips extends Autocomplete {
 
 
         constructor(arr, input, parents){

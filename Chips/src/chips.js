@@ -1,3 +1,5 @@
+ import Autocomplete from './autocomp.js';
+
 export default class Chips extends Autocomplete {
 
 

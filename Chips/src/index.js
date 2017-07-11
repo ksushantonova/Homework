@@ -1,4 +1,5 @@
-
+import Autocomplete from './autocomp.js';
+import Chips from './chips.js';
 
 
 let data = {};
@@ -15,9 +16,7 @@ xhr.onload = function() {
 };
 
 xhr.send ();
- 
-import {Autocomplete} from 'autocomp.js';
-import {Chips} from 'chips.js'; 
+
 
 let autocomp = document.querySelectorAll('.autocomp');
 autocomp = Array.prototype.slice.call(autocomp);

@@ -15,7 +15,6 @@ var ToDoListItem = function () {
         this.inputValue = value;
         this.parent = parent;
         this.makeVisual();
-        this.tasks = [];
     }
 
     _createClass(ToDoListItem, [{

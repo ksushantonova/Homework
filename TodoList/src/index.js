@@ -1,5 +1,5 @@
-import Todolist from './todolist.js';
-console.log("done");
+// import Todolist from './todolist.js';
+// console.log("done");
 
 let inputs = document.querySelectorAll('.input');
 inputs = Array.prototype.slice.call(inputs);

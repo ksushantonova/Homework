@@ -51,10 +51,10 @@ var Todolist = function () {
             var _this = this;
 
             this.button.addEventListener("click", function () {
-                _this.tasks.push(new _todolistitem2.default(_this.input.value, _this.parent).inputValue);
-                console.log(_this.tasks);
+                _this.tasks.push(new _todolistitem2.default(_this.input.value, _this.parent));
                 _this.cleanValue();
                 _this.removeItem();
+                console.log(_this);
             });
         }
     }, {
@@ -67,17 +67,23 @@ var Todolist = function () {
         value: function removeItem() {
             var _this2 = this;
 
-            var remove = document.querySelectorAll('.remove');
-            remove.forEach(function (key) {
-                key.addEventListener('click', function () {
-                    key.parentElement.remove();
-                    _this2.tasks = [];
-                    var containers = document.querySelectorAll(".container");
-                    for (var i = 0; i < containers.length; i++) {
-                        _this2.tasks.push(containers[i].firstChild.nextElementSibling.value);
-                    }
-                    console.log(_this2.tasks);
+            var remove = document.getElementsByClassName('remove');
+
+            var _loop = function _loop(i) {
+                remove[i].addEventListener('click', function () {
+                    remove[i].parentElement.remove();
+                    delete _this2.tasks[i];
                 });
+            };
+
+            for (var i = 0; i < remove.length; i++) {
+                _loop(i);
+            };
+            var undoneTasks = [];
+            this.tasks.forEach(function (task) {
+                undoneTasks.push(task);
+                _this2.tasks = undoneTasks;
+                console.log(_this2);
             });
         }
     }]);
@@ -104,7 +110,6 @@ var ToDoListItem = function () {
         this.inputValue = value;
         this.parent = parent;
         this.makeVisual();
-        this.tasks = [];
     }
 
     _createClass(ToDoListItem, [{

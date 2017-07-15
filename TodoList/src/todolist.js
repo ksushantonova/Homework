@@ -19,7 +19,6 @@
            this.tasks.push(new ToDoListItem(this.input.value, this.parent));
            this.cleanValue();
            console.log(this.tasks);
-           console.log(this.tasks.next().value);
 
         });
 

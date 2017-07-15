@@ -18,7 +18,6 @@
         this.button.addEventListener("click", () => {
            this.tasks.push(new ToDoListItem(this.input.value, this.parent));
            this.cleanValue();
-           this.getUndoneTasks()
            console.log(this.tasks);
            console.log(this.tasks.next().value);
 
@@ -29,10 +28,6 @@
 
     cleanValue(){
         this.input.value = "";
-    }
-
-    getUndoneTasks(){
-        this.tasks = this.tasks.entries();
     }
 
 

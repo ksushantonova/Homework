@@ -42,6 +42,7 @@ var Todolist = function () {
         this.parent = parents;
         this.button = buttons;
         this.tasks = [];
+        this.counterArray = [];
         this.makeItem();
     }
 
@@ -53,38 +54,13 @@ var Todolist = function () {
             this.button.addEventListener("click", function () {
                 _this.tasks.push(new _todolistitem2.default(_this.input.value, _this.parent));
                 _this.cleanValue();
-                _this.removeItem();
-                console.log(_this);
+                console.log(_this.tasks);
             });
         }
     }, {
         key: "cleanValue",
         value: function cleanValue() {
             this.input.value = "";
-        }
-    }, {
-        key: "removeItem",
-        value: function removeItem() {
-            var _this2 = this;
-
-            var remove = document.getElementsByClassName('remove');
-
-            var _loop = function _loop(i) {
-                remove[i].addEventListener('click', function () {
-                    remove[i].parentElement.remove();
-                    delete _this2.tasks[i];
-                });
-            };
-
-            for (var i = 0; i < remove.length; i++) {
-                _loop(i);
-            };
-            var undoneTasks = [];
-            this.tasks.forEach(function (task) {
-                undoneTasks.push(task);
-                _this2.tasks = undoneTasks;
-                console.log(_this2);
-            });
         }
     }]);
 
@@ -117,27 +93,33 @@ var ToDoListItem = function () {
         value: function makeVisual() {
             var container = document.createElement('div');
             var remove = document.createElement('div');
-            remove.className = "remove";
             var check = document.createElement('div');
-            check.className = "check";
             var newInput = document.createElement('input');
-            newInput.className = "it";
             newInput.value = this.inputValue;
             container.className = "container";
+            remove.className = "remove";
+            check.className = "check";
+            newInput.className = "newInput";
             container.appendChild(check);
             container.appendChild(newInput);
             container.appendChild(remove);
             this.parent.appendChild(container);
-            this.checkItem();
+            this.checkItem(check);
+            this.removeTask(remove);
+            console.log(this);
+        }
+    }, {
+        key: 'removeTask',
+        value: function removeTask(element) {
+            element.addEventListener("click", function () {
+                element.parentElement.remove();
+            });
         }
     }, {
         key: 'checkItem',
-        value: function checkItem() {
-            var doneCheckBox = document.querySelectorAll('.check');
-            doneCheckBox.forEach(function (key) {
-                key.addEventListener('click', function () {
-                    key.nextElementSibling.className = "checked";
-                });
+        value: function checkItem(element) {
+            element.addEventListener('click', function () {
+                element.nextElementSibling.className = "checked";
             });
         }
     }]);

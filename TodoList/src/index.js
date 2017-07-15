@@ -1,4 +1,4 @@
-// import Todolist from './todolist.js';
+// import {Todolist} from './todolist.js';
 // console.log("done");
 
 let inputs = document.querySelectorAll('.input');

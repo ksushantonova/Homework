@@ -1,7 +1,11 @@
-class ToDoListItem {
-        constructor (value, parent){
+// import {tasks} from "./todolist.js";
+
+ class ToDoListItem {
+        constructor (value, parent,event, counter){
             this.inputValue = value;
             this.parent = parent;
+            this.counter = counter;
+            this.event = event;
             this.makeVisual();
         }
 
@@ -10,6 +14,7 @@ class ToDoListItem {
             let remove = document.createElement('div');
             let check = document.createElement('div');
             let newInput = document.createElement('input');
+            let mainContainer = document.createElement('div');
             newInput.value = this.inputValue;
             container.className = "container";
             remove.className = "remove";
@@ -18,15 +23,21 @@ class ToDoListItem {
             container.appendChild(check);
             container.appendChild(newInput);
             container.appendChild(remove);
-            this.parent.appendChild(container);
+            mainContainer.appendChild(container);
+            mainContainer.id = "mainContainer";
+            this.parent.appendChild(mainContainer);
             this.checkItem(check); 
             this.removeTask(remove);
-            console.log(this);
- 
+
+
+
+
     }
 
     removeTask(element){
         element.addEventListener("click", () => {
+        this.event.detail.number = this.counter;    
+        this.parent.dispatchEvent(this.event);
             element.parentElement.remove();
         })
     }

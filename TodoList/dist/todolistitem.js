@@ -22,27 +22,33 @@ var ToDoListItem = function () {
         value: function makeVisual() {
             var container = document.createElement('div');
             var remove = document.createElement('div');
-            remove.className = "remove";
             var check = document.createElement('div');
-            check.className = "check";
             var newInput = document.createElement('input');
-            newInput.className = "it";
             newInput.value = this.inputValue;
             container.className = "container";
+            remove.className = "remove";
+            check.className = "check";
+            newInput.className = "newInput";
             container.appendChild(check);
             container.appendChild(newInput);
             container.appendChild(remove);
             this.parent.appendChild(container);
-            this.checkItem();
+            this.checkItem(check);
+            this.removeTask(remove);
+            console.log(this);
+        }
+    }, {
+        key: 'removeTask',
+        value: function removeTask(element) {
+            element.addEventListener("click", function () {
+                element.parentElement.remove();
+            });
         }
     }, {
         key: 'checkItem',
-        value: function checkItem() {
-            var doneCheckBox = document.querySelectorAll('.check');
-            doneCheckBox.forEach(function (key) {
-                key.addEventListener('click', function () {
-                    key.nextElementSibling.className = "checked";
-                });
+        value: function checkItem(element) {
+            element.addEventListener('click', function () {
+                element.nextElementSibling.className = "checked";
             });
         }
     }]);

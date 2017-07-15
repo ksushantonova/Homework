@@ -1,45 +1,80 @@
       .main{
-        position: absolute;
-        left: 4%;
-        top: 100px;
         width: 200px;
         height: auto;
         background: white;
         max-width: 300px;
 
     }
+
+     .underdiv{
+        width: 450px;
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+      }
+
+
      .input{
         padding: 2px 7px;
     	height: 25px;
-    	width: 500px;
+    	width: 480px;
     	font-size: 17px;
     	font-family: Helvetica;
     	box-shadow: none;
     	border: 2px solid #E3E3E3;
         border-radius: 3px; 
     }
+    #first{
+        position: absolute;
+        left: 10%;
+        top: 20%;
+    }
+    .mainContainer{
+        display: flex;
+    }
+
+    #second{
+         position: absolute;
+        left: 50%;
+        top: 20%;
+    }
     .remove{
-        display: inline-block;
-        background-color: black;
+       position: relative;
+        top: 4px;
         width: 20px;
-        height: 20px;
+        height: 25px;
 
     }
     .check{
-         display: inline-block;
-        background-color: grey;
+        position: relative;
+        top: 4px;
         width: 20px;
-        height: 20px;
+        height: 25px;
 
     }
     .newInput{
-         display: inline-block;
+         user-select: none;
+         border-color: #EEEEEE;
+         background-color: #EEEEEE;  
+         border-style: solid; 
          width: 450px;
+         height: 20px;
     }
     .container{
-        width: 500px;
+        display: flex;
+        width: 450px;
+        flex-direction: row;
+        margin-bottom: 4px;
+    }
+
+    .but{
+         height: 33px;   
+         border-style: solid;
+         border-color: #EBEBEB;
+         background-color:  #EBEBEB; 
     }
     .checked{
-        background-color: red;
+        background-color: grey;
+        text-decoration: line-through;
          width: 450px;
     }

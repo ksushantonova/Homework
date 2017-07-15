@@ -26,6 +26,7 @@
         this.button.addEventListener("click", () => {
            this.tasks.push(new ToDoListItem(this.input.value, this.parent, event, counter));
            counter++;  
+           console.log(this.tasks);
            this.cleanValue();
         });
 

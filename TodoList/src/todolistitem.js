@@ -15,8 +15,10 @@
             let check = document.createElement('div');
             let newInput = document.createElement('input');
             let mainContainer = document.createElement('div');
+            check.innerHTML = "<input type='checkbox'>";
             newInput.value = this.inputValue;
             container.className = "container";
+            remove.innerHTML = "<img src='cross.png' style='heigth: 20px; width: 20px'></img>";
             remove.className = "remove";
             check.className = "check";
             newInput.className = "newInput";
@@ -24,7 +26,7 @@
             container.appendChild(newInput);
             container.appendChild(remove);
             mainContainer.appendChild(container);
-            mainContainer.id = "mainContainer";
+            mainContainer.className = "mainContainer";
             this.parent.appendChild(mainContainer);
             this.checkItem(check); 
             this.removeTask(remove);

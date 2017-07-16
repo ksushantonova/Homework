@@ -15,10 +15,10 @@
             let check = document.createElement('div');
             let newInput = document.createElement('input');
             let mainContainer = document.createElement('div');
-            check.innerHTML = "<input type='checkbox'>";
+            check.innerHTML = "<input type='checkbox' style='position:relative'>";
             newInput.value = this.inputValue;
             container.className = "container";
-            remove.innerHTML = "<img src='cross.png' style='heigth: 20px; width: 20px'></img>";
+            remove.innerHTML = "<img src='cross.svg' style='heigth: 18px; width: 18px'></img>";
             remove.className = "remove";
             check.className = "check";
             newInput.className = "newInput";
@@ -46,8 +46,17 @@
 
     checkItem(element){
         element.addEventListener('click', () => {
+            if (element.firstChild.checked){
+            element.className = "checkedcheck";
             element.nextElementSibling.className = "checked";
-           });     
+             element.nextElementSibling.nextElementSibling.className = "checkedremove";
+            } else {
+            element.className = "check";
+            element.nextElementSibling.className = "newInput";
+             element.nextElementSibling.nextElementSibling.className = "remove";
+            }
+
+            } );     
 
     }   
     }

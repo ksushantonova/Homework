@@ -1,5 +1,27 @@
+      body {
+        display: flex;
+        background: #EEEEEE;
+         justify-content: center;
+      }
+
+      h1{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        color: black;
+        font-size: 40px;
+        font-family: Helvetica;
+      }
+        
+       span{
+            color: red;
+            font-family: Helvetica;
+       } 
+
       .main{
-        width: 200px;
+        display: flex;
+        flex-direction: column;
+        width: 500px;
         height: auto;
         background: white;
         max-width: 300px;
@@ -15,50 +37,67 @@
 
 
      .input{
+        color: #515151;
+        font-family: Helvetica;
+        background-color: #E3E3E3;
         padding: 2px 7px;
     	height: 25px;
-    	width: 480px;
+    	width: 400px;
     	font-size: 17px;
     	font-family: Helvetica;
     	box-shadow: none;
     	border: 2px solid #E3E3E3;
-        border-radius: 3px; 
+        border-radius: 10px 0 0 10px; 
     }
     #first{
         position: absolute;
         left: 10%;
         top: 20%;
+        background: #EEEEEE;
+
     }
     .mainContainer{
         display: flex;
     }
 
     #second{
-         position: absolute;
-        left: 50%;
+        position: absolute;
+        left: 57%;
         top: 20%;
+        background: #EEEEEE;
     }
     .remove{
-       position: relative;
-        top: 4px;
-        width: 20px;
-        height: 25px;
+        position: relative;
+        border-radius: 0 10px 10px 0;
+        background-color: white;
+        width: 25px;
+        height: 23px;
+        bottom: 1px;
+        padding: 6px 3px 0 0;
+
 
     }
     .check{
+        background-color: white;
         position: relative;
-        top: 4px;
-        width: 20px;
-        height: 25px;
+        bottom: 1px;
+        border-radius:  10px 0 0 10px;
+        width: 25px;
+        padding: 6px 0 0 5px;
 
     }
     .newInput{
-         user-select: none;
-         border-color: #EEEEEE;
-         background-color: #EEEEEE;  
-         border-style: solid; 
+        position: relative;
+         bottom: 1px;
+         color: grey;
+         font-size: 15px;
+         font-family: helvetica;   
+         background: white;
+         border: 0px solid white;
          width: 450px;
-         height: 20px;
+         height: 28px;
+         padding: 1px 0 0 10px;
+
     }
     .container{
         display: flex;
@@ -68,13 +107,39 @@
     }
 
     .but{
+         font-weight: bold;
          height: 33px;   
          border-style: solid;
-         border-color: #EBEBEB;
-         background-color:  #EBEBEB; 
+         border-color: #BABABA;
+         background-color:  #BABABA; 
+         border-radius: 0 10px 10px 0;
+        padding-left: 10px;
+
     }
     .checked{
-        background-color: grey;
-        text-decoration: line-through;
+         border: 3px solid #E6E6E6;
+         background-color:#E6E6E6;
+         text-decoration: line-through;
          width: 450px;
+         color: grey;
+         height: 23px;
+         font-size: 15px;
+         font-family: helvetica;
+         padding:0 6px;  
+
+    }
+    .checkedremove{
+        border-radius:  0 10px 10px 0;
+        border: 3px solid #E6E6E6;
+        background-color:#E6E6E6;
+        height: 21px;
+        padding: 2px 4px 0 0;
+
+    }
+    .checkedcheck{ 
+         padding: 2px 0 0 2px;
+         position:relative; 
+         border-radius:  10px 0 0 10px;
+         border: 3px solid #E6E6E6;
+         background-color:#E6E6E6;
     }

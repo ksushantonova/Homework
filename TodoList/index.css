@@ -120,10 +120,19 @@
         margin-bottom: 4px;
     }
 
+     input:focus {
+        outline: none;
+        }
+     button:focus {
+        outline: none;
+        }
+
+
     .but{
-         font-weight: bold;
+         font-weight: 700;
+         font-family: Helvetica;
          height: 33px;   
-         color: #FF8484;
+         color: #525252;
          border-style: solid;
          border-color: #BABABA;
          background-color:  #BABABA; 

@@ -31,6 +31,15 @@
         });
 
 
+        this.input.addEventListener("keyup", (e) => {
+             if(e.keyCode == 13){
+          this.tasks.push(new ToDoListItem(this.input.value, this.parent, event, counter));
+           counter++;  
+           console.log(this.tasks);
+           this.cleanValue();
+    }   
+        });
+
         this.parent.addEventListener("deleteIvent", (event) => {
             this.tasks.forEach((task, i) => {
                 if (task.counter == event.detail.number){

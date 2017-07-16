@@ -50,13 +50,15 @@
             element.className = "checkedcheck";
             element.nextElementSibling.className = "checked";
              element.nextElementSibling.nextElementSibling.className = "checkedremove";
+                
             } else {
             element.className = "check";
             element.nextElementSibling.className = "newInput";
              element.nextElementSibling.nextElementSibling.className = "remove";
             }
 
-            } );     
+
+            });     
 
     }   
     }

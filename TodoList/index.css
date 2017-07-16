@@ -1,3 +1,8 @@
+      #header{
+        background-color: white;
+        width: 100%;
+      }
+
       body {
         display: flex;
         background: #EEEEEE;
@@ -9,12 +14,13 @@
         flex-direction: row;
         justify-content: center;
         color: black;
-        font-size: 40px;
+        color: #555555;
+        font-size: 42px;
         font-family: Helvetica;
       }
         
        span{
-            color: red;
+            color: #FF7373;
             font-family: Helvetica;
        } 
 
@@ -52,7 +58,7 @@
     #first{
         position: absolute;
         left: 10%;
-        top: 20%;
+        top: 30%;
         background: #EEEEEE;
 
     }
@@ -63,7 +69,7 @@
     #second{
         position: absolute;
         left: 57%;
-        top: 20%;
+        top: 30%;
         background: #EEEEEE;
     }
     .remove{
@@ -74,9 +80,8 @@
         height: 23px;
         bottom: 1px;
         padding: 6px 3px 0 0;
-
-
     }
+
     .check{
         background-color: white;
         position: relative;
@@ -109,6 +114,7 @@
     .but{
          font-weight: bold;
          height: 33px;   
+         color: #FF8484;
          border-style: solid;
          border-color: #BABABA;
          background-color:  #BABABA; 

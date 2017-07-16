@@ -1,6 +1,5 @@
-// import {tasks} from "./todolist.js";
 
- class ToDoListItem {
+ export class ToDoListItem {
         constructor (value, parent, deleteEvent, counter, changeEvent){
             this.inputValue = value;
             this.parent = parent;

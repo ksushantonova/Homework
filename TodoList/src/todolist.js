@@ -1,8 +1,8 @@
 
 
-// import {ToDoListItem} from './todolistitem.js';
+import {ToDoListItem} from './todolistitem.js';
 
- class Todolist {
+  export class Todolist {
 
     constructor(input, parents, buttons){
         this.input = input;

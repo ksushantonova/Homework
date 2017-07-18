@@ -61,6 +61,7 @@
         border: 1px solid white;
         height: 50px;
         width: 50px;
+        cursor: pointer;
       }
 
          .but{
@@ -74,6 +75,8 @@
          border-radius: 0 10px 10px 0;
          padding-left: 8px;
          padding-right: 8px;
+        cursor: pointer;
+         
 
     }
 .cross{
@@ -88,6 +91,9 @@
     padding-top: 4px;
     padding-left: 8px;
     padding-right: 7px;
+        cursor: pointer;
+
+
 
 
     }
@@ -133,6 +139,8 @@
         height: 23px;
         bottom: 1px;
         padding: 6px 3px 0 0;
+        cursor: pointer;
+
     }
 
     .check{
@@ -142,6 +150,8 @@
         border-radius:  10px 0 0 10px;
         width: 25px;
         padding: 6px 0 0 5px;
+        cursor: pointer;
+
 
     }
     .newInput{
@@ -183,6 +193,8 @@
          font-size: 15px;
          font-family: helvetica;
          padding:0 6px;  
+        cursor: pointer;
+
 
     }
     .checkedremove{
@@ -191,6 +203,8 @@
         background-color:#E6E6E6;
         height: 21px;
         padding: 2px 4px 0 0;
+        cursor: pointer;
+
 
     }
     .checkedcheck{ 
@@ -199,6 +213,8 @@
          border-radius:  10px 0 0 10px;
          border: 3px solid #E6E6E6;
          background-color:#E6E6E6;
+        cursor: pointer;
+
     }
 
 

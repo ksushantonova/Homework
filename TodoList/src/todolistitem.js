@@ -35,7 +35,8 @@
           this.mainContainer.innerHTML = ` 
                      <div class='container'>
                         <div class='check'>
-                        <input type='checkbox' style='position:relative'>
+                        <input type='checkbox' style='position:relative; cursor: pointer;
+' >
                         </div>
                         <input class='newInput' value='${this.inputValue}'>
                         <div class='remove'><img src='cross.svg' style='heigth: 18px; width: 18px'></img></div>

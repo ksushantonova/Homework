@@ -1,8 +1,9 @@
 
  class ToDoListItem {
-        constructor (value, parent, deleteEvent, counter, changeEvent){
+        constructor (value, parent, deleteEvent, counter, changeEvent, proto){
 //получаем все ивенты через свойства, а так же нужные нам данные
             this.inputValue = value;
+            this.proto = proto;
             this.parent = parent.childNodes[3];
             this.counter = counter;
             this.deleteEvent = deleteEvent;

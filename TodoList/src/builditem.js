@@ -2,6 +2,7 @@ class BuildItem {
 	constructor(parentContainer){
 		this.parentContainer = parentContainer;
 		this.main;
+		this.deleteList;
 		this.allLists = [];
 		this.counter = 0;
 		this.init();
@@ -17,7 +18,6 @@ class BuildItem {
      }
 
     buildItemHtml(){
-
           this.main = document.createElement("div");
           this.parentContainer.appendChild(this.main);
           this.main.className = "main";
@@ -29,21 +29,16 @@ class BuildItem {
          </div> 
          <div class="items"></div>  
                     `; 
+        
     }
 
 	toDoListInit(){
-
-    let input = this.main.childNodes[1].childNodes[3];
-    let parents = this.main;
-    let buttons = input.nextElementSibling;
-    this.allLists.push(new Todolist(input, parents, buttons, this.counter++));
-};
-
-	removeList(){
-
-	}
-
-	}
-
+      let input = this.main.childNodes[1].childNodes[3];
+      let parents = this.main;
+      let buttons = input.nextElementSibling;
+      this.allLists.push(new Todolist(input, parents, buttons, this.counter++));
+     };
+	
+}
 
 

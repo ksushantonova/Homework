@@ -32,6 +32,7 @@
         });
 
         this.initEvents();
+        this.removeList();
       }
 
 
@@ -67,7 +68,7 @@
 
 
     buildTask(){
-        this.tasks.push(new ToDoListItem(this.input.value, this.parent, this.deleteEvent, this.counter++, this.changeEvent));
+        this.tasks.push(new ToDoListItem(this.input.value, this.parent, this.deleteEvent, this.counter++, this.changeEvent, this));
            console.log(this.tasks);
            this.cleanValue();
       }
@@ -86,6 +87,14 @@
     cleanValue(){
         this.input.value = "";
     };
+
+    removeList(){
+    this.input.previousElementSibling.addEventListener("click", () => {
+      this.parent.remove();
+  });
+    
+  }
+
 
 };
 

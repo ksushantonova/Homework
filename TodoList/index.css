@@ -1,5 +1,8 @@
       #header{
+        display: flex;
+        flex-direction: row;
         background-color: white;
+        justify-content: center;
         width: 100%;
       }
 
@@ -27,13 +30,11 @@
 
       .main{
         display: flex;
+         justify-content: center;
         flex-direction: column;
-        width: 670px;
         height: auto;
         background: #EEEEEE;
-        max-width: 700px;
-        padding-left: 8%;
-        padding-top: 70px;
+        margin: 5%;
 
 
     }
@@ -43,6 +44,11 @@
         display: flex;
         flex-direction: row;
         margin-bottom: 10px;
+      }
+
+      #button, #plus {
+        height: 50px;
+        width: 50px;
       }
 
          .but{
@@ -88,9 +94,13 @@
     }
 
     #flexed{
+
         display: flex;
+        flex-wrap: wrap;
+        max-width: 100%;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-around;
+        align-items: flex-start;
         background: #EEEEEE;
 
     }

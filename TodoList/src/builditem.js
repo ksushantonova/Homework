@@ -19,7 +19,7 @@ class BuildItem {
 
     buildItemHtml(){
           this.main = document.createElement("div");
-          this.parentContainer.appendChild(this.main);
+          this.parentContainer.insertBefore(this.main, this.parentContainer.childNodes[1]);
           this.main.className = "main";
           this.main.innerHTML = ` 
         <div class="underdiv">
@@ -37,6 +37,7 @@ class BuildItem {
       let parents = this.main;
       let buttons = input.nextElementSibling;
       this.allLists.push(new Todolist(input, parents, buttons, this.counter++));
+      console.log(this.allLists)
      };
 	
 }

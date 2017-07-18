@@ -28,12 +28,12 @@
         this.input.addEventListener("keyup", (e) => {
              if(e.keyCode == 13){
             this.buildTask();
-           }   
+           };
         });
 
         this.initEvents();
         this.removeList();
-      }
+      };
 
 
 
@@ -41,7 +41,6 @@
          this.parent.addEventListener("deleteEvent", (event) => {
          this.getNumber(event);
          this.tasks.splice(this.temporaryData[1], 1);
-         console.log(this.tasks);
       });             
 
         this.parent.addEventListener("changeEvent", (event) => {
@@ -49,7 +48,7 @@
          this.temporaryData[0].inputValue = event.detail.value;
         });        
         
-        }
+        };
         
  
      newEvents(){
@@ -69,9 +68,8 @@
 
     buildTask(){
         this.tasks.push(new ToDoListItem(this.input.value, this.parent, this.deleteEvent, this.counter++, this.changeEvent, this));
-           console.log(this.tasks);
            this.cleanValue();
-      }
+      };
 
      getNumber(thisEvent){
             this.temporaryData = [];
@@ -89,12 +87,12 @@
     };
 
     removeList(){
+
+
     this.input.previousElementSibling.addEventListener("click", () => {
       this.parent.remove();
   });
     
   };
-
-
 };
 

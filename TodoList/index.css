@@ -76,7 +76,7 @@
          padding-left: 8px;
          padding-right: 8px;
         cursor: pointer;
-         
+
 
     }
 .cross{
@@ -91,12 +91,9 @@
     padding-top: 4px;
     padding-left: 8px;
     padding-right: 7px;
-        cursor: pointer;
+    cursor: pointer;
 
-
-
-
-    }
+     }
 
      .input{
         color: #515151;
@@ -112,8 +109,8 @@
     }
 
     #flexed{
-
         display: flex;
+        align-self: stretch;
         flex-wrap: wrap;
         max-width: 100%;
         flex-direction: row;
@@ -218,7 +215,7 @@
     }
 
 
-@media only screen and (max-width : 1000px){
+/* @media only screen and (max-width : 1000px){
 
 #flexed{
     display: flex;
@@ -243,3 +240,4 @@
 
     }
 
+ */

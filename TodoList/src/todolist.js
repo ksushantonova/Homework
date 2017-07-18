@@ -1,79 +1,91 @@
 
 
-import {ToDoListItem} from './todolistitem.js';
+// import {ToDoListItem} from './todolistitem.js';
 
-  export class Todolist {
+ class Todolist {
 
-    constructor(input, parents, buttons){
+    constructor(input, parents, buttons, counter){
         this.input = input;
         this.parent = parents;
         this.button = buttons;
         this.tasks = [];
-        this.makeItem();    
+        this.temporaryData = [];
+        this.deleteEvent;
+        this.changeEvent;
+        this.listCounter = counter;
+        this.counter = 0;
+        this.makeItem();
     }
 
+  
 
     makeItem(){
-
-//создаем счетчик для главного массива
-        let counter = 0;
-// создаем ивент для удаления
-        let deleteEvent = new CustomEvent("deleteEvent",{
-                detail: {
-                    count: "done"
-                        }      
-        });
-
-// создаем ивент для изменений в массиве        
-        let changeEvent = new CustomEvent("changeEvent",{
-                detail: {
-                    count: "done"
-                        }      
-        });
-
-// при клике на кнопку, в массив добавляются новые классы, счетчик увеличивается
+        this.newEvents();
         this.button.addEventListener("click", () => {
-           this.tasks.push(new ToDoListItem(this.input.value, this.parent, deleteEvent, counter, changeEvent));
-           counter++;  
-           console.log(this.tasks);
-           this.cleanValue();
+           this.buildTask();
         });
 
-// то же самое, что и в верху, только для enter
         this.input.addEventListener("keyup", (e) => {
              if(e.keyCode == 13){
-          this.tasks.push(new ToDoListItem(this.input.value, this.parent, deleteEvent, counter, changeEvent));
-           counter++;  
-           console.log(this.tasks);
-           this.cleanValue();
-    }   
+            this.buildTask();
+           }   
         });
 
-//когда ивент удаления получает команду, он запускает эту функцию
-        this.parent.addEventListener("deleteEvent", (event) => {
-            this.tasks.forEach((task, i) => {
-//сравниваем номер класса который получил и его номер в массиве, и если он совпадает - удаляем из массива
-                if (task.counter == event.detail.number){
-                   this.tasks.splice(i,1);
-                   console.log(this.tasks); }
-            })             
-            })
-// когда ивент изменения получит команду он запускает эту функцию
-          this.parent.addEventListener("changeEvent", (event) => {
-            this.tasks.forEach((task, i) => {
-//сравнивает номер класса который получил и его номер в массиве, и если он совпадает
-                if (task.counter == event.detail.number){
-                  //в масиве изменяем value на то, что пришло 
-                   this.tasks[i].inputValue = event.detail.value;
-                  }
-            })             
-            })
+        this.initEvents();
+      }
 
-    }
-  
+
+
+    initEvents(){
+         this.parent.addEventListener("deleteEvent", (event) => {
+         this.getNumber(event);
+         this.tasks.splice(this.temporaryData[1], 1);
+         console.log(this.tasks);
+      });             
+
+        this.parent.addEventListener("changeEvent", (event) => {
+         this.getNumber(event);
+         this.temporaryData[0].inputValue = event.detail.value;
+        });        
+        
+        }
+        
+ 
+     newEvents(){
+         this.deleteEvent = new CustomEvent("deleteEvent",{
+                detail: {
+                    count: "done"
+                        }      
+        });
+
+        this.changeEvent = new CustomEvent("changeEvent",{
+                detail: {
+                    count: "done"
+                        }      
+        });
+      };
+
+
+    buildTask(){
+        this.tasks.push(new ToDoListItem(this.input.value, this.parent, this.deleteEvent, this.counter++, this.changeEvent));
+           console.log(this.tasks);
+           this.cleanValue();
+      }
+
+     getNumber(thisEvent){
+            this.temporaryData = [];
+            this.tasks.forEach((task, i) => {
+            if (task.counter == thisEvent.detail.number){
+            this.temporaryData.unshift(i);
+            this.temporaryData.unshift(task);
+             }
+           });
+      };
+
+
     cleanValue(){
         this.input.value = "";
-    }
+    };
 
-}
+};
 

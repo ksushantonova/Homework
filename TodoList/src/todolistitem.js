@@ -1,87 +1,83 @@
 
- export class ToDoListItem {
+ class ToDoListItem {
         constructor (value, parent, deleteEvent, counter, changeEvent){
 //получаем все ивенты через свойства, а так же нужные нам данные
             this.inputValue = value;
-            this.parent = parent;
+            this.parent = parent.childNodes[3];
             this.counter = counter;
             this.deleteEvent = deleteEvent;
             this.changeEvent = changeEvent;
-            this.makeVisual();
+            this.mainContainer;
+            this.check;
+            this.newInput;
+            this.remove;
+            this.init();
         }
 
 // строим новый айтем
-         makeVisual(){
-            let container = document.createElement('div');
-            let remove = document.createElement('div');
-            let check = document.createElement('div');
-            let newInput = document.createElement('input');
-            let mainContainer = document.createElement('div');
-            check.innerHTML = "<input type='checkbox' style='position:relative'>";
-            newInput.value = this.inputValue;
-            container.className = "container";
-            remove.innerHTML = "<img src='cross.svg' style='heigth: 18px; width: 18px'></img>";
-            remove.className = "remove";
-            check.className = "check";
-            newInput.className = "newInput";
-            container.appendChild(check);
-            container.appendChild(newInput);
-            container.appendChild(remove);
-            mainContainer.appendChild(container);
-            mainContainer.className = "mainContainer";
-            this.parent.appendChild(mainContainer);
-
-// и прямо в нем запускаем функцию чека, удаления, и перезаписывания value при инициализации            
-            this.checkItem(check);
-            this.newItemValue(newInput); 
-            this.removeTask(remove);
+         init(){
+            this.htmlBuild();
+            this.check = this.mainContainer.firstElementChild.childNodes[1];
+            this.newInput = this.mainContainer.firstElementChild.childNodes[3];
+            this.remove = this.mainContainer.firstElementChild.childNodes[5];
+            this.checkItem();
+            this.newItemValue(); 
+            this.removeTask();
 
     }
+
+
+   htmlBuild(){
+          this.mainContainer = document.createElement("div");
+          this.parent.appendChild(this.mainContainer);
+          this.mainContainer.className = "mainContainer";
+          this.mainContainer.innerHTML = ` 
+                     <div class='container'>
+                        <div class='check'>
+                        <input type='checkbox' style='position:relative'>
+                        </div>
+                        <input class='newInput' value='${this.inputValue}'>
+                        <div class='remove'><img src='cross.svg' style='heigth: 18px; width: 18px'></img></div>
+                  </div>`; 
+        }
+    
+
+
 // метод удаления из Дома
-    removeTask(element){
-        // слушаем куда был клик
-        element.addEventListener("click", () => {
-        //передаем в ивент удаления в details номер этого айтема, чтобы класс наверху мог его удалить   
+    removeTask(){
+        this.remove.addEventListener("click", () => {
         this.deleteEvent.detail.number = this.counter;   
-        //запускаем ивент удаления 
-        this.parent.dispatchEvent(this.deleteEvent);
-        // удаляем элемент из ДОМа
-            element.parentElement.remove();
-        })
+        this.parent.parentNode.dispatchEvent(this.deleteEvent);
+            this.mainContainer.remove();
+        });
     }
 
 // метод изменения inputValue при его изменении на ходу
-    newItemValue(element){
-        // слушаем куда было нажатие клавиатуры
-        element.addEventListener("input", () => {
-        //передаем в ивент Изменений в details номер этого айтема 
+    newItemValue(){
+        this.newInput.addEventListener("input", () => {
         this.changeEvent.detail.number = this.counter; 
-        //передаем текущее значение на момент нажатия клавиатуры
-        this.changeEvent.detail.value = element.value;
-         //запускаем ивент Изменений 
-        this.parent.dispatchEvent(this.changeEvent);
+        this.changeEvent.detail.value = this.newInput.value;
+        this.parent.parentNode.dispatchEvent(this.changeEvent);
         })
     }
 
 // метод выполнения задания
-    checkItem(element){
-        element.addEventListener('click', () => {
-            if (element.firstChild.checked){
-            //если значение секбокса true то меняются стили, которые его зачеркивают 
-            element.className = "checkedcheck";
-            element.nextElementSibling.className = "checked";
-             element.nextElementSibling.nextElementSibling.className = "checkedremove";
-            //если нет - то возвращают обратно в прежнее состояние 
+    checkItem(){
+        this.check.addEventListener('click', () => {
+            if (this.check.firstElementChild.checked){
+            this.check.className = "checkedcheck";
+            this.newInput.className = "checked";
+            this.remove.className = "checkedremove";
             } else {
-            element.className = "check";
-            element.nextElementSibling.className = "newInput";
-             element.nextElementSibling.nextElementSibling.className = "remove";
+            this.check.className = "check";
+            this.newInput.className = "newInput";
+            this.remove.className = "remove";
             }
+        });     
+
+    }  
 
 
-            });     
-
-    }   
     }
 
 

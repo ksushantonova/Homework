@@ -93,7 +93,7 @@
       this.parent.remove();
   });
     
-  }
+  };
 
 
 };

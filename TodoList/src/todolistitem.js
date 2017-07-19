@@ -10,6 +10,7 @@
             this.changeEvent = changeEvent;
             this.mainContainer;
             this.check;
+            this.checkedItem = false;
             this.newInput;
             this.remove;
             this.init();
@@ -21,9 +22,10 @@
             this.check = this.mainContainer.firstElementChild.childNodes[1];
             this.newInput = this.mainContainer.firstElementChild.childNodes[3];
             this.remove = this.mainContainer.firstElementChild.childNodes[5];
-            this.checkItem();
+            this.isChecked();
             this.newItemValue(); 
             this.removeTask();
+            
 
     }
 
@@ -35,8 +37,7 @@
           this.mainContainer.innerHTML = ` 
                      <div class='container'>
                         <div class='check'>
-                        <input type='checkbox' style='position:relative; cursor: pointer;
-' >
+                        <input type='checkbox' style='position:relative; cursor: pointer'>
                         </div>
                         <input class='newInput' value='${this.inputValue}'>
                         <div class='remove'><img src='cross.svg' style='heigth: 18px; width: 18px'></img></div>
@@ -54,6 +55,18 @@
         });
     }
 
+    isChecked(){
+        this.check.addEventListener('change', () => {
+             if (this.check.firstElementChild.checked){
+            this.checkedItem = true;
+             this.checkItem();
+        } else {
+            this.checkedItem = false;
+               this.checkItem();
+            }
+        });
+    }
+
 // метод изменения inputValue при его изменении на ходу
     newItemValue(){
         this.newInput.addEventListener("input", () => {
@@ -65,8 +78,7 @@
 
 // метод выполнения задания
     checkItem(){
-        this.check.addEventListener('click', () => {
-            if (this.check.firstElementChild.checked){
+            if (this.checkedItem){
             this.check.className = "checkedcheck";
             this.newInput.className = "checked";
             this.remove.className = "checkedremove";
@@ -75,9 +87,7 @@
             this.newInput.className = "newInput";
             this.remove.className = "remove";
             }
-        });     
-
-    }  
+    };  
 
 
     }

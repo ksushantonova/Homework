@@ -6,6 +6,12 @@
         width: 100%;
       }
 
+  
+
+        .header:focus {
+        outline: none;
+        }
+
       body {
         display: flex;
         flex-direction: column;
@@ -29,21 +35,33 @@
 
       .main{
         display: flex;
-         justify-content: center;
+        justify-content: center;
         flex-direction: column;
         height: auto;
         background: #EEEEEE;
         margin: 5% 2.5% 0 2.5%;
-
-
-
     }
+
+    .header{
+        display: flex;
+        justify-content: center;
+        height: 30px;
+        font-family: Helvetica;
+        color: #3B3B3B;
+        font-size: 18px;
+        font-weight: bold;
+      }
 
      .underdiv{
         width: 450px;
         display: flex;
         flex-direction: row;
         margin-bottom: 10px;
+      }
+
+      .items {
+        display: flex;
+        flex-direction: column;
       }
 
       #button{
@@ -121,6 +139,8 @@
     }
     .mainContainer{
         display: flex;
+        flex-direction: column;
+
     }
 
     #second{

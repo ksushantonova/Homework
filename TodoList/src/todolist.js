@@ -4,7 +4,9 @@
 
  class Todolist {
 
-    constructor(input, parents, buttons, counter, done, deleteall, header){
+    constructor(input, parents, buttons, counter, done, deleteall, local){
+        this.local = local;
+        this.localItem;
         this.header;
         this.input = input;
         this.parent = parents;
@@ -16,8 +18,6 @@
         this.deleteLists;
         this.allDone = done;
         this.deleteAll = deleteall;
-        // this.checkAllEvents;
-        // this.checkAllEvents;
         this.listCounter = counter;
         this.taskCounter = 0;
         this.makeItem();
@@ -28,18 +28,46 @@
     makeItem(){
         this.getHeader();
         this.newEvents();
+        this.workingWithLocalStorage();
         this.button.addEventListener("click", () => {
-           this.buildTask();
+        this.buildTask(null);
         });
 
         this.input.addEventListener("keyup", (e) => {
              if(e.keyCode == 13){
-            this.buildTask();
+            this.buildTask(null);
            };
         });
-        this.initEvents();
-        this.removeList();
+
+            this.initEvents();
+            this.removeList();
+            this.deleteAllEvents();
       };
+    
+
+    workingWithLocalStorage(){
+      if (this.local !== null){
+        let header = this.parent.childNodes[1].childNodes[1].childNodes[3];
+        header.innerText = (this.local.header);
+        this.header = this.local.header;
+
+        this.buildLocalTask();
+         for (let i = 0; i < this.local.tasks.length; i++){
+               this.tasks[i].inputValue = this.local.tasks[i].inputValue;
+               this.tasks[i].checkedItem = this.local.tasks[i].checkedItem;
+         };
+     
+      }
+    };
+
+     buildLocalTask(){
+        this.local.tasks.forEach(item => {
+            this.buildTask(item);
+        });
+            
+        };
+          
+   
 
    
 
@@ -56,6 +84,12 @@
 
         };
         
+     deleteAllEvents(){
+        this.deleteAll.addEventListener("click", () => {
+          this.tasks = [];
+          this.parent.lastElementChild.innerHTML = "";
+        })
+     }   
  
      newEvents(){
          this.deleteEvent = new CustomEvent("deleteEvent",{
@@ -70,19 +104,12 @@
                 detail: {count: "done"}      
         });
 
-        // this.checkAllEvents = new CustomEvent("checkAllEvents",{
-        //         detail: {count: "done"}      
-        // });
-
-        //     this.checkAllEvents = new CustomEvent("checkAllEvents",{
-        //         detail: {count: "done"}      
-        // });
       };
    
 
 
-    buildTask(){
-        this.tasks.push(new ToDoListItem(this.input.value, this.parent, this.deleteEvent, this.taskCounter++, this.changeEvent,  this.allDone, this.deleteAll));
+    buildTask(item){
+        this.tasks.push(new ToDoListItem(this.input.value, this.parent, this.deleteEvent, this.taskCounter++, this.changeEvent,  this.allDone, this.deleteAll, item));
            this.cleanValue();
       };
 

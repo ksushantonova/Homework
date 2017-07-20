@@ -1,7 +1,8 @@
 
  class ToDoListItem {
-        constructor (value, parent, deleteEvent, counter, changeEvent, doneall, deleteall){
+        constructor (value, parent, deleteEvent, counter, changeEvent, doneall, deleteall, task){
 //получаем все ивенты через свойства, а так же нужные нам данные
+            this.local = task;
             this.inputValue = value;
             this.parent = parent.childNodes[3];
             this.counter = counter;
@@ -19,16 +20,26 @@
 
 // строим новый айтем
          init(){
+
+            this.workingWithLocalStorage();
             this.htmlBuild();
             this.check = this.mainContainer.firstElementChild.childNodes[1];
             this.newInput = this.mainContainer.firstElementChild.childNodes[3];
             this.remove = this.mainContainer.firstElementChild.childNodes[5];
-             this.doneAll();
+            this.doneAll();
             this.isChecked();
             this.newItemValue(); 
             this.removeTask();
            
     }
+
+
+    workingWithLocalStorage(){
+      if (this.local !== null){
+            this.inputValue = this.local.inputValue;
+            this.checkedItem = this.local.checkedItem;
+      }
+    };
 
 
    htmlBuild(){

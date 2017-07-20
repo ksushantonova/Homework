@@ -6,7 +6,6 @@ class BuildItem {
 		this.frame = frame;
 		this.mainFrame;
 		this.deleteList;
-	//	this.header;
 		this.allLists = [];
 		this.temporaryList = [];
 		this.counter = 0;
@@ -17,8 +16,8 @@ class BuildItem {
     init(){
     	document.getElementById('plus').addEventListener("click", () => {
     		this.buildItemHtml();
-    		this.toDoListInit();
     		this.customEvent();
+        this.toDoListInit();
     	});
 
      };
@@ -39,9 +38,6 @@ class BuildItem {
     };
 
 
-    // this.header(){}
-
-
      getNumber(thisEvent){
             this.temporaryList = [];
             this.allLists.forEach((list, i) => {
@@ -55,11 +51,11 @@ class BuildItem {
 
 	toDoListInit(){
       let input = this.mainFrame.childNodes[1].childNodes[3].childNodes[3];
-      let allDone = this.mainFrame.childNodes[1].childNodes[1].childNodes[5];
-      let deleteAll = this.mainFrame.childNodes[1].childNodes[1].childNodes[1];
+      let allDoneButton = this.mainFrame.childNodes[1].childNodes[1].childNodes[5];
+      let deleteAllButton = this.mainFrame.childNodes[1].childNodes[1].childNodes[1];
       let parents = this.mainFrame;
       let buttons = input.nextElementSibling;
-      this.allLists.unshift(new Todolist(input, parents, buttons, this.counter++, allDone, deleteAll));
+      this.allLists.unshift(new Todolist(input, parents, buttons, this.counter++, allDoneButton, deleteAllButton));
       console.log(this.allLists);
      };
 	

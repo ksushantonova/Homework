@@ -1,9 +1,8 @@
 
  class ToDoListItem {
-        constructor (value, parent, deleteEvent, counter, changeEvent, proto){
+        constructor (value, parent, deleteEvent, counter, changeEvent, doneall, deleteall){
 //получаем все ивенты через свойства, а так же нужные нам данные
             this.inputValue = value;
-            this.proto = proto;
             this.parent = parent.childNodes[3];
             this.counter = counter;
             this.deleteEvent = deleteEvent;
@@ -11,6 +10,8 @@
             this.mainContainer;
             this.check;
             this.checkedItem = false;
+            this.doneAllButton = doneall;
+            this.deleteAllButton = deleteall;
             this.newInput;
             this.remove;
             this.init();
@@ -22,11 +23,11 @@
             this.check = this.mainContainer.firstElementChild.childNodes[1];
             this.newInput = this.mainContainer.firstElementChild.childNodes[3];
             this.remove = this.mainContainer.firstElementChild.childNodes[5];
+             this.doneAll();
             this.isChecked();
             this.newItemValue(); 
             this.removeTask();
-            
-
+           
     }
 
 
@@ -88,6 +89,16 @@
             this.remove.className = "remove";
             }
     };  
+
+    doneAll(){
+       this.doneAllButton.addEventListener('click', () => {   
+        if (this.checkedItem == false){
+            this.checkedItem = true;
+            this.check.firstElementChild.checked = true;
+            this.checkItem();
+        };
+       });
+    }
 
 
     }

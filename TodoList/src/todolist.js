@@ -4,7 +4,8 @@
 
  class Todolist {
 
-    constructor(input, parents, buttons, counter, done, deleteall){
+    constructor(input, parents, buttons, counter, done, deleteall, header){
+        this.header;
         this.input = input;
         this.parent = parents;
         this.button = buttons;
@@ -25,6 +26,7 @@
   
 
     makeItem(){
+        this.getHeader();
         this.newEvents();
         this.button.addEventListener("click", () => {
            this.buildTask();
@@ -39,7 +41,7 @@
         this.removeList();
       };
 
-
+   
 
     initEvents(){
          this.parent.addEventListener("deleteEvent", (event) => {
@@ -80,9 +82,19 @@
 
 
     buildTask(){
-        this.tasks.push(new ToDoListItem(this.input.value, this.parent, this.deleteEvent, this.taskCounter++, this.changeEvent));
+        this.tasks.push(new ToDoListItem(this.input.value, this.parent, this.deleteEvent, this.taskCounter++, this.changeEvent,  this.allDone, this.deleteAll));
            this.cleanValue();
       };
+
+    getHeader(){
+      let header = this.parent.childNodes[1].childNodes[1].childNodes[3];
+      this.header = header.innerText;
+      header.addEventListener("input", () => {
+            this.header = header.innerText;
+      });
+
+    }
+
 
      getNumber(thisEvent){
             this.temporaryData = [];

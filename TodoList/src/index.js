@@ -1,5 +1,12 @@
 // import {Todolist} from './todolist.js';
 // console.log("done");
+
+
+// 2)Реализовать удаление(очистка списка) всех ToDoListItem в данном ToDoList;
+// 3)Реализовать сохранение/чтение, используя LocalStorage, всех ToDoList и их айтемов:
+// - при загрузке страницы проверять наличие сохраненных данных и строить по ним ToDoList с айтемами, если данных нет, то выводить только один пустой ToDoList (edited)
+
+
 const htmlframe = ` 
 		<div style="display:flex; flex-direction:column">
 		<div style="display:flex; flex-direction:row">

@@ -21,12 +21,11 @@ class BuildItem {
     	  document.getElementById('plus').addEventListener("click", () => {
     		this.buildItemHtml();
         this.toDoListInit();
-         this.customEvent();
+        this.customEvent();
     	});
-         this.allLists.forEach(list => {
-            list.watch("header", console.log('changed'));
-        });
-     };
+        
+      };
+
 
     buildStorageLists(){
 
@@ -34,14 +33,12 @@ class BuildItem {
        if (this.localValue !== null){ 
        this.localFrame = JSON.parse(this.localValue);
        this.localFrame.forEach(list => {
-        this.buildItemHtml();
-        this.buildInit(list);
-        this.customEvent();
+       this.buildItemHtml();
+       this.buildInit(list);
+       this.customEvent();
        });
-
     };
-       this.writeStorage();
-       this.parseStorage();
+
   }
 
     buildItemHtml(){
@@ -54,30 +51,38 @@ class BuildItem {
 
     customEvent(){
     	  this.mainFrame.addEventListener("deleteLists", (event) => {
-         this.getNumber(event);
-         this.allLists.splice(this.temporaryList[1], 1);
-         this.writeStorage();
-         this.parseStorage();
-      });   
+        this.getNumber(event);
+        this.allLists.splice(this.temporaryList[1], 1);         
+      }); 
+
+        this.mainFrame.addEventListener("watch", (event) => {
+            this.writeStorage();
+            this.parseStorage();
+        });  
     };
 
+     
+    
+ 
 
-     getNumber(thisEvent){
-            this.temporaryList = [];
-            this.allLists.forEach((list, i) => {
-            if (list.listCounter == thisEvent.detail.number){
-            this.temporaryList.unshift(i);
-            this.temporaryList.unshift(list);
+
+    getNumber(thisEvent){
+        this.temporaryList = [];
+        this.allLists.forEach((list, i) => {
+        if (list.listCounter == thisEvent.detail.number){
+        this.temporaryList.unshift(i);
+        this.temporaryList.unshift(list);
 
              }
            });
       };
 
+  
 
-	toDoListInit(){
-          this.buildInit(null);
-          this.writeStorage();
-          this.parseStorage();
+	  toDoListInit(){
+        this.buildInit(null);
+        this.writeStorage();
+        this.parseStorage();
      };
 
      writeStorage(){
@@ -87,8 +92,8 @@ class BuildItem {
      };
 
      parseStorage(){
-         this.localValue = localStorage.getItem('data');
-         this.localFrame = JSON.parse(this.localValue);
+        this.localValue = localStorage.getItem('data');
+        this.localFrame = JSON.parse(this.localValue);
 
      };
 

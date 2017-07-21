@@ -5,6 +5,7 @@
  class Todolist {
 
     constructor(input, parents, buttons, counter, done, deleteall, local){
+        this.watch;
         this.local = local;
         this.localItem;
         this.header;
@@ -31,11 +32,13 @@
         this.workingWithLocalStorage();
         this.button.addEventListener("click", () => {
         this.buildTask(null);
+        this.parent.dispatchEvent(this.watch);
         });
 
         this.input.addEventListener("keyup", (e) => {
              if(e.keyCode == 13){
             this.buildTask(null);
+            this.parent.dispatchEvent(this.watch);
            };
         });
 
@@ -52,16 +55,18 @@
         this.header = this.local.header;
         this.buildLocalTask();
       }
+        this.parent.dispatchEvent(this.watch);
     };
 
      buildLocalTask(){
         this.local.tasks.forEach(item => {
             this.buildTask(item);
+            this.parent.dispatchEvent(this.watch);
         });
             
         };
           
-   
+  
 
    
 
@@ -79,9 +84,11 @@
         };
         
      deleteAllEvents(){
-        this.deleteAll.addEventListener("click", () => {
+          this.deleteAll.addEventListener("click", () => {
           this.tasks = [];
           this.parent.lastElementChild.innerHTML = "";
+          this.parent.dispatchEvent(this.watch);
+
         })
      }   
  
@@ -98,13 +105,18 @@
                 detail: {count: "done"}      
         });
 
-      };
-   
+        this.watch = new CustomEvent("watch",{
+                detail: {count: "done"}      
+        });
+
+    }
+
 
 
     buildTask(item){
-        this.tasks.push(new ToDoListItem(this.input.value, this.parent, this.deleteEvent, this.taskCounter++, this.changeEvent,  this.allDone, this.deleteAll, item));
-           this.cleanValue();
+        this.tasks.push(new ToDoListItem(this.input.value, this.parent, this.deleteEvent, this.taskCounter++, this.changeEvent,  this.allDone, this.deleteAll, item, this.watch));
+        this.cleanValue();
+        this.parent.dispatchEvent(this.watch);
       };
 
     getHeader(){
@@ -112,7 +124,10 @@
       this.header = header.innerText;
       header.addEventListener("input", () => {
             this.header = header.innerText;
+            this.parent.dispatchEvent(this.watch);
       });
+      
+
 
     }
 
@@ -137,6 +152,7 @@
     this.deleteLists.detail.number = this.listCounter; 
     this.parent.dispatchEvent(this.deleteLists);
     this.parent.remove();
+    this.parent.dispatchEvent(this.watch);
   });
     
   };

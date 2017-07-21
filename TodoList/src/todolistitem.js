@@ -1,7 +1,8 @@
 
  class ToDoListItem {
-        constructor (value, parent, deleteEvent, counter, changeEvent, doneall, deleteall, task){
+        constructor (value, parent, deleteEvent, counter, changeEvent, doneall, deleteall, task, watch){
 //получаем все ивенты через свойства, а так же нужные нам данные
+            this.watch = watch;
             this.local = task;
             this.inputValue = value;
             this.parent = parent.childNodes[3];
@@ -30,6 +31,7 @@
             this.doneAll();
             this.isChecked();
             this.removeTask();
+            this.parent.parentNode.dispatchEvent(this.watch);
            
     }
 
@@ -38,6 +40,7 @@
       if (this.local !== null){
             this.inputValue = this.local.inputValue;
             this.checkedItem = this.local.checkedItem;
+            this.parent.parentNode.dispatchEvent(this.watch);
 
     }};
 
@@ -63,19 +66,21 @@
         this.remove.addEventListener("click", () => {
         this.deleteEvent.detail.number = this.counter;   
         this.parent.parentNode.dispatchEvent(this.deleteEvent);
-            this.mainContainer.remove();
-        });
-    }
+        this.mainContainer.remove();
+        this.parent.parentNode.dispatchEvent(this.watch);
+    });
+}
 
     isChecked(){
-
         this.check.addEventListener('change', () => {
              if (this.check.firstElementChild.checked){
             this.checkedItem = true;
              this.checkItem();
+             this.parent.parentNode.dispatchEvent(this.watch);
         } else {
             this.checkedItem = false;
                this.checkItem();
+               this.parent.parentNode.dispatchEvent(this.watch);
             }
         });
     }
@@ -86,6 +91,7 @@
         this.changeEvent.detail.number = this.counter; 
         this.changeEvent.detail.value = this.newInput.value;
         this.parent.parentNode.dispatchEvent(this.changeEvent);
+        this.parent.parentNode.dispatchEvent(this.watch);
         })
     }
 
@@ -96,10 +102,12 @@
             this.newInput.className = "checked";
             this.remove.className = "checkedremove";
             this.check.firstElementChild.checked = true;
+            this.parent.parentNode.dispatchEvent(this.watch);
             } else {
             this.check.className = "check";
             this.newInput.className = "newInput";
             this.remove.className = "remove";
+            this.parent.parentNode.dispatchEvent(this.watch);
             }
     };  
 
@@ -109,6 +117,7 @@
             this.checkedItem = true;
             this.check.firstElementChild.checked = true;
             this.checkItem();
+            this.parent.parentNode.dispatchEvent(this.watch);
         };
        });
     }

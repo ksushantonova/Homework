@@ -9,7 +9,6 @@ class BuildItem {
 		this.allLists = [];
 		this.temporaryList = [];
 		this.counter = 0;
-    this.allListsString;
     this.myStorage;
     this.localValue;
     this.localFrame;
@@ -18,15 +17,15 @@ class BuildItem {
 
 
     init(){
-
         this.buildStorageLists();
     	  document.getElementById('plus').addEventListener("click", () => {
     		this.buildItemHtml();
         this.toDoListInit();
          this.customEvent();
     	});
-         console.log(this.allLists);
-
+         this.allLists.forEach(list => {
+            list.watch("header", console.log('changed'));
+        });
      };
 
     buildStorageLists(){

@@ -50,13 +50,7 @@
         let header = this.parent.childNodes[1].childNodes[1].childNodes[3];
         header.innerText = (this.local.header);
         this.header = this.local.header;
-
         this.buildLocalTask();
-         for (let i = 0; i < this.local.tasks.length; i++){
-               this.tasks[i].inputValue = this.local.tasks[i].inputValue;
-               this.tasks[i].checkedItem = this.local.tasks[i].checkedItem;
-         };
-     
       }
     };
 

@@ -41,10 +41,9 @@
             this.parent.dispatchEvent(this.watch);
            };
         });
-
-            this.initEvents();
-            this.removeList();
-            this.deleteAllEvents();
+        this.initEvents();
+        this.removeList();
+        this.deleteAllEvents();
       };
     
 
@@ -66,10 +65,6 @@
             
         };
           
-  
-
-   
-
     initEvents(){
          this.parent.addEventListener("deleteEvent", (event) => {
          this.getNumber(event);
@@ -77,17 +72,17 @@
       });             
 
         this.parent.addEventListener("changeEvent", (event) => {
-         this.getNumber(event);
-         this.temporaryData[0].inputValue = event.detail.value;
+            this.getNumber(event);
+            this.temporaryData[0].inputValue = event.detail.value;
         });  
 
         };
         
      deleteAllEvents(){
-          this.deleteAll.addEventListener("click", () => {
-          this.tasks = [];
-          this.parent.lastElementChild.innerHTML = "";
-          this.parent.dispatchEvent(this.watch);
+        this.deleteAll.addEventListener("click", () => {
+        this.tasks = [];
+        this.parent.lastElementChild.innerHTML = "";
+        this.parent.dispatchEvent(this.watch);
 
         })
      }   
@@ -114,9 +109,11 @@
 
 
     buildTask(item){
-        this.tasks.push(new ToDoListItem(this.input.value, this.parent, this.deleteEvent, this.taskCounter++, this.changeEvent,  this.allDone, this.deleteAll, item, this.watch));
-        this.cleanValue();
-        this.parent.dispatchEvent(this.watch);
+
+      this.tasks.push(new ToDoListItem(this.input.value, this.parent, this.deleteEvent, this.taskCounter++, this.changeEvent,  this.allDone, this.deleteAll, item, this.watch));
+      this.cleanValue();
+      this.parent.dispatchEvent(this.watch);
+
       };
 
     getHeader(){
@@ -130,7 +127,6 @@
 
 
     }
-
 
      getNumber(thisEvent){
             this.temporaryData = [];

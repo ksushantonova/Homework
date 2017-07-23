@@ -20,36 +20,36 @@
         }
 
 // строим новый айтем
-         init(){
-            this.workingWithLocalStorage();
-            this.htmlBuild();
-            this.check = this.mainContainer.firstElementChild.childNodes[1];
-            this.newInput = this.mainContainer.firstElementChild.childNodes[3];
-            this.remove = this.mainContainer.firstElementChild.childNodes[5];
-            this.checkItem();
-            this.newItemValue(); 
-            this.doneAll();
-            this.isChecked();
-            this.removeTask();
-            this.parent.parentNode.dispatchEvent(this.watch);
+    init(){
+        this.workingWithLocalStorage();
+        this.htmlBuild();
+        this.check = this.mainContainer.firstElementChild.childNodes[1];
+        this.newInput = this.mainContainer.firstElementChild.childNodes[3];
+        this.remove = this.mainContainer.firstElementChild.childNodes[5];
+        this.checkItem();
+        this.newItemValue(); 
+        this.doneAll();
+        this.isChecked();
+        this.removeTask();
+        this.parent.parentNode.dispatchEvent(this.watch);
            
     }
 
-
+// если есть какие-то локальные данные, забираем из них инпут, и информацию, какие из айтемов были чекнуты
     workingWithLocalStorage(){
-      if (this.local !== null){
+        if (this.local !== null){
             this.inputValue = this.local.inputValue;
             this.checkedItem = this.local.checkedItem;
             this.parent.parentNode.dispatchEvent(this.watch);
 
     }};
 
-
+// постройка каркасса айтема
    htmlBuild(){
-          this.mainContainer = document.createElement("div");
-          this.parent.appendChild(this.mainContainer);
-          this.mainContainer.className = "mainContainer";
-          this.mainContainer.innerHTML = ` 
+        this.mainContainer = document.createElement("div");
+        this.parent.appendChild(this.mainContainer);
+        this.mainContainer.className = "mainContainer";
+        this.mainContainer.innerHTML = ` 
                      <div class='container'>
                         <div class='check'>
                         <input type='checkbox' style='position:relative; cursor: pointer'>
@@ -71,6 +71,7 @@
     });
 }
 
+// следим за изменениями в чекбоксах, результат записываем в класс.
     isChecked(){
         this.check.addEventListener('change', () => {
              if (this.check.firstElementChild.checked){
@@ -95,22 +96,23 @@
         })
     }
 
-// метод выполнения задания
+// если в классе статус чекбокса checked - применяем стили, и наоборот
     checkItem(){
-            if (this.checkedItem){
-            this.check.className = "checkedcheck";
-            this.newInput.className = "checked";
-            this.remove.className = "checkedremove";
-            this.check.firstElementChild.checked = true;
-            this.parent.parentNode.dispatchEvent(this.watch);
-            } else {
-            this.check.className = "check";
-            this.newInput.className = "newInput";
-            this.remove.className = "remove";
-            this.parent.parentNode.dispatchEvent(this.watch);
+        if (this.checkedItem){
+        this.check.className = "checkedcheck";
+        this.newInput.className = "checked";
+        this.remove.className = "checkedremove";
+        this.check.firstElementChild.checked = true;
+        this.parent.parentNode.dispatchEvent(this.watch);
+        } else {
+        this.check.className = "check";
+        this.newInput.className = "newInput";
+        this.remove.className = "remove";
+        this.parent.parentNode.dispatchEvent(this.watch);
             }
     };  
 
+// метод чекает все нечекнутые задания
     doneAll(){
        this.doneAllButton.addEventListener('click', () => {   
         if (this.checkedItem == false){

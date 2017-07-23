@@ -25,28 +25,30 @@
     }
 
   
-
+// созлание нового айтема
     makeItem(){
         this.getHeader();
         this.newEvents();
         this.workingWithLocalStorage();
+
         this.button.addEventListener("click", () => {
-        this.buildTask(null);
-        this.parent.dispatchEvent(this.watch);
+            this.buildTask(null);
+            this.parent.dispatchEvent(this.watch);
         });
 
         this.input.addEventListener("keyup", (e) => {
-             if(e.keyCode == 13){
+            if(e.keyCode == 13){
             this.buildTask(null);
             this.parent.dispatchEvent(this.watch);
            };
         });
+
         this.initEvents();
         this.removeList();
         this.deleteAllEvents();
       };
     
-
+// работа с данными из локалсторейдж( забирает заголовок, и запускает метод строительства заданий)
     workingWithLocalStorage(){
       if (this.local !== null){
         let header = this.parent.childNodes[1].childNodes[1].childNodes[3];
@@ -57,6 +59,7 @@
         this.parent.dispatchEvent(this.watch);
     };
 
+// выясняет, сколько заданий было в локалсторейдж, и строит такое же количество 
      buildLocalTask(){
         this.local.tasks.forEach(item => {
             this.buildTask(item);
@@ -64,11 +67,12 @@
         });
             
         };
-          
+
+// ловим ивенты удаления, и изменения в айтемх
     initEvents(){
          this.parent.addEventListener("deleteEvent", (event) => {
-         this.getNumber(event);
-         this.tasks.splice(this.temporaryData[1], 1);
+            this.getNumber(event);
+            this.tasks.splice(this.temporaryData[1], 1);
       });             
 
         this.parent.addEventListener("changeEvent", (event) => {
@@ -77,7 +81,8 @@
         });  
 
         };
-        
+
+// при клике на мусорный бак удаляются все айтемы
      deleteAllEvents(){
         this.deleteAll.addEventListener("click", () => {
         this.tasks = [];
@@ -86,7 +91,7 @@
 
         })
      }   
- 
+ // инициализация всех кастомивентов которые относятся к этому классу
      newEvents(){
          this.deleteEvent = new CustomEvent("deleteEvent",{
                 detail: {count: "done"}      
@@ -107,15 +112,15 @@
     }
 
 
+// строительство нового айтема
+    buildTask(localData){
 
-    buildTask(item){
-
-      this.tasks.push(new ToDoListItem(this.input.value, this.parent, this.deleteEvent, this.taskCounter++, this.changeEvent,  this.allDone, this.deleteAll, item, this.watch));
+      this.tasks.push(new ToDoListItem(this.input.value, this.parent, this.deleteEvent, this.taskCounter++, this.changeEvent,  this.allDone, this.deleteAll, localData, this.watch));
       this.cleanValue();
       this.parent.dispatchEvent(this.watch);
 
       };
-
+// метод наблюдает за любыми изменениями заголовка, и списывает их в массив
     getHeader(){
       let header = this.parent.childNodes[1].childNodes[1].childNodes[3];
       this.header = header.innerText;
@@ -127,7 +132,7 @@
 
 
     }
-
+// метод сравнивает номера в details и в массиве, на выходе получаем массив из элемента и его индекса
      getNumber(thisEvent){
             this.temporaryData = [];
             this.tasks.forEach((task, i) => {
@@ -143,6 +148,7 @@
         this.input.value = "";
     };
 
+// удаление листа 
     removeList(){
     this.input.previousElementSibling.addEventListener("click", () => {
     this.deleteLists.detail.number = this.listCounter; 

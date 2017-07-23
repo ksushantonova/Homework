@@ -8,6 +8,7 @@ class BuildItem {
 		this.deleteList;
 		this.allLists = [];
 		this.temporaryList = [];
+    this.allListsString;
 		this.counter = 0;
     this.myStorage;
     this.localValue;
@@ -17,6 +18,7 @@ class BuildItem {
 
 
     init(){
+      // localStorage.clear();
         this.buildStorageLists();
     	  document.getElementById('plus').addEventListener("click", () => {
     		this.buildItemHtml();
@@ -26,22 +28,28 @@ class BuildItem {
         
       };
 
-// забираем все что есть из локалсторейджа
+// забираем все что есть из локалсторейджа, и в зависимости что там внутри - показываем локал, или пустой айтем.
 
     buildStorageLists(){
-
-       this.localValue = localStorage.getItem('data');
-       if (this.localValue !== null){ 
-       this.localFrame = JSON.parse(this.localValue);
-       this.localFrame.forEach(list => {
-// для каждого объекта строим html, передавая в новый класс локальные данные текущего объекта
-       this.buildItemHtml();
-       this.buildInit(list);
-       this.customEvent();
+      this.localValue = localStorage.getItem('data');
+      if (this.localValue !== null && this.localValue.length > 3){ 
+        this.localFrame = JSON.parse(this.localValue);
+        this.localFrame.forEach(list => {
+        this.buildItemHtml();
+        this.buildInit(list);
+        this.customEvent();
        });
-    };
-
+    } else if (this.localValue !== null && this.localValue.length < 3){
+        this.buildItemHtml();
+        this.buildInit(null);
+        this.customEvent();
+    } else {
+       this.buildItemHtml();
+       this.buildInit(null);
+       this.customEvent();
+    } 
   }
+
 
 // метод создает каркасс для нового листа
     buildItemHtml(){

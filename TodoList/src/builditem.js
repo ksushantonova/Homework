@@ -2,11 +2,9 @@
 
 
 class BuildItem {
-	constructor(frame, parent){
-		this.frame = frame;
+	constructor(parent){
     this.container = parent;
 		this.allLists = [];
-		this.temporaryList = [];
 		this.counter = 0;
 		this.init();
 	};
@@ -48,15 +46,14 @@ class BuildItem {
 
 // метод создает каркасс для нового листа
     buildItemHtml(){
-      console.log(this.container);
     	  this.mainFrame = document.createElement('div');
     	  this.mainFrame.className = 'main';
-    	  this.mainFrame.innerHTML = this.frame;
         this.container.insertBefore(this.mainFrame, this.container.childNodes[1]);  
     };
 
 // метод ловит все кастомивенты, которые нужно словить в этом классе 
     customEvent(){
+          this.temporaryList = [];
 // событие удаления листа
     	  this.mainFrame.addEventListener("deleteLists", (event) => {
           this.getNumber(event);

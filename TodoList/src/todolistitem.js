@@ -5,7 +5,7 @@
             this.watch = watch;
             this.local = task;
             this.inputValue = value;
-            this.parent = parent;
+            this.parent = parent; // items
             this.counter = counter;
             this.checkedItem = false;
             this.doneAllButton = doneall;

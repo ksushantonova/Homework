@@ -1,31 +1,24 @@
 
  class ToDoListItem {
-        constructor (value, parent, deleteEvent, counter, changeEvent, doneall, deleteall, task, watch){
+        constructor (value, parent, counter, doneall, deleteall, task, watch){
 //получаем все ивенты через свойства, а так же нужные нам данные
             this.watch = watch;
             this.local = task;
             this.inputValue = value;
-            this.parent = parent.childNodes[3];
+            this.parent = parent;
             this.counter = counter;
-            this.deleteEvent = deleteEvent;
-            this.changeEvent = changeEvent;
-            this.mainContainer;
-            this.check;
             this.checkedItem = false;
             this.doneAllButton = doneall;
             this.deleteAllButton = deleteall;
-            this.newInput;
-            this.remove;
             this.init();
         }
 
 // строим новый айтем
     init(){
+        this.newEvents();
         this.workingWithLocalStorage();
         this.htmlBuild();
-        this.check = this.mainContainer.firstElementChild.childNodes[1];
-        this.newInput = this.mainContainer.firstElementChild.childNodes[3];
-        this.remove = this.mainContainer.firstElementChild.childNodes[5];
+        this.mainElements();
         this.checkItem();
         this.newItemValue(); 
         this.doneAll();
@@ -43,6 +36,24 @@
             this.parent.parentNode.dispatchEvent(this.watch);
 
     }};
+
+    mainElements(){
+        this.check = this.mainContainer.firstElementChild.childNodes[1];
+        this.newInput = this.mainContainer.firstElementChild.childNodes[3];
+        this.remove = this.mainContainer.firstElementChild.childNodes[5];
+    }
+
+    newEvents(){
+
+        this.deleteEvent = new CustomEvent("deleteEvent",{
+                detail: {count: "done"}      
+        });
+
+        this.changeEvent = new CustomEvent("changeEvent",{
+                detail: {count: "done"}      
+        });
+
+    }
 
 // постройка каркасса айтема
    htmlBuild(){

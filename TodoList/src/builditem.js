@@ -2,17 +2,12 @@
 
 
 class BuildItem {
-	constructor(frame){
+	constructor(frame, parent){
 		this.frame = frame;
-		this.mainFrame;
-		this.deleteList;
+    this.container = parent;
 		this.allLists = [];
 		this.temporaryList = [];
-    this.allListsString;
 		this.counter = 0;
-    this.myStorage;
-    this.localValue;
-    this.localFrame;
 		this.init();
 	};
 
@@ -53,11 +48,11 @@ class BuildItem {
 
 // метод создает каркасс для нового листа
     buildItemHtml(){
-    	  let flexed = document.getElementById('flexed');
+      console.log(this.container);
     	  this.mainFrame = document.createElement('div');
     	  this.mainFrame.className = 'main';
     	  this.mainFrame.innerHTML = this.frame;
-        flexed.insertBefore(this.mainFrame, flexed.childNodes[1]);  
+        this.container.insertBefore(this.mainFrame, this.container.childNodes[1]);  
     };
 
 // метод ловит все кастомивенты, которые нужно словить в этом классе 

@@ -4,19 +4,13 @@
 
  class Todolist {
 
-    constructor(input, parents, buttons, counter, done, deleteall, local){
-        this.watch;
+    constructor(input, parent, button, counter, done, deleteall, local){
         this.local = local;
-        this.localItem;
-        this.header;
         this.input = input;
-        this.parent = parents;
-        this.button = buttons;
+        this.parent = parent;
+        this.button = button;
         this.tasks = [];
         this.temporaryData = [];
-        this.deleteEvent;
-        this.changeEvent;
-        this.deleteLists;
         this.allDone = done;
         this.deleteAll = deleteall;
         this.listCounter = counter;
@@ -80,6 +74,8 @@
             this.temporaryData[0].inputValue = event.detail.value;
         });  
 
+
+
         };
 
 // при клике на мусорный бак удаляются все айтемы
@@ -93,19 +89,12 @@
      }   
  // инициализация всех кастомивентов которые относятся к этому классу
      newEvents(){
-         this.deleteEvent = new CustomEvent("deleteEvent",{
-                detail: {count: "done"}      
-        });
-
-        this.changeEvent = new CustomEvent("changeEvent",{
-                detail: {count: "done"}      
-        });
-
-        this.deleteLists = new CustomEvent("deleteLists",{
-                detail: {count: "done"}      
-        });
 
         this.watch = new CustomEvent("watch",{
+                detail: {count: "done"}      
+        });
+
+          this.deleteLists = new CustomEvent("deleteLists",{
                 detail: {count: "done"}      
         });
 
@@ -114,8 +103,8 @@
 
 // строительство нового айтема
     buildTask(localData){
-
-      this.tasks.push(new ToDoListItem(this.input.value, this.parent, this.deleteEvent, this.taskCounter++, this.changeEvent,  this.allDone, this.deleteAll, localData, this.watch));
+      
+      this.tasks.push(new ToDoListItem(this.input.value, this.parent.childNodes[3], this.taskCounter++, this.allDone, this.deleteAll, localData, this.watch));
       this.cleanValue();
       this.parent.dispatchEvent(this.watch);
 

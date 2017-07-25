@@ -21,5 +21,5 @@ const htmlframe = `
          <div class="items"></div>  
                     `
 
-let container = document.getElementById('flexed');
-new BuildItem(htmlframe);
+let flexed = document.getElementById('flexed');
+new BuildItem(htmlframe, flexed);

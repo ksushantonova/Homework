@@ -2,17 +2,12 @@
 
 
 class BuildItem {
-	constructor(frame){
+	constructor(frame, parent){
 		this.frame = frame;
-		this.mainFrame;
-		this.deleteList;
+    this.container = parent;
 		this.allLists = [];
 		this.temporaryList = [];
-    this.allListsString;
 		this.counter = 0;
-    this.myStorage;
-    this.localValue;
-    this.localFrame;
 		this.init();
 	};
 
@@ -53,19 +48,19 @@ class BuildItem {
 
 // метод создает каркасс для нового листа
     buildItemHtml(){
-    	  let flexed = document.getElementById('flexed');
+      console.log(this.container);
     	  this.mainFrame = document.createElement('div');
     	  this.mainFrame.className = 'main';
     	  this.mainFrame.innerHTML = this.frame;
-        flexed.insertBefore(this.mainFrame, flexed.childNodes[1]);  
+        this.container.insertBefore(this.mainFrame, this.container.childNodes[1]);  
     };
 
 // метод ловит все кастомивенты, которые нужно словить в этом классе 
     customEvent(){
 // событие удаления листа
     	  this.mainFrame.addEventListener("deleteLists", (event) => {
-        this.getNumber(event);
-        this.allLists.splice(this.temporaryList[1], 1);         
+          this.getNumber(event);
+          this.allLists.splice(this.temporaryList[1], 1);         
       }); 
 // событие watch - мгновенная перезапись изменений в локал
         this.mainFrame.addEventListener("watch", (event) => {
@@ -108,12 +103,8 @@ class BuildItem {
 
 // создание нового класса Todolist (localData ставить если есть локалсторейдж)
      buildInit(localData){
-        let input = this.mainFrame.childNodes[1].childNodes[3].childNodes[3];
-        let allDoneButton = this.mainFrame.childNodes[1].childNodes[1].childNodes[5];
-        let deleteAllButton = this.mainFrame.childNodes[1].childNodes[1].childNodes[1];
         let parent = this.mainFrame;
-        let button = input.nextElementSibling;
-      this.allLists.push(new Todolist(input, parent, button, this.counter++, allDoneButton, deleteAllButton, localData));
+      this.allLists.push(new Todolist( parent, this.counter++, localData));
      };
 	
 };

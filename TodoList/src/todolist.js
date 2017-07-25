@@ -4,21 +4,11 @@
 
  class Todolist {
 
-    constructor(input, parents, buttons, counter, done, deleteall, local){
-        this.watch;
+    constructor(parent, counter, local){
         this.local = local;
-        this.localItem;
-        this.header;
-        this.input = input;
-        this.parent = parents;
-        this.button = buttons;
+        this.parent = parent; // mainFrame
         this.tasks = [];
         this.temporaryData = [];
-        this.deleteEvent;
-        this.changeEvent;
-        this.deleteLists;
-        this.allDone = done;
-        this.deleteAll = deleteall;
         this.listCounter = counter;
         this.taskCounter = 0;
         this.makeItem();
@@ -27,25 +17,15 @@
   
 // созлание нового айтема
     makeItem(){
+        this.mainElements();
         this.getHeader();
         this.newEvents();
         this.workingWithLocalStorage();
-
-        this.button.addEventListener("click", () => {
-            this.buildTask(null);
-            this.parent.dispatchEvent(this.watch);
-        });
-
-        this.input.addEventListener("keyup", (e) => {
-            if(e.keyCode == 13){
-            this.buildTask(null);
-            this.parent.dispatchEvent(this.watch);
-           };
-        });
-
+        this.inputs();  
         this.initEvents();
         this.removeList();
         this.deleteAllEvents();
+               console.log(this.parent.childNodes[3])
       };
     
 // работа с данными из локалсторейдж( забирает заголовок, и запускает метод строительства заданий)
@@ -68,6 +48,21 @@
             
         };
 
+    inputs(){
+
+            this.button.addEventListener("click", () => {
+            this.buildTask(null);
+            this.parent.dispatchEvent(this.watch);
+        });
+
+        this.input.addEventListener("keyup", (e) => {
+            if(e.keyCode == 13){
+            this.buildTask(null);
+            this.parent.dispatchEvent(this.watch);
+           };
+        });
+    }
+
 // ловим ивенты удаления, и изменения в айтемх
     initEvents(){
          this.parent.addEventListener("deleteEvent", (event) => {
@@ -80,11 +75,13 @@
             this.temporaryData[0].inputValue = event.detail.value;
         });  
 
+
+
         };
 
 // при клике на мусорный бак удаляются все айтемы
      deleteAllEvents(){
-        this.deleteAll.addEventListener("click", () => {
+        this.deleteAllButton.addEventListener("click", () => {
         this.tasks = [];
         this.parent.lastElementChild.innerHTML = "";
         this.parent.dispatchEvent(this.watch);
@@ -93,29 +90,27 @@
      }   
  // инициализация всех кастомивентов которые относятся к этому классу
      newEvents(){
-         this.deleteEvent = new CustomEvent("deleteEvent",{
-                detail: {count: "done"}      
-        });
-
-        this.changeEvent = new CustomEvent("changeEvent",{
-                detail: {count: "done"}      
-        });
-
-        this.deleteLists = new CustomEvent("deleteLists",{
-                detail: {count: "done"}      
-        });
 
         this.watch = new CustomEvent("watch",{
                 detail: {count: "done"}      
         });
 
+          this.deleteLists = new CustomEvent("deleteLists",{
+                detail: {count: "done"}      
+        });
+
     }
 
-
+    mainElements(){
+        this.input = this.parent.childNodes[1].childNodes[3].childNodes[3];
+        this.allDoneButton = this.parent.childNodes[1].childNodes[1].childNodes[5];
+        this.deleteAllButton = this.parent.childNodes[1].childNodes[1].childNodes[1];
+        this.button = this.input.nextElementSibling;
+    }
 // строительство нового айтема
     buildTask(localData){
 
-      this.tasks.push(new ToDoListItem(this.input.value, this.parent, this.deleteEvent, this.taskCounter++, this.changeEvent,  this.allDone, this.deleteAll, localData, this.watch));
+      this.tasks.push(new ToDoListItem(this.input.value, this.parent.childNodes[3], this.taskCounter++, this.allDoneButton, this.deleteAllButton, localData, this.watch));
       this.cleanValue();
       this.parent.dispatchEvent(this.watch);
 

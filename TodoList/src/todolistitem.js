@@ -1,6 +1,6 @@
 
  class ToDoListItem {
-        constructor (value, parent, counter, doneall, deleteall, task, watch){
+        constructor (parent, counter, task, watch){
 //получаем все ивенты через свойства, а так же нужные нам данные
             this.watch = watch;
             this.local = task;
@@ -8,8 +8,6 @@
             this.parent = parent; // items
             this.counter = counter;
             this.checkedItem = false;
-            this.doneAllButton = doneall;
-            this.deleteAllButton = deleteall;
             this.init();
         }
 
@@ -21,7 +19,6 @@
         this.mainElements();
         this.checkItem();
         this.newItemValue(); 
-        this.doneAll();
         this.isChecked();
         this.removeTask();
         this.parent.parentNode.dispatchEvent(this.watch);
@@ -41,10 +38,10 @@
         this.check = this.mainContainer.firstElementChild.childNodes[1];
         this.newInput = this.mainContainer.firstElementChild.childNodes[3];
         this.remove = this.mainContainer.firstElementChild.childNodes[5];
-    }
+    };
 
     newEvents(){
-
+        
         this.deleteEvent = new CustomEvent("deleteEvent",{
                 detail: {count: "done"}      
         });
@@ -53,7 +50,7 @@
                 detail: {count: "done"}      
         });
 
-    }
+    };
 
 // постройка каркасса айтема
    htmlBuild(){
@@ -68,7 +65,7 @@
                         <input class='newInput' value='${this.inputValue}'>
                         <div class='remove'><img src='cross.svg' style='heigth: 18px; width: 18px'></img></div>
                   </div>`; 
-        }
+        };
     
 
 
@@ -122,19 +119,6 @@
         this.parent.parentNode.dispatchEvent(this.watch);
             }
     };  
-
-// метод чекает все нечекнутые задания
-    doneAll(){
-       this.doneAllButton.addEventListener('click', () => {   
-        if (this.checkedItem == false){
-            this.checkedItem = true;
-            this.check.firstElementChild.checked = true;
-            this.checkItem();
-            this.parent.parentNode.dispatchEvent(this.watch);
-        };
-       });
-    }
-
 
     }
 

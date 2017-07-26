@@ -10,12 +10,12 @@
         this.tasks = [];
         this.listCounter = counter;
         this.taskCounter = 0;
-        this.makeItem();
+        this.makeList();
     }
 
   
 // созлание нового айтема
-    makeItem(){
+    makeList(){
         this.makeFrame();
         this.mainElements();
         this.getHeader();
@@ -25,7 +25,7 @@
         this.initEvents();
         this.removeList();
         this.deleteAllEvents();
-             
+        this.doneallItems()
       };
 
       makeFrame(){
@@ -55,6 +55,18 @@
         this.buildLocalTask();
       }
         this.parent.dispatchEvent(this.watch);
+    };
+
+    doneallItems(){
+           this.allDoneButton.addEventListener("click", () => {
+                console.log(this.tasks);
+                this.tasks.forEach(task => {
+                task.checkedItem = true;
+                task.check.firstElementChild.checked = true;
+                task.checkItem();
+                this.parent.dispatchEvent(this.watch);
+                })
+           });
     };
 
 // выясняет, сколько заданий было в локалсторейдж, и строит такое же количество 
@@ -126,7 +138,7 @@
 // строительство нового айтема
     buildTask(localData){
 
-      this.tasks.push(new ToDoListItem(this.input.value, this.parent.childNodes[3], this.taskCounter++, this.allDoneButton, this.deleteAllButton, localData, this.watch));
+      this.tasks.push(new ToDoListItem(this.input.value, this.parent.childNodes[3], this.taskCounter++,localData, this.watch));
       this.cleanValue();
       this.parent.dispatchEvent(this.watch);
 

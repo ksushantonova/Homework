@@ -54,7 +54,7 @@
         this.header = this.local.header;
         this.buildLocalTask();
       }
-        this.parent.dispatchEvent(this.watch);
+
     };
 
     doneallItems(){
@@ -64,7 +64,7 @@
                 task.checkedItem = true;
                 task.check.firstElementChild.checked = true;
                 task.checkItem();
-                this.parent.dispatchEvent(this.watch);
+
                 })
            });
     };
@@ -73,7 +73,6 @@
      buildLocalTask(){
         this.local.tasks.forEach(item => {
             this.buildTask(item);
-            this.parent.dispatchEvent(this.watch);
         });
             
         };
@@ -82,13 +81,11 @@
 
             this.button.addEventListener("click", () => {
             this.buildTask(null);
-            this.parent.dispatchEvent(this.watch);
         });
 
         this.input.addEventListener("keyup", (e) => {
             if(e.keyCode == 13){
             this.buildTask(null);
-            this.parent.dispatchEvent(this.watch);
            };
         });
     }
@@ -112,35 +109,32 @@
         this.deleteAllButton.addEventListener("click", () => {
         this.tasks = [];
         this.parent.lastElementChild.innerHTML = "";
-        this.parent.dispatchEvent(this.watch);
+        this.parent.dispatchEvent(this.taskswatch);
 
         })
      }   
  // инициализация всех кастомивентов которые относятся к этому классу
      newEvents(){
 
-        this.watch = new CustomEvent("watch",{
-                detail: {count: "done"}      
-        });
-
           this.deleteLists = new CustomEvent("deleteLists",{
                 detail: {count: "done"}      
         });
 
-    }
+    };
 
     mainElements(){
         this.input = this.parent.childNodes[1].childNodes[3].childNodes[3];
         this.allDoneButton = this.parent.childNodes[1].childNodes[1].childNodes[5];
         this.deleteAllButton = this.parent.childNodes[1].childNodes[1].childNodes[1];
         this.button = this.input.nextElementSibling;
-    }
+    };
 // строительство нового айтема
     buildTask(localData){
 
-      this.tasks.push(new ToDoListItem(this.input.value, this.parent.childNodes[3], this.taskCounter++,localData, this.watch));
+      this.tasks.push(new ToDoListItem(this.input.value, this.parent.childNodes[3], this.taskCounter++,localData));
+              console.log(this.tasks);
       this.cleanValue();
-      this.parent.dispatchEvent(this.watch);
+
 
       };
 // метод наблюдает за любыми изменениями заголовка, и списывает их в массив
@@ -149,11 +143,8 @@
       this.header = header.innerText;
       header.addEventListener("input", () => {
             this.header = header.innerText;
-            this.parent.dispatchEvent(this.watch);
       });
       
-
-
     }
 // метод сравнивает номера в details и в массиве, на выходе получаем массив из элемента и его индекса
      getNumber(thisEvent){
@@ -177,7 +168,7 @@
     this.deleteLists.detail.number = this.listCounter; 
     this.parent.dispatchEvent(this.deleteLists);
     this.parent.remove();
-    this.parent.dispatchEvent(this.watch);
+
   });
     
   };

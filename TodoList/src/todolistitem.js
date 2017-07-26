@@ -1,8 +1,7 @@
 
  class ToDoListItem {
-        constructor (parent, counter, task, watch){
+        constructor (value, parent, counter, task){
 //получаем все ивенты через свойства, а так же нужные нам данные
-            this.watch = watch;
             this.local = task;
             this.inputValue = value;
             this.parent = parent; // items
@@ -38,9 +37,15 @@
         this.check = this.mainContainer.firstElementChild.childNodes[1];
         this.newInput = this.mainContainer.firstElementChild.childNodes[3];
         this.remove = this.mainContainer.firstElementChild.childNodes[5];
-    };
+    }
 
     newEvents(){
+
+        this.watch = new CustomEvent("watch",{
+                detail: {count: "done"},
+                bubbles: true
+
+        });
         
         this.deleteEvent = new CustomEvent("deleteEvent",{
                 detail: {count: "done"}      
@@ -50,7 +55,7 @@
                 detail: {count: "done"}      
         });
 
-    };
+    }
 
 // постройка каркасса айтема
    htmlBuild(){
@@ -65,7 +70,8 @@
                         <input class='newInput' value='${this.inputValue}'>
                         <div class='remove'><img src='cross.svg' style='heigth: 18px; width: 18px'></img></div>
                   </div>`; 
-        };
+        this.parent.parentNode.dispatchEvent(this.watch);
+        }
     
 
 

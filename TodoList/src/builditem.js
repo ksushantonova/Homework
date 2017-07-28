@@ -12,6 +12,7 @@ class BuildItem {
 
     init(){
       // localStorage.clear();
+        this.newEvent();
         this.buildStorageLists();
     	  document.getElementById('plus').addEventListener("click", () => {
     		this.buildItemHtml();
@@ -66,6 +67,13 @@ class BuildItem {
         });  
     };
 
+    newEvent(){
+
+        this.watch = new CustomEvent("watch",{
+                detail: {count: "done"}
+        });
+    }
+
 // метод, который сравнивает информацию о номере листа, которая пришла из нижнего класса, с номером листа
 // возвращает массив с найденным элементом, и его индексом.
     getNumber(thisEvent){
@@ -101,7 +109,7 @@ class BuildItem {
 // создание нового класса Todolist (localData ставить если есть локалсторейдж)
      buildInit(localData){
         let parent = this.mainFrame;
-      this.allLists.push(new Todolist( parent, this.counter++, localData));
+      this.allLists.push(new Todolist( parent, this.counter++, localData, this.watch));
      };
 	
 };

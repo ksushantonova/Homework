@@ -1,7 +1,8 @@
 
  class ToDoListItem {
-        constructor (value, parent, counter, task){
+        constructor (value, parent, counter, task, watch){
 //получаем все ивенты через свойства, а так же нужные нам данные
+            this.watch = watch;
             this.local = task;
             this.inputValue = value;
             this.parent = parent; // items
@@ -16,11 +17,13 @@
         this.workingWithLocalStorage();
         this.htmlBuild();
         this.mainElements();
+        this.startInputValue();
+        this.focusTodolistInput();
         this.checkItem();
         this.newItemValue(); 
         this.isChecked();
         this.removeTask();
-        this.parent.parentNode.dispatchEvent(this.watch);
+       this.parent.parentNode.parentNode.dispatchEvent(this.watch);
            
     }
 
@@ -29,9 +32,13 @@
         if (this.local !== null){
             this.inputValue = this.local.inputValue;
             this.checkedItem = this.local.checkedItem;
-            this.parent.parentNode.dispatchEvent(this.watch);
+            this.parent.parentNode.parentNode.dispatchEvent(this.watch);
 
     }};
+
+    startInputValue(){
+        this.newInput.value = this.inputValue;
+    }
 
     mainElements(){
         this.check = this.mainContainer.firstElementChild.childNodes[1];
@@ -39,13 +46,10 @@
         this.remove = this.mainContainer.firstElementChild.childNodes[5];
     }
 
+
+
     newEvents(){
 
-        this.watch = new CustomEvent("watch",{
-                detail: {count: "done"},
-                bubbles: true
-
-        });
         
         this.deleteEvent = new CustomEvent("deleteEvent",{
                 detail: {count: "done"}      
@@ -53,6 +57,10 @@
 
         this.changeEvent = new CustomEvent("changeEvent",{
                 detail: {count: "done"}      
+        });
+
+        this.focusInput = new CustomEvent("focusInput", {
+                 detail: {count: "done"}
         });
 
     }
@@ -70,18 +78,25 @@
                         <input class='newInput' value='${this.inputValue}'>
                         <div class='remove'><img src='cross.svg' style='heigth: 18px; width: 18px'></img></div>
                   </div>`; 
-        this.parent.parentNode.dispatchEvent(this.watch);
+        this.parent.parentNode.parentNode.dispatchEvent(this.watch);
         }
     
-
+   focusTodolistInput(){
+        this.newInput.addEventListener("keyup", (e) => {
+             if(e.keyCode == 13){
+                console.log('ccc');
+             this.parent.parentNode.parentNode.dispatchEvent(this.focusInput);
+           };
+        });
+   }     
 
 // метод удаления из Дома
     removeTask(){
         this.remove.addEventListener("click", () => {
         this.deleteEvent.detail.number = this.counter;   
-        this.parent.parentNode.dispatchEvent(this.deleteEvent);
+        this.parent.parentNode.parentNode.dispatchEvent(this.deleteEvent);
         this.mainContainer.remove();
-        this.parent.parentNode.dispatchEvent(this.watch);
+        this.parent.parentNode.parentNode.dispatchEvent(this.watch);
     });
 }
 
@@ -91,11 +106,11 @@
              if (this.check.firstElementChild.checked){
             this.checkedItem = true;
              this.checkItem();
-             this.parent.parentNode.dispatchEvent(this.watch);
+            this.parent.parentNode.parentNode.dispatchEvent(this.watch);
         } else {
             this.checkedItem = false;
                this.checkItem();
-               this.parent.parentNode.dispatchEvent(this.watch);
+               this.parent.parentNode.parentNode.dispatchEvent(this.watch);
             }
         });
     }
@@ -105,8 +120,8 @@
         this.newInput.addEventListener("input", () => {
         this.changeEvent.detail.number = this.counter; 
         this.changeEvent.detail.value = this.newInput.value;
-        this.parent.parentNode.dispatchEvent(this.changeEvent);
-        this.parent.parentNode.dispatchEvent(this.watch);
+        this.parent.parentNode.parentNode.dispatchEvent(this.changeEvent);
+        this.parent.parentNode.parentNode.dispatchEvent(this.watch);
         })
     }
 
@@ -117,12 +132,12 @@
         this.newInput.className = "checked";
         this.remove.className = "checkedremove";
         this.check.firstElementChild.checked = true;
-        this.parent.parentNode.dispatchEvent(this.watch);
+       this.parent.parentNode.parentNode.dispatchEvent(this.watch);
         } else {
         this.check.className = "check";
         this.newInput.className = "newInput";
         this.remove.className = "remove";
-        this.parent.parentNode.dispatchEvent(this.watch);
+        this.parent.parentNode.parentNode.dispatchEvent(this.watch);
             }
     };  
 

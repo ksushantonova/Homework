@@ -33,16 +33,16 @@
 
       makeFrame(){
          this.parent.innerHTML = ` 
-    <div style="display:flex; flex-direction:column; width:300px">
-    <div style="display:flex; flex-direction:row">
-    <div style="width:25px; height:25px; cursor:pointer; padding: 0 0 0 9px"><img src='del.png' style='heigth: 23px; width: 23px'></img></div>
-   <div class="header" contenteditable="true" style="width:200px">Blabla</div>  
-    <div  style="width:25px;cursor:pointer; height:25px; padding: 5px 0 0 0;"><img src='all.png' style='heigth: 23px; width: 23px'></img></div>
+    <div style="display:flex; flex-direction:column; width:250px">
+    <div class="todoHeader">
+    <div style="width:25px; height:25px; cursor:pointer; padding: 8px 0 0 13px;"><img src='all.png' style='heigth: 23px; width: 23px'></img></div>
+   <div class="header" contenteditable="true" style="width: 164px;">Blabla</div>  
+    <div  style="width:25px;cursor:pointer; height:25px; padding: 7px 0 0 3px;"><img src='del.png' style='heigth: 23px; width: 23px'></img></div>
     </div>
     <div class="items"></div>  
         <div class="underdiv">
-            <input class="input" type="text">
-            <div class="cross"><img src='cross.svg' style='heigth: 18px; width: 18px'></img></div>
+            <input class="input" type="text" placeholder=" + New task"/>
+            <div class="cross"><img src='cross.png' style='heigth: 30px; width: 22px'></img></div>
          </div> 
          </div>
                     `;
@@ -58,6 +58,7 @@
       }
 
     };
+    
 
     doneallItems(){
            this.allDoneButton.addEventListener("click", () => {

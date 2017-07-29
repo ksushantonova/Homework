@@ -17,6 +17,7 @@
         this.workingWithLocalStorage();
         this.htmlBuild();
         this.mainElements();
+        this.mainContainerStyles();
         this.startInputValue();
         this.focusTodolistInput();
         this.checkItem();
@@ -44,6 +45,46 @@
         this.check = this.mainContainer.firstElementChild.childNodes[1];
         this.newInput = this.mainContainer.firstElementChild.childNodes[3];
         this.remove = this.mainContainer.firstElementChild.childNodes[5];
+    }
+
+    mainContainerStyles(){
+        this.newInput.addEventListener('mouseover', () => {
+             this.remove.style.display = "block";
+             this.mainContainer.style.borderTop = "1px solid #E5E5E5";
+              this.mainContainer.style.borderBottom = "1px solid #E5E5E5";
+
+        });
+
+          this.newInput.addEventListener('input', () => {
+             this.remove.style.display = "block";
+             this.mainContainer.style.borderTop = "1px solid#E5E5E5";
+              this.mainContainer.style.borderBottom = "1px solid #E5E5E5";
+
+        });
+
+           this.remove.addEventListener('mouseover', () => {
+            this.remove.style.display = "block";
+             this.mainContainer.style.borderTop = "1px solid #E5E5E5";
+              this.mainContainer.style.borderBottom = "1px solid #E5E5E5";
+
+
+        });
+
+            this.newInput.addEventListener('blur', () => {
+            this.remove.style.display = "none";
+             this.mainContainer.style.border = "none";
+
+        });
+
+         this.remove.addEventListener('mouseout', (e) => {
+            this.remove.style.display = "none";
+               this.mainContainer.style.border = "none"; 
+        });
+
+         this.newInput.addEventListener('mouseout', (e) => {
+            this.remove.style.display = "none";
+               this.mainContainer.style.border = "none"; 
+        });
     }
 
 
@@ -76,7 +117,7 @@
                         <input type='checkbox' style='position:relative; cursor: pointer'>
                         </div>
                         <input class='newInput' value='${this.inputValue}'>
-                        <div class='remove'><img src='cross.svg' style='heigth: 18px; width: 18px'></img></div>
+                        <div class='remove'><img src='cross.png' style='heigth: 18px; width: 22px; display:block'></img></div>
                   </div>`; 
         this.parent.parentNode.parentNode.dispatchEvent(this.watch);
         }
@@ -84,7 +125,6 @@
    focusTodolistInput(){
         this.newInput.addEventListener("keyup", (e) => {
              if(e.keyCode == 13){
-                console.log('ccc');
              this.parent.parentNode.parentNode.dispatchEvent(this.focusInput);
            };
         });

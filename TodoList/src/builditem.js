@@ -64,6 +64,7 @@ class BuildItem {
         this.mainFrame.addEventListener("watch", (event) => {
             this.writeStorage();
             this.parseStorage();
+            console.log('watching');
         });  
     };
 

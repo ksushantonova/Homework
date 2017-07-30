@@ -24,7 +24,7 @@
         this.newItemValue(); 
         this.isChecked();
         this.removeTask();
-       this.parent.parentNode.parentNode.dispatchEvent(this.watch);
+        this.parent.parentNode.parentNode.dispatchEvent(this.watch);
            
     }
 

@@ -54,7 +54,7 @@ Components– Toolbars */
       #header{
         display: flex;
         flex-direction: row;
-        background-color:#00897b;
+        background-color:  #ffe200;
         width: 100%;
         color: white;
         height: 64px;
@@ -86,7 +86,7 @@ Components– Toolbars */
       .h1{
         display: flex;
         flex-direction: row;
-        margin: 20px 0 0 80px;
+        margin: 16px 0 0 80px;
         color: white;
         font-size: 24px;
         font-family: Roboto;
@@ -99,7 +99,7 @@ Components– Toolbars */
         right: 16px;
         display: flex;
         justify-content: center;
-        background: #FF6F00;
+        background:#00BFA5;
         border: none;
         height: 56px;
         width: 56px;
@@ -132,15 +132,15 @@ Components– Toolbars */
         justify-content: left;
         height: 30px;
         font-family:Roboto;
-        color: white;
-        font-size: 14px;
-        padding: 9px 0 0 15px;
+        color: black;
+        font-size: 24px;
+        padding: 24px 0 16px 16px;
       }
 
       .todoHeader{
         display:flex; 
         flex-direction:row; 
-        background: #FFC107; 
+        /* background: #FFC107;  */
         align-content: space-around
       }
 
@@ -150,7 +150,7 @@ Components– Toolbars */
         flex-direction: column;
         height: auto;
         width: 250px;
-        margin: 2% 0 0 2.5%;
+        margin: 10px 5px 0 5px;
        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
         0 1px 5px 0 rgba(0, 0, 0, 0.12),
         0 3px 1px -2px rgba(0, 0, 0, 0.2);
@@ -171,6 +171,7 @@ Components– Toolbars */
      .underdiv{
         width: 250px;
         display: flex;
+        height: 40px;
         flex-direction: row;
       }
 
@@ -200,10 +201,10 @@ Components– Toolbars */
 
 
     }
-.cross{
+    .cross{
     height: 23px;
     width: auto;
-    padding: 5px 0 5px 5px;
+    padding: 9px 16px 5px 5px;
     cursor: pointer;
      }
 
@@ -211,9 +212,9 @@ Components– Toolbars */
         color: #515151;
     font-family: Roboto;
     background-color: white;
-    padding: 5px 0 4px 14px;
+    padding: 10px 0 4px 16px;
     height: 20px;
-    width: 200px;
+    width: 209px;
     border: none;
 
     }
@@ -245,13 +246,13 @@ Components– Toolbars */
         background-color: white;
         width: 25px;
         height: 23px;
-        padding: 1px 3px 0 0;
+        padding: 9px 14px 0 0;
         cursor: pointer;
     }
 
     .check{
         background-color: white;
-        padding: 4px 9px 0 16px;
+        padding: 11px 9px 0 16px;
         cursor: pointer;
 
 
@@ -260,9 +261,9 @@ Components– Toolbars */
          color: black;
          font-family: Roboto;   
          background: white;
-         width: 181px;
+         width: 171px;
          height: 25px;
-         padding: 0 0 0 30px;
+         padding: 6px 0 0 3px;
          border: none;
 
     }
@@ -277,37 +278,31 @@ Components– Toolbars */
 
  
     .checked{
-  /*        border: 3px solid #E6E6E6;
-         background-color:#E6E6E6;
-         text-decoration: line-through;
-         width: 450px;
+        text-decoration: line-through;
+        cursor: pointer; 
          color: grey;
-         height: 23px;
-         font-size: 15px;
-         font-family: helvetica;
-         padding:0 6px;  
-        cursor: pointer; */
+         font-family: Roboto;   
+         background: white;
+         width: 171px;
+         height: 25px;
+         padding: 11px 0 0 30px;
+         border: none;
 
 
     }
     .checkedremove{
-/*         border-radius:  0 10px 10px 0;
-        border: 3px solid #E6E6E6;
-        background-color:#E6E6E6;
-        height: 21px;
-        padding: 2px 4px 0 0;
-        cursor: pointer; */
+        background-color: white;
+        width: 25px;
+        height: 23px;
+        padding: 9px 3px 0 0;
+        cursor: pointer;
 
 
     }
     .checkedcheck{ 
-  /*        padding: 2px 0 0 2px;
-         position:relative; 
-         border-radius:  10px 0 0 10px;
-         border: 3px solid #E6E6E6;
-         background-color:#E6E6E6;
-        cursor: pointer; */
-
+        background-color: white;
+        padding: 4px 9px 0 16px;
+        cursor: pointer;
     }
 
 
@@ -316,18 +311,20 @@ Components– Toolbars */
     #header{
         display: flex;
         flex-direction: row;
-        background-color:#00897b;
+        background-color: #ffe200;
         width: 100%;
         color: white;
         height: 56px;
         padding: 0;
-        box-shadow: 0 2px 5px rgba(0,0,0,.26);
+         box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+        0 1px 10px 0 rgba(0, 0, 0, 0.12),
+        0 2px 4px -1px rgba(0, 0, 0, 0.4);
       }
 
            .h1{
         display: flex;
         flex-direction: row;
-        margin: 20px 0 0 25px;
+        margin: 16px 0 0 25px;
         color: white;
         font-size: 19px;
         font-family: Roboto;

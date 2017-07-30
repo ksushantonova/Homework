@@ -35,9 +35,9 @@
          this.parent.innerHTML = ` 
     <div style="display:flex; flex-direction:column; width:250px">
     <div class="todoHeader">
-    <div style="width:25px; height:25px; cursor:pointer; padding: 8px 0 0 13px;"><img src='all.png' style='heigth: 23px; width: 23px'></img></div>
-   <div class="header" contenteditable="true" style="width: 164px;">Blabla</div>  
-    <div  style="width:25px;cursor:pointer; height:25px; padding: 7px 0 0 3px;"><img src='del.png' style='heigth: 23px; width: 23px'></img></div>
+   <div class="header" contenteditable="true" style="width: 164px;">Blabla</div> 
+    <div style="width:25px; height:25px; cursor:pointer; padding: 16px 0 0 13px;"><img src='all2.png' style='heigth: 23px; width: 23px'></img></div>
+    <div  style="width:25px;cursor:pointer; height:25px; padding: 16px 15px 0 16px;"><img src='del2.png' style='heigth: 23px; width: 23px'></img></div>
     </div>
     <div class="items"></div>  
         <div class="underdiv">
@@ -51,7 +51,7 @@
 // работа с данными из локалсторейдж( забирает заголовок, и запускает метод строительства заданий)
     workingWithLocalStorage(){
       if (this.local !== null){
-        let header = this.parent.childNodes[1].childNodes[1].childNodes[3];
+        let header = this.parent.childNodes[1].childNodes[1].childNodes[1];
         header.innerText = (this.local.header);
         this.header = this.local.header;
         this.buildLocalTask();
@@ -138,8 +138,8 @@
 
     mainElements(){
         this.input = this.parent.childNodes[1].childNodes[5].childNodes[1];
-        this.allDoneButton = this.parent.childNodes[1].childNodes[1].childNodes[5];
-        this.deleteAllButton = this.parent.childNodes[1].childNodes[1].childNodes[1];
+        this.allDoneButton = this.parent.childNodes[1].childNodes[1].childNodes[3];
+        this.deleteAllButton = this.parent.childNodes[1].childNodes[1].childNodes[5];
         this.parent.dispatchEvent(this.watch);
 
     };
@@ -152,10 +152,11 @@
       };
 // метод наблюдает за любыми изменениями заголовка, и списывает их в массив
     getHeader(){
-      let header = this.parent.childNodes[1].childNodes[1].childNodes[3];
+      let header = this.parent.childNodes[1].childNodes[1].childNodes[1];
       this.header = header.innerText;
       header.addEventListener("input", () => {
             this.header = header.innerText;
+             this.parent.dispatchEvent(this.watch);
       });
       
     }
@@ -177,14 +178,14 @@
 
 // удаление листа 
     removeList(){
+      console.log(this.input.nextElementSibling);
     this.input.nextElementSibling.addEventListener("click", () => {
     this.deleteLists.detail.number = this.listCounter; 
     this.parent.dispatchEvent(this.deleteLists);
     this.parent.remove();
-
+     this.parent.dispatchEvent(this.watch); 
   });
-        this.parent.dispatchEvent(this.watch);
-    
+   
   };
 };
 

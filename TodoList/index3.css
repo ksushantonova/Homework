@@ -123,7 +123,7 @@ Components– Toolbars */
         display: flex;
         flex-direction: column;
          /* box-shadow: 0 2px 5px rgba(0,0,0,.26); */
-         width: 300px;
+         width: 250px;
 
       }
 
@@ -283,7 +283,7 @@ Components– Toolbars */
          color: grey;
          font-family: Roboto;   
          background: white;
-         width: 171px;
+         width: 164px;
          height: 25px;
          padding: 6px 0 0 3px;
          border: none;

@@ -285,7 +285,7 @@ Components– Toolbars */
          background: white;
          width: 171px;
          height: 25px;
-         padding: 11px 0 0 30px;
+         padding: 6px 0 0 3px;
          border: none;
 
 
@@ -301,7 +301,7 @@ Components– Toolbars */
     }
     .checkedcheck{ 
         background-color: white;
-        padding: 4px 9px 0 16px;
+        padding: 11px 9px 0 16px;
         cursor: pointer;
     }
 

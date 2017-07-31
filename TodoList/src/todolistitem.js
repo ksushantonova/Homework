@@ -50,40 +50,40 @@
     mainContainerStyles(){
         this.newInput.addEventListener('mouseover', () => {
              this.remove.style.display = "block";
-             this.mainContainer.style.borderTop = "1px solid #E5E5E5";
-              this.mainContainer.style.borderBottom = "1px solid #E5E5E5";
+             // this.mainContainer.style.borderTop = "1px solid #E5E5E5";
+             //  this.mainContainer.style.borderBottom = "1px solid #E5E5E5";
 
         });
 
           this.newInput.addEventListener('input', () => {
              this.remove.style.display = "block";
-             this.mainContainer.style.borderTop = "1px solid#E5E5E5";
-              this.mainContainer.style.borderBottom = "1px solid #E5E5E5";
+             // this.mainContainer.style.borderTop = "1px solid#E5E5E5";
+             //  this.mainContainer.style.borderBottom = "1px solid #E5E5E5";
 
         });
 
            this.remove.addEventListener('mouseover', () => {
             this.remove.style.display = "block";
-             this.mainContainer.style.borderTop = "1px solid #E5E5E5";
-              this.mainContainer.style.borderBottom = "1px solid #E5E5E5";
+             // this.mainContainer.style.borderTop = "1px solid #E5E5E5";
+             //  this.mainContainer.style.borderBottom = "1px solid #E5E5E5";
 
 
         });
 
             this.newInput.addEventListener('blur', () => {
             this.remove.style.display = "none";
-             this.mainContainer.style.border = "none";
+             // this.mainContainer.style.border = "none";
 
         });
 
          this.remove.addEventListener('mouseout', (e) => {
             this.remove.style.display = "none";
-               this.mainContainer.style.border = "none"; 
+               // this.mainContainer.style.border = "none"; 
         });
 
          this.newInput.addEventListener('mouseout', (e) => {
             this.remove.style.display = "none";
-               this.mainContainer.style.border = "none"; 
+               // this.mainContainer.style.border = "none"; 
         });
     }
 

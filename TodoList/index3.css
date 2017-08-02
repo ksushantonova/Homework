@@ -51,302 +51,384 @@ Components– Lists: Controls
 Components– Text fields
 Components– Toolbars */
 
-      #header{
-        display: flex;
-        flex-direction: row;
-        background-color:  #ffe200;
-        width: 100%;
-        color: white;
-        height: 64px;
-        padding: 0;
-        box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
-        0 1px 10px 0 rgba(0, 0, 0, 0.12),
-        0 2px 4px -1px rgba(0, 0, 0, 0.4);
-      }
-    .header:focus {
-        outline: none;
-        }
+  #header{
+    display: flex;
+    flex-direction: row;
+    background-color:  #ffe200;
+     width: 100%;
+    color: white;
+    height: 64px;
+    padding: 0;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0.12),
+    0 2px 4px -1px rgba(0, 0, 0, 0.4);
+  }
 
-    .men{
-        display:flex; 
-        flex-direction:row; 
-        height: 25px;
-        width: 22px; 
-        margin: 20px 0 0 25px;
-      }
+  .header:focus {
+    outline: none;
+  }
 
-      body {
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        background: white;
-        justify-content: center;
-      }
+  body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    justify-content: center;
+  }
 
-      .h1{
-        display: flex;
-        flex-direction: row;
-        margin: 16px 0 0 80px;
-        color: white;
-        font-size: 24px;
-        font-family: Roboto;
-        padding: 0;
-      }
+  .h1{
+    display: flex;
+    flex-direction: row;
+    margin: 16px 0 0 80px;
+    color: white;
+    font-size: 24px;
+    font-family: Roboto;
+    padding: 0;
+  }
 
-        #plus {
-        position: fixed;
-        bottom: 16px;
-        right: 16px;
-        display: flex;
-        justify-content: center;
-        background:#00BFA5;
-        border: none;
-        height: 56px;
-        width: 56px;
-        border-radius: 28px;
-        cursor: pointer;
-         box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
-        0 1px 18px 0 rgba(0, 0, 0, 0.12),
-        0 3px 5px -1px rgba(0, 0, 0, 0.4);
-      }
-        
-        .round{
-            height: 24px; 
-            width: 24px; 
-            position:relative; 
-            top:1px;
-            left:0px;
-        }
-
-
-      .items {
-        display: flex;
-        flex-direction: column;
-         /* box-shadow: 0 2px 5px rgba(0,0,0,.26); */
-         width: 250px;
-
-      }
-
-          .header{
-        display: flex;
-        justify-content: left;
-        height: 30px;
-        font-family:Roboto;
-        color: black;
-        font-size: 24px;
-        padding: 24px 0 16px 16px;
-      }
-
-      .todoHeader{
-        display:flex; 
-        flex-direction:row; 
-        /* background: #FFC107;  */
-        align-content: space-around
-      }
-
-      .main{
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        height: auto;
-        width: 250px;
-        margin: 10px 5px 0 5px;
-       box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-        0 1px 5px 0 rgba(0, 0, 0, 0.12),
-        0 3px 1px -2px rgba(0, 0, 0, 0.2);
-        border-radius: 2px;
-          }
-
-    .container{
-        display: flex;
-        height: 40px;
-        width: 250px;
-        flex-direction: row;
-        margin: 0 0 0 0;
-        padding: 0 0 0 0;
-         border-radius: 2px;
-         border: 1px solid transparent;
-         border-right: none;
-         border-left: none;
-    }
-
-    .container:hover {
-        border: 1px solid #E5E5E5;
-         border-right: none;
-         border-left: none;
-    }
-
-
-     .underdiv{
-        width: 250px;
-        display: flex;
-        height: 40px;
-        flex-direction: row;
-      }
-
-
-      #button{
-/*         margin-left: 5px;
-        height: 50px;
-        width: 50px;
-        background: white;
-        padding-top: 5px; */
-      }
-
-
-
-         .but{
-/*          font-weight: 700;
-         font-family: Helvetica;
-         height: 33px;   
-         color: #525252;
-         border-style: solid;
-         border-color: #BABABA;
-         background-color:  #BABABA; 
-         border-radius: 0 10px 10px 0;
-         padding-left: 8px;
-         padding-right: 8px;
-        cursor: pointer; */
-
-
-    }
-    .cross{
-    height: 23px;
-    width: auto;
-    padding: 9px 16px 5px 5px;
+  #plus {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    display: flex;
+    justify-content: center;
+    background:#00BFA5;
+    border: none;
+    height: 56px;
+    width: 56px;
+    border-radius: 28px;
     cursor: pointer;
-     }
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
+    0 1px 18px 0 rgba(0, 0, 0, 0.12),
+    0 3px 5px -1px rgba(0, 0, 0, 0.4);
+  }
+        
+  .round{
+    height: 24px; 
+    width: 24px; 
+    position:relative; 
+    top:1px;
+    left:0px;
+  }
 
-     .input{
-        color: #515151;
+  .items {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+  }
+
+  .header{
+    display: flex;
+    justify-content: left;
+    height: 30px;
+    width: 164px;
+    font-family:Roboto;
+    color: black;
+    font-size: 24px;
+    padding: 24px 0 16px 16px;
+  }
+
+  .todoHeader{
+    display:flex; 
+    flex-direction:row; 
+    align-content: space-around
+  }
+
+  .main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: auto;
+    width: 250px;
+    margin: 10px 5px 0 5px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+  }
+
+  .container{
+    display: flex;
+    align-content: space-between;
+    height: 40px;
+    width: 250px;
+    flex-direction: row;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    border-right: none;
+    border-left: none;
+  }
+
+  .container:hover {
+    align-content: space-between;
+    border: 1px solid #E5E5E5;
+    border-right: none;
+    border-left: none;
+  }
+
+  .underdiv{
+    width: 250px;
+    display: flex;
+    height: 40px;
+    flex-direction: row;
+  }
+
+  .cross{
+    height: 23px;
+    padding: 9px 16px 5px 38px;
+    cursor: pointer;
+  }
+
+  .input{
+    color: #515151;
     font-family: Roboto;
     background-color: white;
     padding: 10px 0 4px 16px;
     height: 20px;
     width: 209px;
     border: none;
+  }
 
-    }
+  #flexed{
+    display: flex;
+    align-self: stretch;
+    flex-wrap: wrap;
+    max-width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
 
-    #flexed{
-        display: flex;
-        align-self: stretch;
-        flex-wrap: wrap;
-        max-width: 100%;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: flex-start;
+  .mainContainer{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+  }
 
-    }
-    .mainContainer{
-        display: flex;
-        flex-direction: column;
-        width: 250px;
+  
+  .remove {
+    display: none; 
+    background-color: white;
+    height: auto;
+    outline: none;
+    border: 0;
+    margin: 0px 0 0 0;
+    padding: 9px 16px 0 8px;
+    cursor: pointer;
+    float: right;
+  }
 
-    }
+  .check{
+    background-color: white;
+    padding: 11px 9px 0 16px;
+    cursor: pointer;
+  }
 
-    #second{
-/*         display: flex;
-        flex-direction: column;
-        background: #EEEEEE; */
-    }
+  .newInput{
+    color: black;
+    font-family: Roboto;   
+    background: white;
+    width: 156px;
+    height: 25px;
+    padding: 6px 0 0 3px;
+    border: none;
+  }
+     
+  input:focus {
+    outline: none;
+  }
+  button:focus {
+    outline: none;
+  }
 
-    .remove{
-        background-color: white;
-        width: 25px;
-        height: 23px;
-        padding: 9px 14px 0 0;
-        cursor: pointer;
-    }
+  .checked{
+    text-decoration: line-through;
+    cursor: pointer; 
+    color: grey;
+    font-family: Roboto;   
+    background: white;
+    width: 164px;
+    height: 25px;
+    padding: 6px 0 0 3px;
+    border: none;
+  }
 
-    .check{
-        background-color: white;
-        padding: 11px 9px 0 16px;
-        cursor: pointer;
-
-
-    }
-    .newInput{
-         color: black;
-         font-family: Roboto;   
-         background: white;
-         width: 171px;
-         height: 25px;
-         padding: 6px 0 0 3px;
-         border: none;
-
-    }
- 
-     input:focus {
-        outline: none;
-        }
-     button:focus {
-        outline: none;
-        }
-
-
- 
-    .checked{
-        text-decoration: line-through;
-        cursor: pointer; 
-         color: grey;
-         font-family: Roboto;   
-         background: white;
-         width: 164px;
-         height: 25px;
-         padding: 6px 0 0 3px;
-         border: none;
-
-
-    }
-    .checkedremove{
-        background-color: white;
-        width: 25px;
-        height: 23px;
-        padding: 9px 3px 0 0;
-        cursor: pointer;
-
-
-    }
-    .checkedcheck{ 
-        background-color: white;
-        padding: 11px 9px 0 16px;
-        cursor: pointer;
-    }
+  .checkedremove{
+    display: none;
+    background-color: white;
+    width: 25px;
+    height: 23px;
+    padding: 9px 13px 0 4px;
+    cursor: pointer;
+  }
+    
+  .checkedcheck{ 
+    background-color: white;
+    padding: 11px 9px 0 16px;
+    cursor: pointer;
+  }
 
 
 @media only screen and (max-width : 600px){
 
-    #header{
-        display: flex;
-        flex-direction: row;
-        background-color: #ffe200;
-        width: 100%;
-        color: white;
-        height: 56px;
-        padding: 0;
-         box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
-        0 1px 10px 0 rgba(0, 0, 0, 0.12),
-        0 2px 4px -1px rgba(0, 0, 0, 0.4);
-      }
+  #header{
+    display: flex;
+    flex-direction: row;
+    background-color: #ffe200;
+    width: 100%;
+    color: white;
+    height: 56px;
+    padding: 0;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0.12),
+    0 2px 4px -1px rgba(0, 0, 0, 0.4);
+  }
 
-           .h1{
-        display: flex;
-        flex-direction: row;
-        margin: 16px 0 0 25px;
-        color: white;
-        font-size: 19px;
-        font-family: Roboto;
-        padding: 0;
-      }
+  .h1{
+    display: flex;
+    flex-direction: row;
+    margin: 16px 0 0 25px;
+    color: white;
+    font-size: 19px;
+    font-family: Roboto;
+    padding: 0;
+  }
 
-      .men{
-        display:flex; 
-        flex-direction:row; 
-        height: 25px;
-        width: 22px; 
-        margin: 16px 0 0 17px;
-      }
+  .head{
+    display:flex; 
+    flex-direction:column; 
+    width:250px;
+  }
+}
 
 
-};
+ @media only screen and (max-width : 360px){
+
+  .underdiv{
+    display: flex;
+    align-content: space-between;
+  }
+    
+  .main{
+/*     display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: auto; */
+    width: 100%;
+/*     margin: 10px 5px 0 5px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    border-radius: 2px; */
+  }
+
+  .container{
+    display: flex;
+    height: 40px;
+    width: 100%;
+    flex-direction: row;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    border-right: none;
+    border-left: none;
+  }
+
+  .mainContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+  }
+
+
+  .items {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .container:hover {
+    border: 1px solid #E5E5E5;
+    border-right: none;
+    border-left: none;
+    width: 100%;
+  }
+
+
+  .head{
+    display:flex; 
+    flex-direction:column; 
+    width:100%;
+  }
+
+  .todoHeader{
+    display:flex; 
+    flex-direction:row; 
+    width: 100%;
+    align-content: space-around
+  }
+
+  .underdiv{
+    width: 100%;
+    display: flex;
+    height: 40px;
+    flex-direction: row;
+  }
+
+  .header{
+    display: flex;
+    width: 70%;
+    justify-content: left;
+    height: 30px;
+    font-family:Roboto;
+    color: black;
+    font-size: 24px;
+    padding: 24px 0 16px 16px;
+  }
+
+  .newInput{
+    color: black;
+    font-family: Roboto;   
+    background: white;
+    width: 70.5%;
+    height: 25px;
+    padding: 6px 0 0 3px;
+    border: none;
+  }
+
+  .input{
+    color: #515151;
+    font-family: Roboto;
+    background-color: white;
+    padding: 10px 0 4px 16px;
+    height: 20px;
+    width: 80%;
+    border: none;
+  }
+        
+  .checked{
+    text-decoration: line-through;
+    cursor: pointer; 
+    color: grey;
+    font-family: Roboto;   
+    background: white;
+    width: 70.5%;
+    height: 25px;
+    padding: 6px 0 0 3px;
+     border: none;
+  }
+
+    .checkedremove{
+    height: auto;
+    outline: none;
+    border: 0;
+    margin: 0px 0 0 0;
+    padding: 9px 12px 0 8px;
+    cursor: pointer;
+    float: right;
+  } 
+}

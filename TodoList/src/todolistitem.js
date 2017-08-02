@@ -48,42 +48,30 @@
     }
 
     mainContainerStyles(){
-        this.newInput.addEventListener('mouseover', () => {
+        this.newInput.parentNode.addEventListener('mouseover', () => {
              this.remove.style.display = "block";
-             // this.mainContainer.style.borderTop = "1px solid #E5E5E5";
-             //  this.mainContainer.style.borderBottom = "1px solid #E5E5E5";
 
         });
 
           this.newInput.addEventListener('input', () => {
              this.remove.style.display = "block";
-             // this.mainContainer.style.borderTop = "1px solid#E5E5E5";
-             //  this.mainContainer.style.borderBottom = "1px solid #E5E5E5";
 
         });
 
-           this.remove.addEventListener('mouseover', () => {
-            this.remove.style.display = "block";
-             // this.mainContainer.style.borderTop = "1px solid #E5E5E5";
-             //  this.mainContainer.style.borderBottom = "1px solid #E5E5E5";
+        //    this.remove.addEventListener('mouseover', () => {
+        //     this.remove.style.display = "block";
 
-
-        });
-
-            this.newInput.addEventListener('blur', () => {
-            this.remove.style.display = "none";
-             // this.mainContainer.style.border = "none";
+        // });
 
         });
 
          this.remove.addEventListener('mouseout', (e) => {
             this.remove.style.display = "none";
-               // this.mainContainer.style.border = "none"; 
         });
 
-         this.newInput.addEventListener('mouseout', (e) => {
+         this.newInput.parentNode.addEventListener('mouseout', (e) => {
             this.remove.style.display = "none";
-               // this.mainContainer.style.border = "none"; 
+
         });
     }
 
@@ -125,6 +113,7 @@
    focusTodolistInput(){
         this.newInput.addEventListener("keyup", (e) => {
              if(e.keyCode == 13){
+             this.remove.style.display = "none";
              this.parent.parentNode.parentNode.dispatchEvent(this.focusInput);
            };
         });
@@ -132,6 +121,7 @@
 
 // метод удаления из Дома
     removeTask(){
+      console.log(this.remove);
         this.remove.addEventListener("click", () => {
         this.deleteEvent.detail.number = this.counter;   
         this.parent.parentNode.parentNode.dispatchEvent(this.deleteEvent);

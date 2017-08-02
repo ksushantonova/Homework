@@ -1,8 +1,8 @@
 
 
-// import {ToDoListItem} from './todolistitem.js';
+import {ToDoListItem} from './todolistitem.js';
 
- class Todolist {
+ export class Todolist {
 
     constructor(parent, counter, local, watch){
         this.watch = watch;

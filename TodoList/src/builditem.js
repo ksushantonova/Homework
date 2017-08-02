@@ -1,7 +1,7 @@
+import {Todolist} from './todolist.js';
 
 
-
-class BuildItem {
+export class BuildItem {
 	constructor(parent){
     this.container = parent;
 		this.allLists = [];

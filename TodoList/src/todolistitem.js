@@ -1,5 +1,5 @@
 
- class ToDoListItem {
+ export class ToDoListItem {
         constructor (value, parent, counter, task, watch){
 //получаем все ивенты через свойства, а так же нужные нам данные
             this.watch = watch;
@@ -55,13 +55,6 @@
 
           this.newInput.addEventListener('input', () => {
              this.remove.style.display = "block";
-
-        });
-
-        //    this.remove.addEventListener('mouseover', () => {
-        //     this.remove.style.display = "block";
-
-        // });
 
         });
 

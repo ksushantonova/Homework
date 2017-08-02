@@ -1,4 +1,4 @@
-const cash_Data = [
+const cashData = [
         'index.html',
         'index3.css',
         'src/todolist.js',

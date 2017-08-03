@@ -1,7 +1,7 @@
-import {Todolist} from './todolist.ts';
+ import Todolist from './todolist.ts';
 
 
-export class BuildItem {
+export default class BuildItem {
 	constructor(parent){
     this.container = parent;
 		this.allLists = [];
@@ -26,12 +26,16 @@ export class BuildItem {
 
     buildStorageLists(){
       this.localValue = localStorage.getItem('data');
+
       if (this.localValue !== null && this.localValue.length > 3){ 
         this.localFrame = JSON.parse(this.localValue);
+
         this.localFrame.forEach(list => {
+
         this.buildItemHtml();
         this.buildInit(list);
         this.customEvent();
+         console.log(list);
        });
     } else if (this.localValue !== null && this.localValue.length < 3){
         this.buildItemHtml();
@@ -110,8 +114,11 @@ export class BuildItem {
 // создание нового класса Todolist (localData ставить если есть локалсторейдж)
      buildInit(localData){
         let parent = this.mainFrame;
-      this.allLists.push(new Todolist( parent, this.counter++, localData, this.watch));
-     };
+      this.allLists.push(
+      new Todolist(parent, this.counter++, localData, this.watch);
+
+      );
+   };
 	
 };
 

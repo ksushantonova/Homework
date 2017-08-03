@@ -1,13 +1,11 @@
+ // import ToDoListItem from './todolistitem.ts';
 
+ export default class Todolist {
 
-import {ToDoListItem} from './todolistitem.ts';
-
- export class Todolist {
-
-    constructor(parent, counter, local, watch){
-        this.watch = watch;
+    constructor(parent: HTMLElement, counter: number, local: string, watch: object){
+        this.watch= watch;
         this.local = local;
-        this.parent = parent; // mainFrame
+        this.parents = parent; // mainFrame
         this.tasks = [];
         this.listCounter = counter;
         this.taskCounter = 0;
@@ -22,17 +20,17 @@ import {ToDoListItem} from './todolistitem.ts';
         this.getHeader();
         this.newEvents();
         this.workingWithLocalStorage();
-        this.inputs();  
+        this.inputText();  
         this.initEvents();
         this.removeList();
         this.deleteAllEvents();
         this.doneallItems();
-        this.parent.dispatchEvent(this.watch);
+        this.parents.dispatchEvent(this.watch);
 
       };
 
       makeFrame(){
-         this.parent.innerHTML = ` 
+         this.parents.innerHTML = ` 
     <div class="head">
     <div class="todoHeader">
    <div class="header" contenteditable="true" >Blabla</div> 
@@ -51,7 +49,7 @@ import {ToDoListItem} from './todolistitem.ts';
 // работа с данными из локалсторейдж( забирает заголовок, и запускает метод строительства заданий)
     workingWithLocalStorage(){
       if (this.local !== null){
-        let header = this.parent.childNodes[1].childNodes[1].childNodes[1];
+        let header = this.parents.childNodes[1].childNodes[1].childNodes[1];
         header.innerText = (this.local.header);
         this.header = this.local.header;
         this.buildLocalTask();
@@ -68,7 +66,7 @@ import {ToDoListItem} from './todolistitem.ts';
                 task.checkItem();
                 })
            });
-           this.parent.dispatchEvent(this.watch);
+           this.parents.dispatchEvent(this.watch);
 
     };
 
@@ -77,41 +75,41 @@ import {ToDoListItem} from './todolistitem.ts';
         this.local.tasks.forEach(item => {
             this.buildTask(item);
         });
-        this.parent.dispatchEvent(this.watch);
+        this.parents.dispatchEvent(this.watch);
             
         };
 
-    inputs(){
+    inputText(){
 
         //    this.input.addEventListener("change", () => {
         //     this.buildTask(null);
         // }); 
 
-        this.input.addEventListener("keyup", (e) => {
+        this.inputs.addEventListener("keyup", (e) => {
              this.buildTask(null);
            //  if(e.keyCode == 13){
            //  this.buildTask(null);
            // };
         });
-        this.parent.dispatchEvent(this.watch);
+        this.parents.dispatchEvent(this.watch);
 
     }
 
 // ловим ивенты удаления, и изменения в айтемх
     initEvents(){
          this.temporaryData = [];
-         this.parent.addEventListener("deleteEvent", (event) => {
+         this.parents.addEventListener("deleteEvent", (event) => {
             this.getNumber(event);
             this.tasks.splice(this.temporaryData[1], 1);
       });             
 
-        this.parent.addEventListener("changeEvent", (event) => {
+        this.parents.addEventListener("changeEvent", (event) => {
             this.getNumber(event);
             this.temporaryData[0].inputValue = event.detail.value;
         });  
 
-        this.parent.addEventListener("focusInput", () => {
-            this.input.focus();
+        this.parents.addEventListener("focusInput", () => {
+            this.inputs.focus();
         }); 
         };
 
@@ -119,8 +117,8 @@ import {ToDoListItem} from './todolistitem.ts';
      deleteAllEvents(){
         this.deleteAllButton.addEventListener("click", () => {
         this.tasks = [];
-        this.parent.childNodes[1].childNodes[3].innerHTML = "";
-        this.parent.dispatchEvent(this.watch);
+        this.parents.childNodes[1].childNodes[3].innerHTML = "";
+        this.parents.dispatchEvent(this.watch);
 
         })
 
@@ -135,25 +133,39 @@ import {ToDoListItem} from './todolistitem.ts';
     };
 
     mainElements(){
-        this.input = this.parent.childNodes[1].childNodes[5].childNodes[1];
-        this.allDoneButton = this.parent.childNodes[1].childNodes[1].childNodes[3];
-        this.deleteAllButton = this.parent.childNodes[1].childNodes[1].childNodes[5];
-        this.parent.dispatchEvent(this.watch);
+        this.inputs: HTMLElement = this.parents.childNodes[1].childNodes[5].childNodes[1];
+        this.allDoneButton = this.parents.childNodes[1].childNodes[1].childNodes[3];
+        this.deleteAllButton = this.parents.childNodes[1].childNodes[1].childNodes[5];
+        this.parents.dispatchEvent(this.watch);
 
     };
 // строительство нового айтема
     buildTask(localData){
-      this.tasks.push(new ToDoListItem(this.input.value, this.parent.childNodes[1].childNodes[3], this.taskCounter++,localData, this.watch));
+      this.tasks.push(
+
+   // new ToDoListItem(this.inputs.value, this.parents.childNodes[1].childNodes[3], this.taskCounter++, localData, this.watch)
+     
+      import('./todolistitem.ts').then(
+        (module) => {
+        let todoListItem = module.default;
+        console.log(todoListItem);
+        new todoListItem(this.inputs.value, this.parents.childNodes[1].childNodes[3], this.taskCounter++, localData, this.watch)
+     })
+
+
+      );
+
       this.cleanValue();
-      this.parent.childNodes[1].childNodes[3].lastElementChild.childNodes[1].childNodes[3].focus();
+      console.log( this.parents.childNodes[1].childNodes[3].childNodes[1].childNodes[1].childNodes[3]);
+      this.parents.childNodes[1].childNodes[3].childNodes[1].childNodes[1].childNodes[3].focus();
       };
 // метод наблюдает за любыми изменениями заголовка, и списывает их в массив
     getHeader(){
-      let header = this.parent.childNodes[1].childNodes[1].childNodes[1];
+      let header = this.parents.childNodes[1].childNodes[1].childNodes[1];
       this.header = header.innerText;
       header.addEventListener("input", () => {
             this.header = header.innerText;
-             this.parent.dispatchEvent(this.watch);
+             this.parents.dispatchEvent(this.watch);
       });
       
     }
@@ -170,16 +182,16 @@ import {ToDoListItem} from './todolistitem.ts';
 
 
     cleanValue(){
-        this.input.value = "";
+        this.inputs.value = "";
     };
 
 // удаление листа 
     removeList(){
-    this.input.nextElementSibling.addEventListener("click", () => {
+    this.inputs.nextElementSibling.addEventListener("click", () => {
     this.deleteLists.detail.number = this.listCounter; 
-    this.parent.dispatchEvent(this.deleteLists);
-    this.parent.remove();
-     this.parent.dispatchEvent(this.watch); 
+    this.parents.dispatchEvent(this.deleteLists);
+    this.parents.remove();
+    this.parents.dispatchEvent(this.watch); 
   });
    
   };

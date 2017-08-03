@@ -1,11 +1,11 @@
 
- export class ToDoListItem {
+ export default class ToDoListItem {
         constructor (value, parent, counter, task, watch){
 //получаем все ивенты через свойства, а так же нужные нам данные
             this.watch = watch;
             this.local = task;
             this.inputValue = value;
-            this.parent = parent; // items
+            this.parents = parent; // items
             this.counter = counter;
             this.checkedItem = false;
             this.init();
@@ -24,7 +24,7 @@
         this.newItemValue(); 
         this.isChecked();
         this.removeTask();
-        this.parent.parentNode.parentNode.dispatchEvent(this.watch);
+        this.parents.parentNode.parentNode.dispatchEvent(this.watch);
            
     }
 
@@ -33,7 +33,7 @@
         if (this.local !== null){
             this.inputValue = this.local.inputValue;
             this.checkedItem = this.local.checkedItem;
-            this.parent.parentNode.parentNode.dispatchEvent(this.watch);
+            this.parents.parentNode.parentNode.dispatchEvent(this.watch);
 
     }};
 
@@ -90,7 +90,7 @@
 // постройка каркасса айтема
    htmlBuild(){
         this.mainContainer = document.createElement("div");
-        this.parent.appendChild(this.mainContainer);
+        this.parents.appendChild(this.mainContainer);
         this.mainContainer.className = "mainContainer";
         this.mainContainer.innerHTML = ` 
                      <div class='container'>
@@ -100,14 +100,14 @@
                         <input class='newInput' value='${this.inputValue}'>
                         <div class='remove'><img src='cross.png' style='heigth: 18px; width: 22px; display:block'></img></div>
                   </div>`; 
-        this.parent.parentNode.parentNode.dispatchEvent(this.watch);
+        this.parents.parentNode.parentNode.dispatchEvent(this.watch);
         }
     
    focusTodolistInput(){
         this.newInput.addEventListener("keyup", (e) => {
              if(e.keyCode == 13){
              this.remove.style.display = "none";
-             this.parent.parentNode.parentNode.dispatchEvent(this.focusInput);
+             this.parents.parentNode.parentNode.dispatchEvent(this.focusInput);
            };
         });
    }     
@@ -117,9 +117,9 @@
       console.log(this.remove);
         this.remove.addEventListener("click", () => {
         this.deleteEvent.detail.number = this.counter;   
-        this.parent.parentNode.parentNode.dispatchEvent(this.deleteEvent);
+        this.parents.parentNode.parentNode.dispatchEvent(this.deleteEvent);
         this.mainContainer.remove();
-        this.parent.parentNode.parentNode.dispatchEvent(this.watch);
+        this.parents.parentNode.parentNode.dispatchEvent(this.watch);
     });
 }
 
@@ -129,11 +129,11 @@
              if (this.check.firstElementChild.checked){
             this.checkedItem = true;
              this.checkItem();
-            this.parent.parentNode.parentNode.dispatchEvent(this.watch);
+            this.parents.parentNode.parentNode.dispatchEvent(this.watch);
         } else {
             this.checkedItem = false;
                this.checkItem();
-               this.parent.parentNode.parentNode.dispatchEvent(this.watch);
+               this.parents.parentNode.parentNode.dispatchEvent(this.watch);
             }
         });
     }
@@ -143,8 +143,8 @@
         this.newInput.addEventListener("input", () => {
         this.changeEvent.detail.number = this.counter; 
         this.changeEvent.detail.value = this.newInput.value;
-        this.parent.parentNode.parentNode.dispatchEvent(this.changeEvent);
-        this.parent.parentNode.parentNode.dispatchEvent(this.watch);
+        this.parents.parentNode.parentNode.dispatchEvent(this.changeEvent);
+        this.parents.parentNode.parentNode.dispatchEvent(this.watch);
         })
     }
 
@@ -155,12 +155,12 @@
         this.newInput.className = "checked";
         this.remove.className = "checkedremove";
         this.check.firstElementChild.checked = true;
-       this.parent.parentNode.parentNode.dispatchEvent(this.watch);
+       this.parents.parentNode.parentNode.dispatchEvent(this.watch);
         } else {
         this.check.className = "check";
         this.newInput.className = "newInput";
         this.remove.className = "remove";
-        this.parent.parentNode.parentNode.dispatchEvent(this.watch);
+        this.parents.parentNode.parentNode.dispatchEvent(this.watch);
             }
     };  
 

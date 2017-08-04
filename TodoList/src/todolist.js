@@ -1,4 +1,4 @@
- // import ToDoListItem from './todolistitem.js';
+ import ToDoListItem from './todolistitem.js';
 
  export default class Todolist {
 
@@ -17,6 +17,7 @@
   
 // созлание нового айтема
     makeList(){
+        console.log(this.local);
         this.makeFrame();
         this.mainElements();
         this.getHeader();
@@ -139,20 +140,20 @@
 // строительство нового айтема
     buildTask(data){
       this.tasks.push(
-      // new ToDoListItem(this.inputs.value, this.parents.childNodes[1].childNodes[3], this.taskCounter++, localData, this.watch)
-      this.lazyLoader(data);
+      new ToDoListItem(this.inputs.value, this.parents.childNodes[1].childNodes[3], this.taskCounter++, data, this.watch)
+      // this.lazyLoader(data);
       );
 
       this.cleanValue();
     }
 
-    lazyLoader(data){
-         import('./todolistitem.ts').then(
-        (module) => {
-        const todoListItem = module.default;
-        new todoListItem(this.inputs.value, this.parents.childNodes[1].childNodes[3], this.taskCounter++, data, this.watch)
-     });
-    }
+    // lazyLoader(data){
+    //      import('./todolistitem.js').then(
+    //     (module) => {
+    //     const todoListItem = module.default;
+    //     new todoListItem(this.inputs.value, this.parents.childNodes[1].childNodes[3], this.taskCounter++, data, this.watch)
+    //  });
+    // }
 
 
 // метод наблюдает за любыми изменениями заголовка, и списывает их в массив
@@ -168,6 +169,7 @@
     }
 // метод сравнивает номера в details и в массиве, на выходе получаем массив из элемента и его индекса
      getNumber(thisEvent){
+
             this.temporaryData = [];
             this.tasks.forEach((task, i) => {
             if (task.counter == thisEvent.detail.number){

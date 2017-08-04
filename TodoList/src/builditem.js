@@ -1,4 +1,4 @@
- import Todolist from './todolist.ts';
+ import Todolist from './todolist.js';
 
 
 export default class BuildItem {
@@ -25,17 +25,18 @@ export default class BuildItem {
 // забираем все что есть из локалсторейджа, и в зависимости что там внутри - показываем локал, или пустой айтем.
 
     buildStorageLists(){
+     
       this.localValue = localStorage.getItem('data');
-
       if (this.localValue !== null && this.localValue.length > 3){ 
         this.localFrame = JSON.parse(this.localValue);
+       
 
         this.localFrame.forEach(list => {
-
         this.buildItemHtml();
         this.buildInit(list);
         this.customEvent();
        });
+
     } else if (this.localValue !== null && this.localValue.length < 3){
         this.buildItemHtml();
         this.buildInit(null);
@@ -111,6 +112,7 @@ export default class BuildItem {
 
 // создание нового класса Todolist (localData ставить если есть локалсторейдж)
      buildInit(localData){
+        console.log(localData);
         let parent = this.mainFrame;
       this.allLists.push(new Todolist(parent, this.counter++, localData, this.watch));
    };

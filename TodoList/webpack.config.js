@@ -5,8 +5,8 @@
 
  module.exports = {
   entry: {
-      app: './src/index.ts',
-      list:  './src/todolistitem.ts'
+      app: './src/index.js',
+      // list:  './src/todolistitem.js'
     },
     devtool: 'inline-source-map',
      devServer: {
@@ -30,6 +30,10 @@
       new HtmlWebpackPlugin({
       title: 'TodoList',
       template: './index.html',
+    }),
+       new webpack.optimize.CommonsChunkPlugin({
+      children: true,
+      async: true,
     }),
     ],
   output: {

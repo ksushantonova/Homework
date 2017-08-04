@@ -1,9 +1,11 @@
- // import ToDoListItem from './todolistitem.ts';
+ // import ToDoListItem from './todolistitem.js';
 
  export default class Todolist {
 
-    constructor(parent, counter: number, local: string, watch: object){
-        this.watch= watch;
+    constructor(parent, counter, local, watch){
+       
+
+        this.watch = watch;
         this.local = local;
         this.parents = parent; // mainFrame
         this.tasks = [];
@@ -81,19 +83,14 @@
 
     inputText(){
 
-        //    this.input.addEventListener("change", () => {
-        //     this.buildTask(null);
-        // }); 
-
         this.inputs.addEventListener("keyup", (e) => {
              this.buildTask(null);
-           //  if(e.keyCode == 13){
-           //  this.buildTask(null);
-           // };
+
         });
+
         this.parents.dispatchEvent(this.watch);
 
-    }
+    };
 
 // ловим ивенты удаления, и изменения в айтемх
     initEvents(){
@@ -140,24 +137,21 @@
 
     };
 // строительство нового айтема
-    buildTask(localData){
+    buildTask(data){
       this.tasks.push(
-
-   // new ToDoListItem(this.inputs.value, this.parents.childNodes[1].childNodes[3], this.taskCounter++, localData, this.watch)
-     
-      import('./todolistitem.ts').then(
-        (module) => {
-        let todoListItem = module.default;
-        new todoListItem(this.inputs.value, this.parents.childNodes[1].childNodes[3], this.taskCounter++, localData, this.watch)
-     })
-
-
+      // new ToDoListItem(this.inputs.value, this.parents.childNodes[1].childNodes[3], this.taskCounter++, localData, this.watch)
+      this.lazyLoader(data);
       );
 
-      this.cleanValue(){
-        console.log(this.parents.childNodes[1].childNodes[3].firstChild.childNodes[1].childNodes[3])
-      this.parents.childNodes[1].childNodes[3].firstChild.childNodes[1].childNodes[3].focus();
-      };
+      this.cleanValue();
+    }
+
+    lazyLoader(data){
+         import('./todolistitem.ts').then(
+        (module) => {
+        const todoListItem = module.default;
+        new todoListItem(this.inputs.value, this.parents.childNodes[1].childNodes[3], this.taskCounter++, data, this.watch)
+     });
     }
 
 

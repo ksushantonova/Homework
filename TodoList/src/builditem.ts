@@ -112,10 +112,7 @@ export default class BuildItem {
 // создание нового класса Todolist (localData ставить если есть локалсторейдж)
      buildInit(localData){
         let parent = this.mainFrame;
-      this.allLists.push(
-      new Todolist(parent, this.counter++, localData, this.watch);
-
-      );
+      this.allLists.push(new Todolist(parent, this.counter++, localData, this.watch));
    };
 	
 };

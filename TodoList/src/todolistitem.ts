@@ -17,8 +17,8 @@
         this.workingWithLocalStorage();
         this.htmlBuild();
         this.mainElements();
-        this.mainContainerStyles();
         this.startInputValue();
+        this.mainContainerStyles();
         this.focusTodolistInput();
         this.checkItem();
         this.newItemValue(); 
@@ -38,7 +38,10 @@
     }};
 
     startInputValue(){
-        this.newInput.value = this.inputValue;
+        this.newInput.focus();
+        let val = this.inputValue;
+        this.newInput.value = '';
+        this.newInput.value = val; 
     }
 
     mainElements(){

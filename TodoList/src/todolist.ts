@@ -2,7 +2,7 @@
 
  export default class Todolist {
 
-    constructor(parent: HTMLElement, counter: number, local: string, watch: object){
+    constructor(parent, counter: number, local: string, watch: object){
         this.watch= watch;
         this.local = local;
         this.parents = parent; // mainFrame
@@ -133,7 +133,7 @@
     };
 
     mainElements(){
-        this.inputs: HTMLElement = this.parents.childNodes[1].childNodes[5].childNodes[1];
+        this.inputs = this.parents.childNodes[1].childNodes[5].childNodes[1];
         this.allDoneButton = this.parents.childNodes[1].childNodes[1].childNodes[3];
         this.deleteAllButton = this.parents.childNodes[1].childNodes[1].childNodes[5];
         this.parents.dispatchEvent(this.watch);
@@ -148,19 +148,22 @@
       import('./todolistitem.ts').then(
         (module) => {
         let todoListItem = module.default;
-        console.log(todoListItem);
         new todoListItem(this.inputs.value, this.parents.childNodes[1].childNodes[3], this.taskCounter++, localData, this.watch)
      })
 
 
       );
 
-      this.cleanValue();
-      console.log( this.parents.childNodes[1].childNodes[3].childNodes[1].childNodes[1].childNodes[3]);
-      this.parents.childNodes[1].childNodes[3].childNodes[1].childNodes[1].childNodes[3].focus();
+      this.cleanValue(){
+        console.log(this.parents.childNodes[1].childNodes[3].firstChild.childNodes[1].childNodes[3])
+      this.parents.childNodes[1].childNodes[3].firstChild.childNodes[1].childNodes[3].focus();
       };
+    }
+
+
 // метод наблюдает за любыми изменениями заголовка, и списывает их в массив
     getHeader(){
+
       let header = this.parents.childNodes[1].childNodes[1].childNodes[1];
       this.header = header.innerText;
       header.addEventListener("input", () => {

@@ -35,7 +35,6 @@ export default class BuildItem {
         this.buildItemHtml();
         this.buildInit(list);
         this.customEvent();
-         console.log(list);
        });
     } else if (this.localValue !== null && this.localValue.length < 3){
         this.buildItemHtml();
@@ -68,7 +67,6 @@ export default class BuildItem {
         this.mainFrame.addEventListener("watch", (event) => {
             this.writeStorage();
             this.parseStorage();
-            console.log('watching');
         });  
     };
 

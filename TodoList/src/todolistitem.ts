@@ -114,7 +114,6 @@
 
 // метод удаления из Дома
     removeTask(){
-      console.log(this.remove);
         this.remove.addEventListener("click", () => {
         this.deleteEvent.detail.number = this.counter;   
         this.parents.parentNode.parentNode.dispatchEvent(this.deleteEvent);

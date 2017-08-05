@@ -2,11 +2,28 @@
 
 
  export default class ToDoListItem {
-        constructor (value, parent, counter, task, watch){
+
+            watch: CustomEvent;
+            local: any;
+            inputValue: string;
+            parents: HTMLElement;
+            counter: number;
+            checkedItem: boolean;
+            newInput: any;
+            check: any;
+            remove: any;
+            mainContainer: Element;
+            deleteEvent: CustomEvent;
+            changeEvent: CustomEvent;
+            focusInput: CustomEvent;
+            todolistInput: any;
+
+        constructor (input: any, parent: any, counter: number, task: any, watch: CustomEvent){
 //получаем все ивенты через свойства, а так же нужные нам данные
             this.watch = watch;
             this.local = task;
-            this.inputValue = value;
+            this.inputValue = input.value;
+            this.todolistInput = input;
             this.parents = parent; // items
             this.counter = counter;
             this.checkedItem = false;
@@ -42,13 +59,15 @@
     startInputValue(){
         this.newInput.focus();
         let val = this.inputValue;
-        this.newInput.value = '';
+        this.newInput.value = ""; 
         this.newInput.value = val; 
+        this.todolistInput.value = "";
     }
 
     mainElements(){
         this.check = this.mainContainer.firstElementChild.childNodes[1];
         this.newInput = this.mainContainer.firstElementChild.childNodes[3];
+        this.newInput.value = this.inputValue;
         this.remove = this.mainContainer.firstElementChild.childNodes[5];
     }
 
@@ -109,7 +128,7 @@
         }
     
    focusTodolistInput(){
-        this.newInput.addEventListener("keyup", (e) => {
+        this.newInput.addEventListener("keyup", (e: any) => {
              if(e.keyCode == 13){
              this.remove.style.display = "none";
              this.parents.parentNode.parentNode.dispatchEvent(this.focusInput);

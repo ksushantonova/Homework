@@ -2,7 +2,21 @@
 
  export default class Todolist {
 
-    constructor(parent, counter, local, watch){
+        watch: CustomEvent;
+        local: any;
+        parents: any;
+        tasks: any;
+        listCounter: number;
+        taskCounter: number;
+        header: HTMLElement;
+        allDoneButton: Node;
+        deleteAllButton: Node;
+        deleteLists: Event;
+        inputs: any;
+        temporaryData: any;
+
+
+    constructor(parent: any, counter: number, local: any, watch: CustomEvent){
        
 
         this.watch = watch;
@@ -52,18 +66,17 @@
 // работа с данными из локалсторейдж( забирает заголовок, и запускает метод строительства заданий)
     workingWithLocalStorage(){
       if (this.local !== null){
-        let header = this.parents.childNodes[1].childNodes[1].childNodes[1];
+        let header: any = this.parents.childNodes[1].childNodes[1].childNodes[1];
         header.innerText = (this.local.header);
         this.header = this.local.header;
         this.buildLocalTask();
       }
-
     };
     
 
     doneallItems(){
            this.allDoneButton.addEventListener("click", () => {
-                this.tasks.forEach(task => {
+                this.tasks.forEach((task: any) => {
                 task.checkedItem = true;
                 task.check.firstElementChild.checked = true;
                 task.checkItem();
@@ -75,7 +88,7 @@
 
 // выясняет, сколько заданий было в локалсторейдж, и строит такое же количество 
      buildLocalTask(){
-        this.local.tasks.forEach(item => {
+        this.local.tasks.forEach((item: any) => {
             this.buildTask(item);
         });
         this.parents.dispatchEvent(this.watch);
@@ -86,9 +99,7 @@
 
         this.inputs.addEventListener("keyup", (e) => {
              this.buildTask(null);
-
         });
-
         this.parents.dispatchEvent(this.watch);
 
     };
@@ -96,12 +107,12 @@
 // ловим ивенты удаления, и изменения в айтемх
     initEvents(){
          this.temporaryData = [];
-         this.parents.addEventListener("deleteEvent", (event) => {
+         this.parents.addEventListener("deleteEvent", (event: CustomEvent) => {
             this.getNumber(event);
             this.tasks.splice(this.temporaryData[1], 1);
       });             
 
-        this.parents.addEventListener("changeEvent", (event) => {
+        this.parents.addEventListener("changeEvent", (event: CustomEvent) => {
             this.getNumber(event);
             this.temporaryData[0].inputValue = event.detail.value;
         });  
@@ -138,16 +149,16 @@
 
     };
 // строительство нового айтема
-    buildTask(data){
+    buildTask(data: object){
       this.lazyLoader(data);      
-      this.cleanValue();
     }
 
-    lazyLoader(data){
+    lazyLoader(data: object){
         import('./todolistitem.ts').then(
-        (module) => {
+        (module: any) => {
         const todoListItem = module.default;
-          this.tasks.push(new todoListItem(this.inputs.value, this.parents.childNodes[1].childNodes[3], this.taskCounter++, data, this.watch));
+        console.log(this.inputs.value);
+          this.tasks.push(new todoListItem(this.inputs, this.parents.childNodes[1].childNodes[3], this.taskCounter++, data, this.watch));
      });
     };
 
@@ -155,7 +166,7 @@
 // метод наблюдает за любыми изменениями заголовка, и списывает их в массив
     getHeader(){
 
-      let header = this.parents.childNodes[1].childNodes[1].childNodes[1];
+      let header: any = this.parents.childNodes[1].childNodes[1].childNodes[1];
       this.header = header.innerText;
       header.addEventListener("input", () => {
             this.header = header.innerText;
@@ -165,9 +176,8 @@
     }
 // метод сравнивает номера в details и в массиве, на выходе получаем массив из элемента и его индекса
      getNumber(thisEvent){
-
             this.temporaryData = [];
-            this.tasks.forEach((task, i) => {
+            this.tasks.forEach((task: any, i: number) => {
             if (task.counter == thisEvent.detail.number){
             this.temporaryData.unshift(i);
             this.temporaryData.unshift(task);

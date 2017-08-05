@@ -1,8 +1,20 @@
- import Todolist from './todolist.ts';
+ import Todolist from './todolist';
 
 
 export default class BuildItem {
-	constructor(parent){
+
+   container: Element;
+   allLists: any;
+   counter: number;
+   localValue: any;
+   localFrame: any;
+   mainFrame: Element;
+   temporaryList: any;
+   watch: CustomEvent;
+   allListsString: string;
+
+
+	constructor(parent: any){
     this.container = parent;
 		this.allLists = [];
 		this.counter = 0;
@@ -31,7 +43,7 @@ export default class BuildItem {
         this.localFrame = JSON.parse(this.localValue);
        
 
-        this.localFrame.forEach(list => {
+        this.localFrame.forEach((list: object) => {
         this.buildItemHtml();
         this.buildInit(list);
         this.customEvent();
@@ -80,9 +92,9 @@ export default class BuildItem {
 
 // метод, который сравнивает информацию о номере листа, которая пришла из нижнего класса, с номером листа
 // возвращает массив с найденным элементом, и его индексом.
-    getNumber(thisEvent){
+    getNumber(thisEvent: CustomEvent){
         this.temporaryList = [];
-        this.allLists.forEach((list, i) => {
+        this.allLists.forEach((list: any, i: number) => {
         if (list.listCounter == thisEvent.detail.number){
         this.temporaryList.unshift(i);
         this.temporaryList.unshift(list);
@@ -111,7 +123,7 @@ export default class BuildItem {
      };
 
 // создание нового класса Todolist (localData ставить если есть локалсторейдж)
-     buildInit(localData){
+     buildInit(localData: any){
         console.log(localData);
         let parent = this.mainFrame;
       this.allLists.push(new Todolist(parent, this.counter++, localData, this.watch));

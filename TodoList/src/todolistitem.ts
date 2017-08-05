@@ -1,4 +1,6 @@
 
+
+
  export default class ToDoListItem {
         constructor (value, parent, counter, task, watch){
 //получаем все ивенты через свойства, а так же нужные нам данные

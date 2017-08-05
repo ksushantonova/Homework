@@ -1,4 +1,4 @@
- import ToDoListItem from './todolistitem.js';
+ // import ToDoListItem from './todolistitem.ts';
 
  export default class Todolist {
 
@@ -21,8 +21,8 @@
         this.makeFrame();
         this.mainElements();
         this.getHeader();
-        this.newEvents();
         this.workingWithLocalStorage();
+        this.newEvents();
         this.inputText();  
         this.initEvents();
         this.removeList();
@@ -139,21 +139,17 @@
     };
 // строительство нового айтема
     buildTask(data){
-      this.tasks.push(
-      new ToDoListItem(this.inputs.value, this.parents.childNodes[1].childNodes[3], this.taskCounter++, data, this.watch)
-      // this.lazyLoader(data);
-      );
-
+      this.lazyLoader(data);      
       this.cleanValue();
     }
 
-    // lazyLoader(data){
-    //      import('./todolistitem.js').then(
-    //     (module) => {
-    //     const todoListItem = module.default;
-    //     new todoListItem(this.inputs.value, this.parents.childNodes[1].childNodes[3], this.taskCounter++, data, this.watch)
-    //  });
-    // }
+    lazyLoader(data){
+        import('./todolistitem.ts').then(
+        (module) => {
+        const todoListItem = module.default;
+          this.tasks.push(new todoListItem(this.inputs.value, this.parents.childNodes[1].childNodes[3], this.taskCounter++, data, this.watch));
+     });
+    };
 
 
 // метод наблюдает за любыми изменениями заголовка, и списывает их в массив

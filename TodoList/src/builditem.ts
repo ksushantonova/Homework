@@ -1,4 +1,4 @@
- import Todolist from './todolist.js';
+ import Todolist from './todolist.ts';
 
 
 export default class BuildItem {

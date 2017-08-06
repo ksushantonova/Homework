@@ -6,7 +6,7 @@ export default class BuildItem {
    container: Element;
    allLists: any;
    counter: number;
-   localValue: any;
+   localValue: string;
    localFrame: any;
    mainFrame: Element;
    temporaryList: any;
@@ -14,7 +14,7 @@ export default class BuildItem {
    allListsString: string;
 
 
-	constructor(parent: any){
+	constructor(parent: Element){
     this.container = parent;
 		this.allLists = [];
 		this.counter = 0;
@@ -41,8 +41,6 @@ export default class BuildItem {
       this.localValue = localStorage.getItem('data');
       if (this.localValue !== null && this.localValue.length > 3){ 
         this.localFrame = JSON.parse(this.localValue);
-       
-
         this.localFrame.forEach((list: object) => {
         this.buildItemHtml();
         this.buildInit(list);
@@ -72,8 +70,8 @@ export default class BuildItem {
     customEvent(){
           this.temporaryList = [];
 // событие удаления листа
-    	  this.mainFrame.addEventListener("deleteLists", (event) => {
-          this.getNumber(event);
+    	  this.mainFrame.addEventListener("deleteLists", (e: any) => {
+          this.getNumber(e);
           this.allLists.splice(this.temporaryList[1], 1);         
       }); 
 // событие watch - мгновенная перезапись изменений в локал
@@ -124,9 +122,13 @@ export default class BuildItem {
 
 // создание нового класса Todolist (localData ставить если есть локалсторейдж)
      buildInit(localData: any){
-        console.log(localData);
-        let parent = this.mainFrame;
-      this.allLists.push(new Todolist(parent, this.counter++, localData, this.watch));
+        let todolistOptions: object = {
+           parents: this.mainFrame,
+           counter: this.counter++,
+           localData: localData,
+           watch: this.watch
+    }
+       this.allLists.push(new Todolist(todolistOptions));
    };
 	
 };

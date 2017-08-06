@@ -3,11 +3,7 @@
 
  export default class ToDoListItem {
 
-            watch: CustomEvent;
-            local: any;
-            inputValue: string;
-            parents: HTMLElement;
-            counter: number;
+            opt: any;
             checkedItem: boolean;
             newInput: any;
             check: any;
@@ -16,16 +12,11 @@
             deleteEvent: CustomEvent;
             changeEvent: CustomEvent;
             focusInput: CustomEvent;
-            todolistInput: any;
+            inputValue: string;
 
-        constructor (input: any, parent: any, counter: number, task: any, watch: CustomEvent){
-//получаем все ивенты через свойства, а так же нужные нам данные
-            this.watch = watch;
-            this.local = task;
-            this.inputValue = input.value;
-            this.todolistInput = input;
-            this.parents = parent; // items
-            this.counter = counter;
+        constructor (options: any){
+            this.opt = options;
+            this.inputValue = options.inputs.value;
             this.checkedItem = false;
             this.init();
         }
@@ -43,16 +34,16 @@
         this.newItemValue(); 
         this.isChecked();
         this.removeTask();
-        this.parents.parentNode.parentNode.dispatchEvent(this.watch);
+        this.opt.parents.parentNode.parentNode.dispatchEvent(this.opt.watch);
            
     }
 
 // если есть какие-то локальные данные, забираем из них инпут, и информацию, какие из айтемов были чекнуты
     workingWithLocalStorage(){
-        if (this.local !== null){
-            this.inputValue = this.local.inputValue;
-            this.checkedItem = this.local.checkedItem;
-            this.parents.parentNode.parentNode.dispatchEvent(this.watch);
+        if (this.opt.localData !== null){
+            this.inputValue = this.opt.localData.inputValue;
+            this.checkedItem = this.opt.localData.checkedItem;
+            this.opt.parents.parentNode.parentNode.dispatchEvent(this.opt.watch);
 
     }};
 
@@ -61,13 +52,13 @@
         let val = this.inputValue;
         this.newInput.value = ""; 
         this.newInput.value = val; 
-        this.todolistInput.value = "";
+        this.opt.inputs.value = "";
     }
 
     mainElements(){
         this.check = this.mainContainer.firstElementChild.childNodes[1];
         this.newInput = this.mainContainer.firstElementChild.childNodes[3];
-        this.newInput.value = this.inputValue;
+        this.newInput.value = this.opt.inputs.value;
         this.remove = this.mainContainer.firstElementChild.childNodes[5];
     }
 
@@ -82,18 +73,15 @@
 
         });
 
-         this.remove.addEventListener('mouseout', (e) => {
+         this.remove.addEventListener('mouseout', (e: Event) => {
             this.remove.style.display = "none";
         });
 
-         this.newInput.parentNode.addEventListener('mouseout', (e) => {
+         this.newInput.parentNode.addEventListener('mouseout', (e: Event) => {
             this.remove.style.display = "none";
 
         });
     }
-
-
-
     newEvents(){
 
         
@@ -114,24 +102,24 @@
 // постройка каркасса айтема
    htmlBuild(){
         this.mainContainer = document.createElement("div");
-        this.parents.appendChild(this.mainContainer);
+        this.opt.parents.appendChild(this.mainContainer);
         this.mainContainer.className = "mainContainer";
         this.mainContainer.innerHTML = ` 
                      <div class='container'>
                         <div class='check'>
                         <input type='checkbox' style='position:relative; cursor: pointer'>
                         </div>
-                        <input class='newInput' value='${this.inputValue}'>
+                        <input class='newInput' value='${this.opt.inputs.value}'>
                         <div class='remove'><img src='cross.png' style='heigth: 18px; width: 22px; display:block'></img></div>
                   </div>`; 
-        this.parents.parentNode.parentNode.dispatchEvent(this.watch);
+        this.opt.parents.parentNode.parentNode.dispatchEvent(this.opt.watch);
         }
     
    focusTodolistInput(){
         this.newInput.addEventListener("keyup", (e: any) => {
              if(e.keyCode == 13){
              this.remove.style.display = "none";
-             this.parents.parentNode.parentNode.dispatchEvent(this.focusInput);
+             this.opt.parents.parentNode.parentNode.dispatchEvent(this.focusInput);
            };
         });
    }     
@@ -139,10 +127,10 @@
 // метод удаления из Дома
     removeTask(){
         this.remove.addEventListener("click", () => {
-        this.deleteEvent.detail.number = this.counter;   
-        this.parents.parentNode.parentNode.dispatchEvent(this.deleteEvent);
+        this.deleteEvent.detail.number = this.opt.counter;   
+        this.opt.parents.parentNode.parentNode.dispatchEvent(this.deleteEvent);
         this.mainContainer.remove();
-        this.parents.parentNode.parentNode.dispatchEvent(this.watch);
+        this.opt.parents.parentNode.parentNode.dispatchEvent(this.opt.watch);
     });
 }
 
@@ -152,11 +140,11 @@
              if (this.check.firstElementChild.checked){
             this.checkedItem = true;
              this.checkItem();
-            this.parents.parentNode.parentNode.dispatchEvent(this.watch);
+            this.opt.parents.parentNode.parentNode.dispatchEvent(this.opt.watch);
         } else {
             this.checkedItem = false;
                this.checkItem();
-               this.parents.parentNode.parentNode.dispatchEvent(this.watch);
+               this.opt.parents.parentNode.parentNode.dispatchEvent(this.opt.watch);
             }
         });
     }
@@ -164,10 +152,10 @@
 // метод изменения inputValue при его изменении на ходу
     newItemValue(){
         this.newInput.addEventListener("input", () => {
-        this.changeEvent.detail.number = this.counter; 
+        this.changeEvent.detail.number = this.opt.counter; 
         this.changeEvent.detail.value = this.newInput.value;
-        this.parents.parentNode.parentNode.dispatchEvent(this.changeEvent);
-        this.parents.parentNode.parentNode.dispatchEvent(this.watch);
+        this.opt.parents.parentNode.parentNode.dispatchEvent(this.changeEvent);
+        this.opt.parents.parentNode.parentNode.dispatchEvent(this.opt.watch);
         })
     }
 
@@ -178,12 +166,12 @@
         this.newInput.className = "checked";
         this.remove.className = "checkedremove";
         this.check.firstElementChild.checked = true;
-       this.parents.parentNode.parentNode.dispatchEvent(this.watch);
+       this.opt.parents.parentNode.parentNode.dispatchEvent(this.opt.watch);
         } else {
         this.check.className = "check";
         this.newInput.className = "newInput";
         this.remove.className = "remove";
-        this.parents.parentNode.parentNode.dispatchEvent(this.watch);
+        this.opt.parents.parentNode.parentNode.dispatchEvent(this.opt.watch);
             }
     };  
 

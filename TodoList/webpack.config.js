@@ -1,12 +1,11 @@
   const path = require('path');
   const CleanWebpackPlugin = require('clean-webpack-plugin');
-  const HtmlWebpackPlugin = require('html-webpack-plugin');
   const webpack = require('webpack');
 
  module.exports = {
   entry: {
       app: './src/index.ts',
-      list:  './src/todolistitem.js'
+      list:  './src/todolistitem.ts'
     },
     devtool: 'inline-source-map',
      devServer: {
@@ -27,10 +26,6 @@
  
       plugins: [
     //   new CleanWebpackPlugin(['dist']),
-    //   new HtmlWebpackPlugin({
-    //   title: 'TodoList',
-    //   template: './index.html',
-    // }),
        new webpack.optimize.CommonsChunkPlugin({
       children: true,
       async: true,
